@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Guru extends Model
 {
     use HasFactory;
+    protected $fillable = ['Nama','Nama_Sekolah', 'Email', 'Tanggal_Lahir', 'Tempat_Lahir', 'No_Tepl', 'Pendidikan_Terakhir', 'Alamat', 'Nuptk', 'Desa', 'Foto', 'Kecamatan', 'Kabupaten','Provinsi'];
 }

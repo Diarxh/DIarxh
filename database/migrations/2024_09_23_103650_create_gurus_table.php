@@ -13,6 +13,23 @@ return new class extends Migration
     {
         Schema::create('gurus', function (Blueprint $table) {
             $table->id();
+            
+            $table->string('Nama');
+            $table->string('Email');
+            $table->string('No_Telp');
+            $table->string('Nama_Sekolah');
+            $table->string('Nuptk');
+            $table->string('Foto')->nullabel();
+            $table->string('Tanggal_Lahir');
+            $table->string('Tempat_Lahir');
+            $table->string('Alamat');
+            $table->string('Desa');
+            $table->string('Kecamatan');
+            $table->string('Kabupaten');
+            $table->string('Provinsi');
+            $table->string('Pendidikan_Terakhir');
+            $table->unsignedBigInteger('User_Id');
+            $table->foreign('User_Id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
