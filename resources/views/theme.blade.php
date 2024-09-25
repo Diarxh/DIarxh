@@ -12,7 +12,7 @@
         <!-- Google Web Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&family=Rubik:wght@400;500&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&family=Rubik:wght@400;500&display=swap" rel="stylesheet">
 
         <!-- Icon Font Stylesheet -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
@@ -26,6 +26,7 @@
 
         <!-- Customized Bootstrap Stylesheet -->
         <link href="{{ asset('theme/css/bootstrap.min.css') }}" rel="stylesheet">
+        {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
 
         <!-- Template Stylesheet -->
         <link href="{{ asset('theme/css/style.css') }}" rel="stylesheet">
@@ -45,7 +46,7 @@
         <div class="container-fluid header position-relative overflow-hidden p-0">
             <nav class="navbar navbar-expand-lg fixed-top navbar-light px-4 px-lg-5 py-3 py-lg-0">
                 <a href="/home" class="navbar-brand p-0">
-                    
+
                 <img src="{{ asset('images/logo-gelap.png')}}" alt="Logo">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -69,12 +70,12 @@
                         <a href="contact.html" class="nav-item nav-link">Contact Us</a>
                         <a href="/about" class="nav-item nav-link">About</a>
                     </div>
-                    <a href="/admin" class="btn btn-light border border-primary rounded-pill text-primary py-2 px-4 me-4">Log In</a>
-                    <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4">Sign Up</a>
-                </div>
+                    <a href="#" class="btn btn-light border border-primary rounded-pill text-primary py-2 px-4 me-4">Log In</a>
+                    <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4" id="loginLink">Sign Up</a>
+
             </nav>
-            
-            
+
+
             @yield('content')
 
         <!-- Footer Start -->
@@ -135,7 +136,7 @@
         </div>
         <!-- Footer End -->
 
-        
+
         <!-- Copyright Start -->
         <div class="container-fluid copyright py-4">
             <div class="container">
@@ -153,13 +154,36 @@
             </div>
         </div>
         <!-- Copyright End -->
+<!-- Button trigger modal -->
+<a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4" id="loginLink">Sign Up</a>
+
+<!-- Modal -->
+<div class="modal fade custom-modal" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">Login</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-0">
+                <iframe id="loginIframe" src="" style="width: 100%; border: none;"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
 
 
         <!-- Back to Top -->
-        <a href="#" class="btn btn-primary btn-lg-square back-to-top"><i class="fa fa-arrow-up"></i></a>   
+        <a href="#" class="btn btn-primary btn-lg-square back-to-top"><i class="fa fa-arrow-up"></i></a>
 
-        
+
     <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="'{{ asset('theme/lib/wow/wow.min.js')}}"></script>
@@ -168,10 +192,39 @@
     <script src="'{{ asset('theme/lib/counterup/counterup.min.js')}}"></script>
     <script src="'{{ asset('theme/lib/owlcarousel/owl.carousel.min.js')}}"></script>
     <script src="'{{ asset('theme/lib/lightbox/js/lightbox.min.js')}}"></script>
-    
+
 
     <!-- Template Javascript -->
     <script src="{{ asset('theme/js/main.js')}}"></script>
+
+    @push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var modal = document.getElementById("loginModal");
+            var btn = document.getElementById("loginLink");
+            var iframe = document.getElementById("loginIframe");
+
+            btn.onclick = function(event) {
+                event.preventDefault(); // Mencegah halaman bergulir ke atas
+                iframe.src = '/login/login';
+                var bootstrapModal = new bootstrap.Modal(modal);
+                bootstrapModal.show();
+            }
+
+            iframe.onload = function() {
+                // Tidak perlu resizeIframe karena menggunakan Flexbox
+            }
+
+            modal.addEventListener('hidden.bs.modal', function () {
+                iframe.src = "";
+            });
+        });
+    </script>
+    @endpush
+
+
+
+
     </body>
 
 </html>
