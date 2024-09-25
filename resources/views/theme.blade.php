@@ -7,7 +7,8 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
         <meta content="" name="description">
-        <link rel="icon" type="image/x-icon" href="{{ asset('images/logo-gelap.png') }}">
+        {{-- WEB ICON --}}
+        <link rel="icon" type="image/x-icon" href="{{ asset('images/logo.svg') }}">
         <!-- Google Web Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,13 +33,12 @@
 
     <body>
 
-        <!-- Spinner Start -->
-        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-        </div>
-        <!-- Spinner End -->
+ <!-- Spinner Start -->
+<div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <img src="{{ asset('images/logo-cerah.png') }}" alt="Loading..." style="width: 6rem; height: 4rem;">
+</div>
+<!-- Spinner End -->
+
 
 
         <!-- Navbar & Hero Start -->
@@ -46,7 +46,7 @@
             <nav class="navbar navbar-expand-lg fixed-top navbar-light px-4 px-lg-5 py-3 py-lg-0">
                 <a href="/home" class="navbar-brand p-0">
                     
-                <img src="{{ asset('images/logo-cerah.png')}}" alt="Logo">
+                <img src="{{ asset('images/logo-gelap.png')}}" alt="Logo">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars"></span>
@@ -54,10 +54,10 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
                         <a href="/home" class="nav-item nav-link active">Home</a>
-                        <a href="/about" class="nav-item nav-link">About</a>
-                        <a href="service.html" class="nav-item nav-link">Services</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                        <a href="/list_pelatihan" class="nav-item nav-link">Pelatihan</a>
+                        <a href="/tipepelatihan" class="nav-item nav-link">Tipe Pelatihan</a>
+                        {{-- <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Tipe Pelatihan</a>
                             <div class="dropdown-menu m-0">
                                 <a href="feature.html" class="dropdown-item">Features</a>
                                 <a href="pricing.html" class="dropdown-item">Pricing</a>
@@ -65,10 +65,11 @@
                                 <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                                 <a href="404.html" class="dropdown-item">404 Page</a>
                             </div>
-                        </div>
+                        </div> --}}
                         <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+                        <a href="/about" class="nav-item nav-link">About</a>
                     </div>
-                    <a href="#" class="btn btn-light border border-primary rounded-pill text-primary py-2 px-4 me-4">Log In</a>
+                    <a href="/admin" class="btn btn-light border border-primary rounded-pill text-primary py-2 px-4 me-4">Log In</a>
                     <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4">Sign Up</a>
                 </div>
             </nav>

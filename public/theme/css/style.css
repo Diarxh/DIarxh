@@ -67,7 +67,7 @@
 }
 
 .btn.btn-primary {
-    background: color(srgb rgb(195, 0, 255)) !important;
+    background: var(--bs-primary) !important;
     color: var(--bs-white) !important;
     font-weight: 400;
     transition: 0.5s;
