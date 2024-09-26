@@ -8,17 +8,25 @@ class HomeController extends Controller
 {
     //
 
-    public function index(){
+    public function index()
+    {
         return view('home');
     }
 
-    public function about(){
+    public function about()
+    {
         return view('about');
     }
-    public function tipe_pelatihan(){
+    public function tipe_pelatihan()
+    {
         return view('tipepelatihan');
     }
-    public function pelatihan(){
+    public function pelatihan()
+    {
         return view('pelatihan');
+    }
+    public function login()
+    {
+        return view('login');
     }
 }

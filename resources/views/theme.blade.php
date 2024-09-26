@@ -47,7 +47,7 @@
             <nav class="navbar navbar-expand-lg fixed-top navbar-light px-4 px-lg-5 py-3 py-lg-0">
                 <a href="/home" class="navbar-brand p-0">
 
-                <img src="{{ asset('images/logo-gelap.png')}}" alt="Logo">
+                <img src="{{ asset('images/logo-cerah.png')}}" alt="Logo">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars"></span>
@@ -70,8 +70,8 @@
                         <a href="contact.html" class="nav-item nav-link">Contact Us</a>
                         <a href="/about" class="nav-item nav-link">About</a>
                     </div>
-                    <a href="#" class="btn btn-light border border-primary rounded-pill text-primary py-2 px-4 me-4">Log In</a>
-                    <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4" id="loginLink">Sign Up</a>
+                    <a href="/login" class="btn btn-light border border-primary rounded-pill text-primary py-2 px-4 me-4">Log In</a>
+                    <a href="/register" class="btn btn-primary rounded-pill text-white py-2 px-4" >Sign Up</a>
 
             </nav>
 
@@ -197,7 +197,7 @@
     <!-- Template Javascript -->
     <script src="{{ asset('theme/js/main.js')}}"></script>
 
-    @push('scripts')
+    {{--  @push('scripts')
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var modal = document.getElementById("loginModal");
@@ -220,7 +220,7 @@
             });
         });
     </script>
-    @endpush
+    @endpush  --}}
 
 
 
