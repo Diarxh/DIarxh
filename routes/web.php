@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('register');
+    return view('detail_pelatihan');
 });
 
 Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index']);
