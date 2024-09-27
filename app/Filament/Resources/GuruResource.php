@@ -10,9 +10,8 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use App\Models\Province;
-use App\Models\Regency;
-use App\Models\District;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class GuruResource extends Resource
 {
@@ -39,51 +38,31 @@ class GuruResource extends Resource
                 Forms\Components\TextInput::make('Nuptk')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\FileUpload::make('Foto')
-                    ->nullable()
+                Forms\Components\TextInput::make('Foto')
+                    ->numeric()
                     ->default(null),
-                Forms\Components\DatePicker::make('Tanggal_Lahir')
-                    ->required(),
+                Forms\Components\TextInput::make('Tanggal_Lahir')
+                    ->required()
+                    ->maxLength(255),
                 Forms\Components\TextInput::make('Tempat_Lahir')
                     ->required()
                     ->maxLength(255),
-                    Forms\Components\Select::make('Jenis_Kelamin')
-                    ->label('Jenis Kelamin')
-                    ->options([
-                        'Laki-laki' => 'Laki-laki',
-                        'Perempuan' => 'Perempuan',
-                    ])
-                    ->required(),
+                Forms\Components\TextInput::make('Jenis_Kelamin')
+                    ->required()
+                    ->maxLength(255),
                 Forms\Components\TextInput::make('Alamat')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\Select::make('Provinsi')
-                    ->label('Provinsi')
-                    ->options(Province::all()->pluck('name', 'id'))
-                    ->reactive()
-                    ->afterStateUpdated(fn (callable $set) => $set('Kabupaten', null)),
-                Forms\Components\Select::make('Kabupaten')
-                    ->label('Kabupaten')
-                    ->options(function (callable $get) {
-                        $province = $get('Provinsi');
-                        if (!$province) {
-                            return Regency::all()->pluck('name', 'id');
-                        }
-                        return Regency::where('province_id', $province)->pluck('name', 'id');
-                    })
-                    ->reactive()
-                    ->afterStateUpdated(fn (callable $set) => $set('Kecamatan', null)),
-                Forms\Components\Select::make('Kecamatan')
-                    ->label('Kecamatan')
-                    ->options(function (callable $get) {
-                        $regency = $get('Kabupaten');
-                        if (!$regency) {
-                            return District::all()->pluck('name', 'id');
-                        }
-                        return District::where('regency_id', $regency)->pluck('name', 'id');
-                    })
-                    ->reactive(),
                 Forms\Components\TextInput::make('Desa')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('Kecamatan')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('Kabupaten')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('Provinsi')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('Pendidikan_Terakhir')
@@ -146,7 +125,6 @@ class GuruResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
@@ -168,7 +146,6 @@ class GuruResource extends Resource
         return [
             'index' => Pages\ListGurus::route('/'),
             'create' => Pages\CreateGuru::route('/create'),
-            'view' => Pages\ViewGuru::route('/{record}'),
             'edit' => Pages\EditGuru::route('/{record}/edit'),
         ];
     }

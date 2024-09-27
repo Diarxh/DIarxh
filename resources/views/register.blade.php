@@ -18,18 +18,21 @@
                         <div class="col-lg-10 col-xl-7 mx-auto">
                             <div class="logo">
                                 <img src="{{ asset('images/logo-cerah.png') }}" alt="Loading..." style="width: 6rem; height: 4rem;" class="content-center">
-                                <p class="text-muted mb-4">Silahkan Login</p>
+                                <p class="text-muted mb-4">Silahkan Daftar</p>
                             </div>
-                            <form>
+                            <form method="POST" action="{{ route('register') }}">
+                                @csrf
                                 <div class="form-group mb-3">
-                                    <input id="inputUsername" type="text" placeholder="Username" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
-                                </div>
-
-                                <div class="form-group mb-3">
-                                    <input id="inputEmail" type="email" placeholder="Email address" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
+                                    <input id="inputEmail" type="text" name="name" placeholder="Nama Lengkap" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <input id="inputPassword" type="password" placeholder="Password" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
+                                    <input id="inputEmail" type="email" name="email" placeholder="Email address" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input id="inputPassword" type="password" name="password" placeholder="Password" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input id="inputPassword" type="password" name="password_confirmation" placeholder="Password" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
                                 </div>
                                 <div class="custom-control custom-checkbox mb-3">
                                     <input id="customCheck1" type="checkbox" checked class="custom-control-input">

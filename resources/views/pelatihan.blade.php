@@ -53,7 +53,7 @@
                             <div class="blog-content text-dark border p-4 ">
                                 <h5 class="mb-4">Pelatihan Guru</h5>
                                 <p class="mb-4">Disini guru akan di ajarkan bagaimana jika ingin mengajarkan ilmu.</p>
-                                <a class="btn btn-light rounded-pill py-2 px-4" href="#">Lihat Lebih...</a>
+                                <a class="btn btn-light rounded-pill py-2 px-4" href="/detail_pelatihan">Lihat Lebih...</a>
                             </div>
                         </div>
                     </div>
