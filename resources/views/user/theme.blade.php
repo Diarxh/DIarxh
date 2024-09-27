@@ -42,38 +42,51 @@
 
 
 
-        <!-- Navbar & Hero Start -->
-        <div class="container-fluid header position-relative overflow-hidden p-0">
-            <nav class="navbar navbar-expand-lg fixed-top navbar-light px-4 px-lg-5 py-3 py-lg-0">
-                <a href="/home" class="navbar-brand p-0">
+<div class="container-fluid header position-relative overflow-hidden p-0">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light px-4 px-lg-5 py-3 py-lg-0">
+        <a href="/home" class="navbar-brand p-0">
+            <img src="{{ asset('images/logo-cerah.png')}}" alt="Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="fa fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0">
+                <a href="/home" class="nav-item nav-link active">Home</a>
+                <a href="/list_pelatihan" class="nav-item nav-link">Pelatihan</a>
+                <a href="/tipepelatihan" class="nav-item nav-link">Tipe Pelatihan</a>
+                <a href="/contact" class="nav-item nav-link">Contact Us</a>
+                <a href="/about" class="nav-item nav-link">About</a>
+            </div>
 
-                <img src="{{ asset('images/logo-cerah.png')}}" alt="Logo">
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                    <span class="fa fa-bars"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav ms-auto py-0">
-                        <a href="/home" class="nav-item nav-link active">Home</a>
-                        <a href="/list_pelatihan" class="nav-item nav-link">Pelatihan</a>
-                        <a href="/tipepelatihan" class="nav-item nav-link">Tipe Pelatihan</a>
-                        {{-- <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Tipe Pelatihan</a>
-                            <div class="dropdown-menu m-0">
-                                <a href="feature.html" class="dropdown-item">Features</a>
-                                <a href="pricing.html" class="dropdown-item">Pricing</a>
-                                <a href="blog.html" class="dropdown-item">Blog</a>
-                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                <a href="404.html" class="dropdown-item">404 Page</a>
-                            </div>
-                        </div> --}}
-                        <a href="contact.html" class="nav-item nav-link">Contact Us</a>
-                        <a href="/about" class="nav-item nav-link">About</a>
-                    </div>
-                    <a href="/login" class="btn btn-light border border-primary rounded-pill text-primary py-2 px-4 me-4">Log In</a>
-                    <a href="/register" class="btn btn-primary rounded-pill text-white py-2 px-4" >Sign Up</a>
+            @auth
+                <!-- Jika user sudah login, tampilkan icon profil -->
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{{ Auth::user()->profile_photo_url ?? asset('images/default-profile.png') }}" alt="Profile" width="40" height="40" class="rounded-circle">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end text-small shadow" aria-labelledby="profileDropdown">
+                        <li><a class="dropdown-item" href="/profile">Profile</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                Log Out
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            @else
+                <!-- Jika user belum login, tampilkan tombol Log In dan Sign Up -->
+                <a href="/login" class="btn btn-light border border-primary rounded-pill text-primary py-2 px-4 me-4">Log In</a>
+                <a href="/register" class="btn btn-primary rounded-pill text-white py-2 px-4">Sign Up</a>
+            @endauth
+        </div>
+    </nav>
+</div>
 
-            </nav>
 
 
             @yield('content')
