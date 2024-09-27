@@ -4,7 +4,11 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+<<<<<<< HEAD
     return view('user.dashboard_user');
+=======
+    return view('detail_pelatihan`');
+>>>>>>> 13db41b (Commit perubahan pada routes/web.php)
 });
 
 Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index']);
