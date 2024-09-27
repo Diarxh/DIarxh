@@ -33,7 +33,7 @@ class HomeController extends Controller
     {
         return view('login');
     }
- 
+
     public function detail_pelatihan()
     {
         return view('detail_pelatihan');
@@ -43,11 +43,16 @@ class HomeController extends Controller
     {
         return view('register');
     }
+    public function pelatihan_saya()
+    {
+        return view('user.pelatihan_saya');
+    }
+
 
     public function register(Request $request)
     {
         // $this->validator($request->all())->validate();
-      
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,

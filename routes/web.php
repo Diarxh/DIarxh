@@ -21,3 +21,4 @@ Route::get('/login/login', function () {
 
 Route::get('register', [HomeController::class, 'showRegistrationForm'])->name('register');
 Route::post('register', [HomeController::class, 'register']);
+route::get('pelatihan_saya', [HomeController::class, 'pelatihan_saya']);

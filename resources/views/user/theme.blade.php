@@ -41,8 +41,8 @@
 <!-- Spinner End -->
 
 
-
-<div class="container-fluid header position-relative overflow-hidden p-0">
+<!-- navbar start --!>
+<div class="container-fluid header position-relative  p-0">
     <nav class="navbar navbar-expand-lg fixed-top navbar-light px-4 px-lg-5 py-3 py-lg-0">
         <a href="/home" class="navbar-brand p-0">
             <img src="{{ asset('images/logo-cerah.png')}}" alt="Logo">
@@ -54,39 +54,15 @@
             <div class="navbar-nav ms-auto py-0">
                 <a href="/home" class="nav-item nav-link active">Home</a>
                 <a href="/list_pelatihan" class="nav-item nav-link">Pelatihan</a>
-                <a href="/tipepelatihan" class="nav-item nav-link">Tipe Pelatihan</a>
-                <a href="/contact" class="nav-item nav-link">Contact Us</a>
-                <a href="/about" class="nav-item nav-link">About</a>
+                <a href="/pelatihan_saya" class="nav-item nav-link">Pelatihan Saya</a>
             </div>
 
-            @auth
-                <!-- Jika user sudah login, tampilkan icon profil -->
-                <div class="dropdown">
-                    <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="{{ Auth::user()->profile_photo_url ?? asset('images/default-profile.png') }}" alt="Profile" width="40" height="40" class="rounded-circle">
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end text-small shadow" aria-labelledby="profileDropdown">
-                        <li><a class="dropdown-item" href="/profile">Profile</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li>
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                Log Out
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-            @else
-                <!-- Jika user belum login, tampilkan tombol Log In dan Sign Up -->
-                <a href="/login" class="btn btn-light border border-primary rounded-pill text-primary py-2 px-4 me-4">Log In</a>
-                <a href="/register" class="btn btn-primary rounded-pill text-white py-2 px-4">Sign Up</a>
-            @endauth
-        </div>
+
+            <a href="/register" class="btn btn-primary rounded-pill text-white py-2 px-4" >Log Out</a>
+
     </nav>
 </div>
-
+<!-- nav bar end --!>
 
 
             @yield('content')
@@ -168,7 +144,7 @@
         </div>
         <!-- Copyright End -->
 <!-- Button trigger modal -->
-<a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4" id="loginLink">Sign Up</a>
+{{--  <a href="#" class="btn btn-primary rounded-pill text-white py-2 px-4" id="loginLink">Sign Up</a>   --}}
 
 <!-- Modal -->
 <div class="modal fade custom-modal" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">

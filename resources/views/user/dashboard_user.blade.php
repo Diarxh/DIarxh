@@ -1,13 +1,19 @@
 @extends('user.theme')
 @section('content')
+
+
+
 <!-- Header Start -->
 <div class="container-fluid bg-breadcrumb">
     <ul class="breadcrumb-animation">
         <li></li>
         <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
     </ul>
-    <div class="container text-center py-3" style="max-width: 900px;">
-        <h3 class="display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Dashboard</h3>
+    <div class="container text-center py-1" style="max-width: 500px;">
+        <h3 class="display-2 mb-1 wow fadeInDown" data-wow-delay="0.1s">Dashboard</h3>
     </div>
 </div>
 <!-- Header End -->
