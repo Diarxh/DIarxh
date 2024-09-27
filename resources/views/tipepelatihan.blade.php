@@ -1,7 +1,7 @@
 @extends('theme')
 @section('content')
              <!-- Header Start -->
-             <div class="container-fluid bg-breadcrumb">
+             <div class="container-fluid bg-breadcrumb py-3">
                 <ul class="breadcrumb-animation">
                     <li></li>
                     <li></li>
@@ -21,12 +21,12 @@
                         <li class="breadcrumb-item"><a href="/home">Home</a></li>
                         <li class="breadcrumb-item"><a href="#">Pages</a></li>
                         <li class="breadcrumb-item active text-primary">Service</li>
-                    </ol>    
+                    </ol>
                 </div>
             </div>
             <!-- Header End -->
-    
-    
+
+
             <!-- Service Start -->
             <div class="container-fluid service py-5">
                 <div class="container py-5">
@@ -128,8 +128,8 @@
                 </div>
             </div>
             <!-- Service End -->
-    
-    
+
+
             <!-- FAQ Start -->
             <div class="container-fluid FAQ bg-light overflow-hidden py-5">
                 <div class="container py-5">
@@ -153,7 +153,7 @@
                                 <div class="accordion-item border-0 mb-4">
                                     <h2 class="accordion-header" id="headingTwo">
                                         <button class="accordion-button collapsed rounded-top" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            Are there any hidden charges? 
+                                            Are there any hidden charges?
                                         </button>
                                     </h2>
                                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
@@ -189,8 +189,8 @@
                 </div>
             </div>
             <!-- FAQ End -->
-    
-    
+
+
             <!-- Pricing Start -->
             <div class="container-fluid price py-5">
                 <div class="container py-5">
@@ -208,7 +208,7 @@
                                     <div class="d-flex justify-content-center">
                                         <strong class="align-self-start">$</strong>
                                         <p class="mb-0"><span class="display-5">00</span>/mo</p>
-                                    </div>                        
+                                    </div>
                                 </div>
                                 <div class="text-start p-5">
                                     <p><i class="fas fa-check text-success me-1"></i> Limited Acess Library</p>
@@ -233,7 +233,7 @@
                                     <div class="d-flex justify-content-center">
                                         <strong class="align-self-start">$</strong>
                                         <p class="mb-0"><span class="display-5">23</span>/mo</p>
-                                    </div>                        
+                                    </div>
                                 </div>
                                 <div class="text-start p-5">
                                     <p><i class="fas fa-check text-success me-1"></i> Limited Acess Library</p>
@@ -257,7 +257,7 @@
                                     <div class="d-flex justify-content-center">
                                         <strong class="align-self-start">$</strong>
                                         <p class="mb-0"><span class="display-5">49</span>/mo</p>
-                                    </div>                        
+                                    </div>
                                 </div>
                                 <div class="text-start p-5">
                                     <p><i class="fas fa-check text-success me-1"></i> Limited Acess Library</p>
@@ -278,7 +278,7 @@
                 </div>
             </div>
             <!-- Pricing End -->
-        
+
 
 
 

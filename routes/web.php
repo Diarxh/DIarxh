@@ -4,11 +4,7 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-<<<<<<< HEAD
     return view('user.dashboard_user');
-=======
-    return view('detail_pelatihan`');
->>>>>>> 13db41b (Commit perubahan pada routes/web.php)
 });
 
 Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index']);
@@ -18,11 +14,11 @@ Route::get('/list_pelatihan', [\App\Http\Controllers\HomeController::class, 'pel
 Route::get('/login', [\App\Http\Controllers\HomeController::class, 'login']);
 Route::get('/register', [\App\Http\Controllers\HomeController::class, 'register']);
 Route::get('/detail_pelatihan', [\App\Http\Controllers\HomeController::class, 'detail_pelatihan']);
-Route::get('/login/login', function () {
-    return view('login.login');
-});
-
+// Route::get('/login/login', function () {
+//     return view('login.login');
+// });
 
 Route::get('register', [HomeController::class, 'showRegistrationForm'])->name('register');
 Route::post('register', [HomeController::class, 'register']);
+Route::get('login', [HomeController::class, 'login'])->name('login');
 route::get('pelatihan_saya', [HomeController::class, 'pelatihan_saya']);
