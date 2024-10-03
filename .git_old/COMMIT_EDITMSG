@@ -1,0 +1,13 @@
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch new-branch
+# Your branch is up to date with 'origin/new-branch'.
+#
+# Changes to be committed:
+#	modified:   app/Http/Controllers/HomeController.php
+#	modified:   resources/views/login.blade.php
+#	modified:   resources/views/user/dashboard_user.blade.php
+#	modified:   routes/web.php
+#

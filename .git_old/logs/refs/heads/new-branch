@@ -1,0 +1,11 @@
+0000000000000000000000000000000000000000 1bafa5178862e25df9506154285e8c5e690d967e Diarxh <dadisandika036@gmail.com> 1727094262 +0700	branch: Created from refs/remotes/origin/new-branch
+1bafa5178862e25df9506154285e8c5e690d967e edc3f04eaa14627c0d9b56e84bbdeabe39075db4 Diarxh <dadisandika036@gmail.com> 1727157624 +0700	pull origin new-branch: Fast-forward
+edc3f04eaa14627c0d9b56e84bbdeabe39075db4 dcd57480f3e8e1fcf092887d15a9631342bc1037 Diarxh <dadisandika036@gmail.com> 1727248501 +0700	pull origin new-branch: Fast-forward
+dcd57480f3e8e1fcf092887d15a9631342bc1037 4eeb57720a940a14d75ec4f636f4137927aa04a1 Diarxh <dadisandika036@gmail.com> 1727305910 +0700	commit: Menambahkan routes login, modal login, dan memperbarui script serta CSS
+4eeb57720a940a14d75ec4f636f4137927aa04a1 4eeb57720a940a14d75ec4f636f4137927aa04a1 Diarxh <dadisandika036@gmail.com> 1727306104 +0700	Branch: renamed refs/heads/new-branch to refs/heads/new-branch
+4eeb57720a940a14d75ec4f636f4137927aa04a1 bfaf2caa12b2c5e33b711e7160318989bf5b4d4f Diarxh <dadisandika036@gmail.com> 1727363361 +0700	pull origin new-branch: Fast-forward
+bfaf2caa12b2c5e33b711e7160318989bf5b4d4f ed566447eae33069c34cb4bbe2037d8d666af524 Diarxh <dadisandika036@gmail.com> 1727364670 +0700	commit: Menambahkan detail_pelatihan
+ed566447eae33069c34cb4bbe2037d8d666af524 13db41b60ace5e09c3d27492657a638399c9a210 Diarxh <dadisandika036@gmail.com> 1727442125 +0700	commit: Commit perubahan pada routes/web.php
+13db41b60ace5e09c3d27492657a638399c9a210 9ad093204193329e59a27f6812f8aa1a0f8b9973 Diarxh <dadisandika036@gmail.com> 1727447342 +0700	rebase (finish): refs/heads/new-branch onto b200421c88c205da48446e7b2987a5f3b7efbf45
+9ad093204193329e59a27f6812f8aa1a0f8b9973 db6248050533c91e5e62423df2014323395b9133 Diarxh <dadisandika036@gmail.com> 1727448888 +0700	commit: menambah logika login dan daftar
+db6248050533c91e5e62423df2014323395b9133 1764d4e3ef813cfa23751892a2cfd42026866621 Diarxh <dadisandika036@gmail.com> 1727774747 +0700	pull origin new-branch: Fast-forward

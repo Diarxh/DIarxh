@@ -1,0 +1,4 @@
+# pack-refs with: peeled fully-peeled sorted 
+0bac655460f4fb382942915e6984bf29e3e152c7 refs/remotes/origin/Laravel
+0bac655460f4fb382942915e6984bf29e3e152c7 refs/remotes/origin/main
+1bafa5178862e25df9506154285e8c5e690d967e refs/remotes/origin/new-branch
