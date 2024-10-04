@@ -57,10 +57,10 @@
                 <div class="navbar-collapse collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
                         @if (auth()->check())
-                            <a href="#" class="nav-item nav-link">
+                            <a href="/profile" class="nav-item nav-link">
                                 Hello, {{ Auth::user()->name }}
                             </a>
-                            <a href="/home" class="nav-item nav-link active">Home</a>
+                            <a href="/user/dashboard" class="nav-item nav-link active">Home</a>
                             <a href="/list_pelatihan" class="nav-item nav-link">Pelatihan</a>
                             <a href="/pelatihan_saya" class="nav-item nav-link">Pelatihan Saya</a>
                     </div>
@@ -218,6 +218,8 @@
 
         <!-- Template Javascript -->
         <script src="{{ asset('theme/js/main.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
         {{--  @push('scripts')
     <script>

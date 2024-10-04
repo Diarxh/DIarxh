@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guru;
 use App\Models\MemberCourse;
 use App\Models\Pelatihan;
 use App\Models\User;
@@ -24,12 +25,53 @@ class HomeController extends Controller
     {
         return view('about');
     }
-    public function profile()
+
+    // PROFILL
+
+    public function detail_profile()
     {
-        return view('user.profil');
+        $guru = Guru::where('User_Id', Auth::id())->first();
+
+        if (!$guru) {
+            return redirect()->route('profile.create')->with('error', 'Profile not found. Please create a profile.');
+        }
+
+        return view('user.detail_profile', compact('guru'));
     }
 
+    public function profile()
+    {
+        $profile = Guru::where('User_Id', Auth::user()->id)->first();
+        return view('user.detail_profile', compact('profile'));
 
+    }
+    // END PROFILE
+    public function updateprofile()
+    {
+        $profile = Guru::where('User_Id', Auth::user()->id)->first();
+        return view('user.edit_profile', compact('profile'));
+    }
+
+    public function saveprofile(Request $request)
+    {
+        $data = $request->all();
+        $id = $request->id;
+
+        if ($id) {
+            // Jika ID diberikan, update data
+            $guru = Guru::find($id);
+            if ($guru) {
+                $guru->update($data);
+                return redirect()->back()->with('success', 'Berhasil update profile');
+            } else {
+                return redirect()->back()->with('error', 'Data guru tidak ditemukan');
+            }
+        } else {
+            // Jika ID tidak diberikan, buat data baru
+            Guru::create($data);
+            return redirect()->back()->with('success', 'Berhasil menambahkan guru baru');
+        }
+    }
     public function tipe_pelatihan()
     {
         return view('tipepelatihan');
@@ -38,7 +80,7 @@ class HomeController extends Controller
     public function pelatihan()
     {
         $pelatihan = Pelatihan::latest()->get();
-        return view('pelatihan', compact('pelatihan'));
+        return view(view: 'pelatihan', data: compact('pelatihan'));
     }
 
     public function login1ss()
@@ -162,10 +204,19 @@ class HomeController extends Controller
         }
     }
 
+    // public function registercoursedo(Request $request)
+    // {
+    //     $data = $request->all();
+    //     MemberCourse::create($data);
+    //     return redirect()->back()->with('success', 'Berhasil mendaftar');
+    // }
     public function registercoursedo(Request $request)
     {
         $data = $request->all();
         MemberCourse::create($data);
         return redirect()->back()->with('success', 'Berhasil mendaftar');
     }
+
+
+
 }

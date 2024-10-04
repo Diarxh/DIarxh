@@ -7,7 +7,7 @@ use App\Http\Middleware\RedirectIfAuthenticated;
 
 
 Route::get('/', function () {
-    return redirect('/');
+    return redirect('/home');
 });
 
 Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index']);
@@ -17,7 +17,8 @@ Route::get('/list_pelatihan', [\App\Http\Controllers\HomeController::class, 'pel
 Route::get('/login', [\App\Http\Controllers\HomeController::class, 'login']);
 Route::get('/register', [\App\Http\Controllers\HomeController::class, 'register']);
 Route::get('/detail_pelatihan/{any}', [\App\Http\Controllers\HomeController::class, 'detail_pelatihan']);
-Route::get('/profile', [\App\Http\Controllers\HomeController::class, 'profile']);
+Route::get('/profile', [HomeController::class, 'detail_profile'])->name('profile.detail');
+Route::get('/updateprofile', [\App\Http\Controllers\HomeController::class, 'updateprofile']);
 // Route::get('/login/login', function () {
 //     return view('login.login');
 // });
@@ -25,7 +26,7 @@ Route::get('/profile', [\App\Http\Controllers\HomeController::class, 'profile'])
 Route::get('register', [HomeController::class, 'showRegistrationForm'])->name('register');
 Route::post('register', [HomeController::class, 'register']);
 Route::get('login', [HomeController::class, 'login'])->name('login');
-route::get('pelatihan_saya', [HomeController::class, 'pelatihan_saya']);
+route::get('/pelatihan_saya', [HomeController::class, 'pelatihan_saya']);
 Route::get('/login', [HomeController::class, 'showLoginForm'])->name('login');
 Route::post('/logout', [HomeController::class, 'logout'])->name('logout');
 Route::get('/registercourse/{any}', [HomeController::class, 'registercourse'])->name('registercourse');
