@@ -8,7 +8,7 @@
         <meta content="" name="keywords">
         <meta content="" name="description">
         {{-- WEB ICON --}}
-        <link rel="icon" type="image/x-icon" href="{{ asset('images/logo.svg') }}">
+        <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon_logo.png') }}">
         <!-- Google Web Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

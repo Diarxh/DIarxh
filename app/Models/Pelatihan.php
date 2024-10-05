@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Pelatihan extends Model
 {
     use HasFactory;
+    protected $table = 'trainings'; // Menentukan nama tabel yang baru
+
     protected $fillable = [
         'nama',
         'deskripsi',

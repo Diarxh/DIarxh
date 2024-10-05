@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Guru extends Model
 {
     use HasFactory;
-
+    protected $table = 'teachers'; // Menentukan nama tabel yang baru
     protected $fillable = [
         'Nama',
         'Email',
