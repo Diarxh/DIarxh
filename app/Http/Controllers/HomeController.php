@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Log; // Tambahkan ini
+
 
 class HomeController extends Controller
 {
@@ -158,6 +160,7 @@ class HomeController extends Controller
 
         if (Auth::attempt($credentials)) {
             // Authentication passed...
+            Log::info('User logged in: ' . Auth::user()->email); // Log email pengguna
             return redirect()->intended('/user/dashboard');
         }
 
@@ -166,6 +169,9 @@ class HomeController extends Controller
             'email' => 'The provided credentials do not match our records.',
         ]);
     }
+
+
+
 
     public function logout(Request $request)
     {

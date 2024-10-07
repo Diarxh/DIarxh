@@ -1,7 +1,7 @@
 @extends('user.theme')
 @section('content')
     <!-- Header Start -->
-    <div class="container-fluid bg-breadcrumb">
+    <div class="container-fluid bg-breadcrumb py-1">
         <ul class="breadcrumb-animation">
             <li></li>
             <li></li>
