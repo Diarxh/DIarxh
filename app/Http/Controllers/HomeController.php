@@ -32,14 +32,20 @@ class HomeController extends Controller
 
     public function detail_profile()
     {
+        // Mencari data guru berdasarkan User_Id yang sedang login
         $guru = Guru::where('User_Id', Auth::id())->first();
 
+        // Jika data guru tidak ditemukan
         if (!$guru) {
-            return redirect()->route('profile.create')->with('error', 'Profile not found. Please create a profile.');
+            // Menggunakan session flash untuk mengirim pesan
+            return redirect()->route('updateprofile')->with('alert', 'Anda belum melengkapi data sebagai guru. Isi data terlebih dahulu.')->with('id', null);
         }
 
+        // Jika data guru ditemukan, tampilkan detail profil
         return view('user.detail_profile', compact('guru'));
     }
+
+
 
     public function profile()
     {
@@ -50,14 +56,48 @@ class HomeController extends Controller
     // END PROFILE
     public function updateprofile()
     {
+        // Mengambil data profil guru berdasarkan User_Id yang sedang login
         $profile = Guru::where('User_Id', Auth::user()->id)->first();
+
+        // Mengembalikan view edit_profile dengan data profil
         return view('user.edit_profile', compact('profile'));
     }
 
+
     public function saveprofile(Request $request)
     {
+        // Validasi input
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'no_telp' => 'required|string|max:15',
+            'nama_sekolah' => 'required|string|max:255',
+            'nuptk' => 'required|string|max:20',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'tanggal_lahir' => 'required|date',
+            'tempat_lahir' => 'required|string|max:255',
+            'alamat' => 'required|string',
+            'desa' => 'required|string|max:255',
+            'kecamatan' => 'required|string|max:255',
+            'kabupaten' => 'required|string|max:255',
+            'provinsi' => 'required|string|max:255',
+            'pendidikan_terakhir' => 'required|string|max:255',
+            'user_id' => 'required|integer',
+        ]);
+
         $data = $request->all();
         $id = $request->id;
+
+        // Debugging data
+        dd($data); // Tambahkan ini untuk melihat data yang dikirim
+
+        // Menangani upload foto jika ada
+        if ($request->hasFile('foto')) {
+            $file = $request->file('foto');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads'), $filename);
+            $data['Foto'] = $filename; // Menyimpan nama file foto ke dalam data
+        }
 
         if ($id) {
             // Jika ID diberikan, update data
@@ -74,6 +114,9 @@ class HomeController extends Controller
             return redirect()->back()->with('success', 'Berhasil menambahkan guru baru');
         }
     }
+
+
+
     public function tipe_pelatihan()
     {
         return view('tipepelatihan');
@@ -223,6 +266,7 @@ class HomeController extends Controller
         return redirect()->back()->with('success', 'Berhasil mendaftar');
     }
 
+    // TERUNTUK nambah data ke table guru
 
 
 }

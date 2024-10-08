@@ -8,7 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Perusahaan extends Model
 {
     use HasFactory;
+
     protected $table = 'companies'; // Menentukan nama tabel yang baru
 
-    protected $fillable = ['Nama_Perusahaan', 'Alamat', 'No_Telp', 'Email', 'logo', 'description', 'user_id'];
+    protected $fillable = [
+        'company_name', // Mengganti 'Nama_Perusahaan' dengan 'company_name'
+        'address', // Mengganti 'Alamat' dengan 'address'
+        'phone_number', // Mengganti 'No_Telp' dengan 'phone_number'
+        'email', // Mengganti 'Email' dengan 'email'
+        'logo',
+        'description',
+        'user_id',
+    ];
 }

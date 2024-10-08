@@ -18,7 +18,7 @@ Route::get('/login', [\App\Http\Controllers\HomeController::class, 'login']);
 Route::get('/register', [\App\Http\Controllers\HomeController::class, 'register']);
 Route::get('/detail_pelatihan/{any}', [\App\Http\Controllers\HomeController::class, 'detail_pelatihan']);
 Route::get('/profile', [HomeController::class, 'detail_profile'])->name('profile.detail');
-Route::get('/updateprofile', [\App\Http\Controllers\HomeController::class, 'updateprofile']);
+Route::get('/updateprofile', [\App\Http\Controllers\HomeController::class, 'updateprofile'])->name('updateprofile');
 // Route::get('/login/login', function () {
 //     return view('login.login');
 // });
@@ -45,3 +45,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/pelatihan-saya', [HomeController::class, 'pelatihan_saya'])->name('user.pelatihan_saya');
     // Tambahkan route lain yang memerlukan autentikasi di sini
 });
+
+Route::post('/saveprofile', [\App\Http\Controllers\HomeController::class, 'saveprofile'])->name('saveprofile');
