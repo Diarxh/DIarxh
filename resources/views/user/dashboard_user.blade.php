@@ -29,7 +29,7 @@
             <div class="col-md-4 mb-4">
                 <div class="card shadow-sm">
                     <div class="card-body">
-                        <h5 class="card-title">Peserta Terdaftar</h5>
+                        <h5 class="card-title">Pelatihan Saya</h5>
                         <p class="card-text">150</p>
                     </div>
                 </div>

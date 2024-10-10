@@ -24,23 +24,24 @@ class PerusahaanResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('Nama_Perusahaan')
+                Forms\Components\TextInput::make('company_name') // Nama_Perusahaan
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('Alamat')
+                Forms\Components\TextInput::make('address') // Alamat
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('No_Telp')
+                Forms\Components\TextInput::make('phone_number') // No_Telp
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('Email')
+                Forms\Components\TextInput::make('email') // Email
                     ->required()
                     ->maxLength(255),
-                Forms\Components\FileUpload::make('logo')
+                Forms\Components\FileUpload::make('logo') // Logo
                     ->required(),
-                Forms\Components\RichEditor::make('description')
+                Forms\Components\RichEditor::make('description') // Description
                     ->required()
                     ->columnSpanFull(),
+
             ]);
     }
 
@@ -60,24 +61,25 @@ class PerusahaanResource extends Resource
                 return Perusahaan::where('user_id', $user->id);
             })
             ->columns([
-                Tables\Columns\TextColumn::make('Nama_Perusahaan')
+                Tables\Columns\TextColumn::make('Company_Name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('Alamat')
+                Tables\Columns\TextColumn::make('Address')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('No_Telp')
+                Tables\Columns\TextColumn::make('Phone_Number')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('Email')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('logo')
+                Tables\Columns\TextColumn::make('Logo')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
+                Tables\Columns\TextColumn::make('Created_At')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
+                Tables\Columns\TextColumn::make('Updated_At')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+
             ])
             ->filters([
                 //

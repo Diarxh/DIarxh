@@ -133,13 +133,13 @@
                   <!-- Profile Edit Form -->
                   <form action="{{ route('saveprofile') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <input type="hidden" name="id" value="{{ $guru->id ?? '' }}">
+                    <input type="hidden" name="id" value="{{  $teacher->id ?? '' }}">
                     <input type="hidden" name="user_id" value="{{ Auth::id() }}">
 
                     <div class="row mb-3">
                         <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                         <div class="col-md-8 col-lg-9">
-                            <img src="{{ asset($guru->photo ?? 'assets/img/profile-img.jpg') }}" alt="Profile" style="width: 100px; height: auto;">
+                            <img src="{{ asset( $teacher->photo ?? 'assets/img/profile-img.jpg') }}" alt="Profile" style="width: 100px; height: auto;">
                             <div class="pt-2">
                                 <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
                                 <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
@@ -150,91 +150,91 @@
                     <div class="row mb-3">
                         <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
                         <div class="col-md-8 col-lg-9">
-                            <input name="name" type="text" class="form-control" id="fullName" value="{{ $guru->name ?? '' }}">
+                            <input name="name" type="text" class="form-control" id="fullName" value="{{  $teacher->name ?? '' }}">
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <label for="email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                         <div class="col-md-8 col-lg-9">
-                            <input name="email" type="email" class="form-control" id="email" value="{{ $guru->email ?? '' }}">
+                            <input name="email" type="email" class="form-control" id="email" value="{{  $teacher->email ?? '' }}">
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <label for="phone" class="col-md-4 col-lg-3 col-form-label">Phone Number</label>
                         <div class="col-md-8 col-lg-9">
-                            <input name="phone_number" type="text" class="form-control" id="phone" value="{{ $guru->phone_number ?? '' }}">
+                            <input name="phone_number" type="text" class="form-control" id="phone" value="{{  $teacher->phone_number ?? '' }}">
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <label for="schoolName" class="col-md-4 col-lg-3 col-form-label">School Name</label>
                         <div class="col-md-8 col-lg-9">
-                            <input name="school_name" type="text" class="form-control" id="schoolName" value="{{ $guru->school_name ?? '' }}">
+                            <input name="school_name" type="text" class="form-control" id="schoolName" value="{{  $teacher->school_name ?? '' }}">
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <label for="nuptk" class="col-md-4 col-lg-3 col-form-label">NUPTK</label>
                         <div class="col-md-8 col-lg-9">
-                            <input name="nuptk" type="text" class="form-control" id="nuptk" value="{{ $guru->nuptk ?? '' }}">
+                            <input name="nuptk" type="text" class="form-control" id="nuptk" value="{{  $teacher->nuptk ?? '' }}">
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <label for="birthDate" class="col-md-4 col-lg-3 col-form-label">Birth Date</label>
                         <div class="col-md-8 col-lg-9">
-                            <input name="birth_date" type="text" class="form-control" id="birthDate" value="{{ $guru->birth_date ?? '' }}">
+                            <input name="birth_date" type="text" class="form-control" id="birthDate" value="{{  $teacher->birth_date ?? '' }}">
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <label for="birthPlace" class="col-md-4 col-lg-3 col-form-label">Birth Place</label>
                         <div class="col-md-8 col-lg-9">
-                            <input name="birth_place" type="text" class="form-control" id="birthPlace" value="{{ $guru->birth_place ?? '' }}">
+                            <input name="birth_place" type="text" class="form-control" id="birthPlace" value="{{  $teacher->birth_place ?? '' }}">
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <label for="address" class="col-md-4 col-lg-3 col-form-label">Address</label>
                         <div class="col-md-8 col-lg-9">
-                            <input name="address" type="text" class="form-control" id="address" value="{{ $guru->address ?? '' }}">
+                            <input name="address" type="text" class="form-control" id="address" value="{{  $teacher->address ?? '' }}">
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <label for="village" class="col-md-4 col-lg-3 col-form-label">Village</label>
                         <div class="col-md-8 col-lg-9">
-                            <input name="village" type="text" class="form-control" id="village" value="{{ $guru->village ?? '' }}">
+                            <input name="village" type="text" class="form-control" id="village" value="{{  $teacher->village ?? '' }}">
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <label for="district" class="col-md-4 col-lg-3 col-form-label">District</label>
                         <div class="col-md-8 col-lg-9">
-                            <input name="district" type="text" class="form-control" id="district" value="{{ $guru->district ?? '' }}">
+                            <input name="district" type="text" class="form-control" id="district" value="{{  $teacher->district ?? '' }}">
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <label for="city" class="col-md-4 col-lg-3 col-form-label">City</label>
                         <div class="col-md-8 col-lg-9">
-                            <input name="city" type="text" class="form-control" id="city" value="{{ $guru->city ?? '' }}">
+                            <input name="city" type="text" class="form-control" id="city" value="{{  $teacher->city ?? '' }}">
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <label for="province" class="col-md-4 col-lg-3 col-form-label">Province</label>
                         <div class="col-md-8 col-lg-9">
-                            <input name="province" type="text" class="form-control" id="province" value="{{ $guru->province ?? '' }}">
+                            <input name="province" type="text" class="form-control" id="province" value="{{  $teacher->province ?? '' }}">
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <label for="lastEducation" class="col-md-4 col-lg-3 col-form-label">Last Education</label>
                         <div class="col-md-8 col-lg-9">
-                            <input name="last_education" type="text" class="form-control" id="lastEducation" value="{{ $guru->last_education ?? '' }}">
+                            <input name="last_education" type="text" class="form-control" id="lastEducation" value="{{  $teacher->last_education ?? '' }}">
                         </div>
                     </div>
 

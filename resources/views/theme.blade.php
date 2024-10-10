@@ -97,7 +97,7 @@
                         <div class="footer-item d-flex flex-column">
                             <h4 class="mb-4 text-dark">Quick Links</h4>
                             <a href=""> About Us</a>
-                            <a href=""> Contact Us</a>
+                            <a href="contact.blade.php"> Contact Us</a>
                             <a href=""> Privacy Policy</a>
                             <a href=""> Terms & Conditions</a>
                             <a href=""> Our Blog & News</a>

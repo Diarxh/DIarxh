@@ -11,7 +11,9 @@ Route::get('/', function () {
 });
 
 Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/contact', [\App\Http\Controllers\HomeController::class, 'contact']);
 Route::get('/about', [\App\Http\Controllers\HomeController::class, 'about']);
+Route::get('/tes', [\App\Http\Controllers\HomeController::class, 'tes']);
 Route::get('/tipepelatihan', [\App\Http\Controllers\HomeController::class, 'tipe_pelatihan']);
 Route::get('/list_pelatihan', [\App\Http\Controllers\HomeController::class, 'pelatihan']);
 Route::get('/login', [\App\Http\Controllers\HomeController::class, 'login']);

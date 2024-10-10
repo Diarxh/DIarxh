@@ -12,7 +12,7 @@
                 <div class="row gy-5 align-items-center">
                     <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.1s">
                         <h1 class="display-4 text-dark mb-4 wow fadeInUp" data-wow-delay="0.3s">TeachHub</h1>
-                        <p class="fs-4 mb-4 wow fadeInUp" data-wow-delay="0.5s">Win new customers with the #1 email marketing and automations brand* that recommends ways to get more opens, clicks, and sales.</p>
+                        <p class="fs-4 mb-4 wow fadeInUp" data-wow-delay="0.5s">Selamat datang di TeachHub, platform inovatif yang dirancang khusus untuk membantu guru dan lulusan baru dalam meningkatkan keterampilan dan pengetahuan mereka. Di TeachHub, kami memahami tantangan yang dihadapi oleh pendidik dan para pencari kerja di dunia yang terus berubah. Oleh karena itu, kami menyediakan berbagai pelatihan berkualitas yang dapat diakses kapan saja dan di mana saja.</p>
                         <a href="#" class="btn btn-primary rounded-pill py-3 px-5 wow fadeInUp" data-wow-delay="0.7s">Get Started</a>
                     </div>
                     <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.2s">

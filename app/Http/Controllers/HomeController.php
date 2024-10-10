@@ -23,36 +23,57 @@ class HomeController extends Controller
         return view('home');
     }
 
+
+    public function contact()
+    {
+        return view('contact');
+    }
+
+
     public function about()
     {
         return view('about');
+    }
+
+    public function tes()
+    {
+        return view('user.profile');
     }
 
     // PROFILL
 
     public function detail_profile()
     {
-        // Mencari data guru berdasarkan User_Id yang sedang login
-        $guru = Guru::where('User_Id', Auth::id())->first();
-
-        // Jika data guru tidak ditemukan
-        if (!$guru) {
-            // Menggunakan session flash untuk mengirim pesan
+        $teacher = Guru::where('User_Id', Auth::id())->first();
+        if (!$teacher) {
             return redirect()->route('updateprofile')->with('alert', 'Anda belum melengkapi data sebagai guru. Isi data terlebih dahulu.')->with('id', null);
         }
-
-        // Jika data guru ditemukan, tampilkan detail profil
-        return view('user.detail_profile', compact('guru'));
+        return view('user.detail_profile', compact('teacher'));
     }
-
-
 
     public function profile()
     {
-        $profile = Guru::where('User_Id', Auth::user()->id)->first();
-        return view('user.detail_profile', compact('profile'));
-
+        $teacher = Guru::where('User_Id', Auth::user()->id)->first();
+        return view('user.detail_profile', compact('teacher'));
     }
+
+    public function showProfile($userId)
+    {
+        // Mengambil data guru berdasarkan user_id
+        $guru = Guru::where('user_id', $userId)->first();
+
+        // Debugging untuk memastikan data guru diambil
+        if (!$guru) {
+            dd('Data guru tidak ditemukan untuk user_id: ' . $userId);
+        }
+
+        // Mengirim data guru ke view
+        return view('profile', compact('guru'));
+    }
+
+
+
+
     // END PROFILE
     public function updateprofile()
     {
@@ -64,56 +85,62 @@ class HomeController extends Controller
     }
 
 
+    public function editProfile()
+    {
+        // Cek apakah guru sudah ada
+        $guru = Guru::where('user_id', Auth::id())->first();
+
+        // Jika tidak ada, buat objek baru untuk form
+        if (!$guru) {
+            $guru = new Guru();
+        }
+
+        return view('user.edit_profile', compact('guru'));
+    }
+
     public function saveprofile(Request $request)
     {
         // Validasi input
-        $request->validate([
-            'nama' => 'required|string|max:255',
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'no_telp' => 'required|string|max:15',
-            'nama_sekolah' => 'required|string|max:255',
-            'nuptk' => 'required|string|max:20',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'tanggal_lahir' => 'required|date',
-            'tempat_lahir' => 'required|string|max:255',
-            'alamat' => 'required|string',
-            'desa' => 'required|string|max:255',
-            'kecamatan' => 'required|string|max:255',
-            'kabupaten' => 'required|string|max:255',
-            'provinsi' => 'required|string|max:255',
-            'pendidikan_terakhir' => 'required|string|max:255',
+            'phone_number' => 'required|string|max:255',
+            'school_name' => 'required|string|max:255',
+            'nuptk' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'birth_date' => 'required|date',
+            'birth_place' => 'required|string|max:255',
+            'village' => 'required|string|max:255',
+            'district' => 'required|string|max:255',
+            'city' => 'required|string|max:255',
+            'province' => 'required|string|max:255',
+            'last_education' => 'required|string|max:255',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'user_id' => 'required|integer',
         ]);
 
-        $data = $request->all();
-        $id = $request->id;
+        // Debugging untuk memastikan validasi berhasil
+        // dd('Validasi berhasil', $validatedData);
 
-        // Debugging data
-        dd($data); // Tambahkan ini untuk melihat data yang dikirim
+        // Cek apakah guru sudah ada berdasarkan user_id
+        $guru = Guru::where('user_id', $validatedData['user_id'])->first();
 
-        // Menangani upload foto jika ada
-        if ($request->hasFile('foto')) {
-            $file = $request->file('foto');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('uploads'), $filename);
-            $data['Foto'] = $filename; // Menyimpan nama file foto ke dalam data
-        }
-
-        if ($id) {
-            // Jika ID diberikan, update data
-            $guru = Guru::find($id);
-            if ($guru) {
-                $guru->update($data);
-                return redirect()->back()->with('success', 'Berhasil update profile');
-            } else {
-                return redirect()->back()->with('error', 'Data guru tidak ditemukan');
-            }
+        if ($guru) {
+            // Update data yang sudah ada
+            $guru->update($validatedData);
+            return redirect()->back()->with('success', 'Profile berhasil diupdate');
         } else {
-            // Jika ID tidak diberikan, buat data baru
-            Guru::create($data);
-            return redirect()->back()->with('success', 'Berhasil menambahkan guru baru');
+            // Buat data baru
+            $guru = Guru::create($validatedData);
+            return redirect()->back()->with('success', 'Profile berhasil disimpan');
         }
     }
+
+
+
+
+
+
 
 
 
