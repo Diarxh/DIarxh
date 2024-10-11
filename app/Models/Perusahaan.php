@@ -20,4 +20,8 @@ class Perusahaan extends Model
         'description',
         'user_id',
     ];
+    public function pelatihans()
+    {
+        return $this->hasMany(Pelatihan::class, 'company_id');
+    }
 }

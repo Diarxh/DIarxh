@@ -30,7 +30,7 @@
     <h2>Kontak Kami</h2>
     <ul class="list-group mt-3">
         <li class="list-group-item">
-            <a href="https://instagram.com" class="text-decoration-none text-dark" target="_blank">
+            <a href="https://www.instagram.com/pelita_dev?igsh=enkyeWhra2xrOHR1" class="text-decoration-none text-dark" target="_blank">
                 <i class="fab fa-instagram fa-lg me-2"></i> Instagram
             </a>
         </li>

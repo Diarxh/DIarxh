@@ -43,7 +43,7 @@ class PerusahaanResource extends Resource
                     ->columnSpanFull(),
                 Forms\Components\DatePicker::make('registration_start_date') // Tanggal Mulai Pendaftaran
                     ->hidden()
-                    ->nullable(),                
+                    ->nullable(),
             ]);
     }
 
@@ -53,7 +53,7 @@ class PerusahaanResource extends Resource
             ->query(function () {
                 $user = Auth::user();
 
-                // Cek jika user memiliki role 'admin'
+                // Cek jika user memiliki role 'super_admin'
                 if ($user && $user->hasRole('super_admin')) {
                     // Jika admin, tampilkan semua data
                     return Perusahaan::query();
@@ -63,28 +63,30 @@ class PerusahaanResource extends Resource
                 return Perusahaan::where('user_id', $user->id);
             })
             ->columns([
-                Tables\Columns\TextColumn::make('Company_Name')
+                Tables\Columns\TextColumn::make('company_name') // Nama Perusahaan
                     ->searchable(),
-                Tables\Columns\TextColumn::make('Address')
+                Tables\Columns\TextColumn::make('address') // Alamat
                     ->searchable(),
-                Tables\Columns\TextColumn::make('Phone_Number')
+                Tables\Columns\TextColumn::make('phone_number') // Nomor Telepon
                     ->searchable(),
-                Tables\Columns\TextColumn::make('Email')
+                Tables\Columns\TextColumn::make('email') // Email
                     ->searchable(),
                 Tables\Columns\TextColumn::make('Logo')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('Created_At')
+                    ->html()
+                    ->formatStateUsing(function ($state) {
+                        return '<img src="' . asset('path/to/logo/' . $state) . '" alt="Logo" style="width:50px; height:auto;" />';
+                    }),
+                Tables\Columns\TextColumn::make('created_at') // Tanggal Dibuat
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('Updated_At')
+                Tables\Columns\TextColumn::make('updated_at') // Tanggal Diperbarui
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-
             ])
             ->filters([
-                //
+                // Tambahkan filter jika diperlukan
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -95,6 +97,7 @@ class PerusahaanResource extends Resource
                 ]),
             ]);
     }
+
 
     public static function getRelations(): array
     {

@@ -11,4 +11,9 @@ class TipePelatihan extends Model
     protected $table = 'training_types'; // Menentukan nama tabel yang baru
 
     protected $fillable = ['trainer_type_name', 'trainer_type_description',];
+    public function pelatihans()
+    {
+        return $this->hasMany(Pelatihan::class, 'training_type_id');
+    }
+
 }

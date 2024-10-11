@@ -38,8 +38,6 @@ class TipePelatihanResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('trainer_type_name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('trainer_type_description')
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

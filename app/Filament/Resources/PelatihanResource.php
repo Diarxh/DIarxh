@@ -27,10 +27,6 @@ class PelatihanResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('company_id') // Ubah ke company_id, sesuai dengan database
-                    ->required()
-                    ->relationship(name: 'perusahaan', titleAttribute: 'company_name') // Nama perusahaan diambil dari relasi
-                    ->searchable(),
                 Forms\Components\TextInput::make('name') // Nama
                     ->required()
                     ->maxLength(255),
@@ -48,13 +44,12 @@ class PelatihanResource extends Resource
                     ->required(),
                 Forms\Components\DateTimePicker::make('registration_end_date') // Tanggal_Akhir_Pendaftaran
                     ->required(),
-                Forms\Components\Select::make('company_id') // Perusahaan_Id
-                    ->required()
-                    ->relationship(name: 'perusahaan', titleAttribute: 'company_name') // Nama_Perusahaan
-                    ->searchable(),
-                Forms\Components\Select::make('training_type_id') // Tipe_Pelatihan_Id
-                    ->relationship(name: 'tipe_pelatihan', titleAttribute: 'trainer_type_name') // Ganti 'training_type_name' dengan 'trainer_type_name'
-                    ->required(),
+                Forms\Components\Select::make('company_id')
+                    ->relationship('perusahaan', 'company_name') // Pastikan nama relasi dan atribut yang benar
+                    ->preload(),
+                Forms\Components\Select::make('training_type_id')
+                    ->relationship('tipePelatihan', 'trainer_type_name') // Pastikan nama relasi dan atribut yang benar
+                    ->preload(),
                 Forms\Components\TextInput::make('training_location') // Tempat_Pelatihan
                     ->required()
                     ->maxLength(255),
