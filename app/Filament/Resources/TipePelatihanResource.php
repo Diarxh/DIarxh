@@ -23,10 +23,10 @@ class TipePelatihanResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('nama_tipe_pelatih')
+                Forms\Components\TextInput::make('trainer_type_name')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\RichEditor::make('deskripsi_tipe_pelatih')
+                Forms\Components\RichEditor::make('trainer_type_description')
                     ->required()
                     ->columnSpanFull(),
             ]);
@@ -36,7 +36,9 @@ class TipePelatihanResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('nama_tipe_pelatih')
+                Tables\Columns\TextColumn::make('trainer_type_name')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('trainer_type_description')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

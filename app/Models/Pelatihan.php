@@ -36,6 +36,6 @@ class Pelatihan extends Model
 
     public function perusahaan()
     {
-        return $this->belongsTo(Perusahaan::class);
+        return $this->belongsTo(Perusahaan::class, 'company_id');
     }
 }

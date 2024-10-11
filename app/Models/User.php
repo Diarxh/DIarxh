@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
 
 class User extends Authenticatable
 {
@@ -51,4 +53,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Guru::class);
     }
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
 }

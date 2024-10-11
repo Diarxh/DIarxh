@@ -26,6 +26,8 @@ class Guru extends Model
         'province',        // Provinsi
         'last_education',  // Pendidikan_Terakhir
         'user_id',         // User_Id
+        'about',
+
     ];
 
 

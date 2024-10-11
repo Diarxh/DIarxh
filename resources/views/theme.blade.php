@@ -43,39 +43,50 @@
 
 
         <!-- Navbar & Hero Start -->
-        <div class="container-fluid header position-relative overflow-hidden p-0">
-            <nav class="navbar navbar-expand-lg fixed-top navbar-light px-4 px-lg-5 py-3 py-lg-0">
-                <a href="/home" class="navbar-brand p-0">
+ 
 
-                <img src="{{ asset('images/logo-cerah.png')}}" alt="Logo">
+
+        <div class="container-fluid header position-relative d:\dad\kanjut\profil.blade.php p-0">
+            <nav class="navbar navbar-expand-lg fixed-top navbar-light px-lg-5 py-lg-0 px-4 py-3">
+                <a href="/home" class="navbar-brand p-0">
+                    <img src="{{ asset('images/logo-cerah.png') }}" alt="Logo">
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-collapse collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
-                        <a href="/home" class="nav-item nav-link active">Home</a>
-                        <a href="/list_pelatihan" class="nav-item nav-link">Pelatihan</a>
-                        <a href="/tipepelatihan" class="nav-item nav-link">Tipe Pelatihan</a>
-                        {{-- <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Tipe Pelatihan</a>
-                            <div class="dropdown-menu m-0">
-                                <a href="feature.html" class="dropdown-item">Features</a>
-                                <a href="pricing.html" class="dropdown-item">Pricing</a>
-                                <a href="blog.html" class="dropdown-item">Blog</a>
-                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                <a href="404.html" class="dropdown-item">404 Page</a>
-                            </div>
-                        </div> --}}
-                        <a href="contact.html" class="nav-item nav-link">Contact Us</a>
-                        <a href="/about" class="nav-item nav-link">About</a>
+                        @if (auth()->check())
+                            <a href="/profile" class="nav-item nav-link">
+                                Hello, {{ Auth::user()->name }}
+                            </a>
+                            <a href="/user/dashboard" class="nav-item nav-link active">Home</a>
+                            <a href="/list_pelatihan" class="nav-item nav-link">Pelatihan</a>
+                            <a href="/pelatihan_saya" class="nav-item nav-link">Pelatihan Saya</a>
                     </div>
-                    <a href="/login" class="btn btn-light border border-primary rounded-pill text-primary py-2 px-4 me-4">Log In</a>
-                    <a href="/register" class="btn btn-primary rounded-pill text-white py-2 px-4" >Sign Up</a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="btn btn-primary rounded-pill px-4 py-2 text-white">Logout</button>
+                    </form>
+                @else
+                    <a href="/home" class="nav-item nav-link active">Home</a>
+                    <a href="/list_pelatihan" class="nav-item nav-link">Pelatihan</a>
+                    <a href="/tipepelatihan" class="nav-item nav-link">Tipe Pelatihan</a>
 
-            </nav>
+                    <a href="/contact" class="nav-item nav-link">Contact Us</a>
+                    <a href="/about" class="nav-item nav-link">About</a>
+                </div>
+                <a href="/login"
+                    class="btn btn-light border-primary rounded-pill text-primary me-4 border px-4 py-2">Log In</a>
+                <a href="/register" class="btn btn-primary rounded-pill px-4 py-2 text-white">Sign Up</a>
+                @endif
+        </div>
 
 
+
+        </nav>
+        </div>
             @yield('content')
 
         <!-- Footer Start -->
@@ -84,43 +95,17 @@
                 <div class="row g-5">
                     <div class="col-md-6 col-lg-6 col-xl-3">
                         <div class="footer-item d-flex flex-column">
-                            <h4 class="text-dark mb-4">Company</h4>
-                            <a href=""> Why Mailler?</a>
-                            <a href=""> Our Features</a>
-                            <a href=""> Our Portfolio</a>
-                            <a href=""> About Us</a>
-                            <a href=""> Our Blog & News</a>
-                            <a href=""> Get In Touch</a>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-6 col-xl-3">
-                        <div class="footer-item d-flex flex-column">
                             <h4 class="mb-4 text-dark">Quick Links</h4>
                             <a href=""> About Us</a>
-                            <a href="contact.blade.php"> Contact Us</a>
-                            <a href=""> Privacy Policy</a>
-                            <a href=""> Terms & Conditions</a>
-                            <a href=""> Our Blog & News</a>
-                            <a href=""> Our Team</a>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-6 col-xl-3">
-                        <div class="footer-item d-flex flex-column">
-                            <h4 class="mb-4 text-dark">Services</h4>
-                            <a href=""> All Services</a>
-                            <a href=""> Promotional Emails</a>
-                            <a href=""> Product Updates</a>
-                            <a href=""> Email Marketing</a>
-                            <a href=""> Acquistion Emails</a>
-                            <a href=""> Retention Emails</a>
+                            <a href=""> Contact Us</a>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-6 col-xl-3">
                         <div class="footer-item d-flex flex-column">
                             <h4 class="mb-4 text-dark">Contact Info</h4>
-                            <a href=""><i class="fa fa-map-marker-alt me-2"></i> 123 Street, New York, USA</a>
-                            <a href=""><i class="fas fa-envelope me-2"></i> info@example.com</a>
-                            <a href=""><i class="fas fa-phone me-2"></i> +012 345 67890</a>
+                            <a href=""><i class="fa fa-map-marker-alt me-2"></i> Jln Raden Ali Sadikin KM.6 , Ujungjaya,Ujungjaya,Sumedang</a>
+                            <a href=""><i class="fas fa-envelope me-2"></i> TeachHub09@gmail.com</a>
+                            <a href=""><i class="fas fa-phone me-2"></i> +62 813 9514 7197</a>
                             <a href="" class="mb-3"><i class="fas fa-print me-2"></i> +012 345 67890</a>
                             <div class="d-flex align-items-center">
                                 <i class="fas fa-share fa-2x text-secondary me-2"></i>

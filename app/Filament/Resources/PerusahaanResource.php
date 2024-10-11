@@ -41,7 +41,9 @@ class PerusahaanResource extends Resource
                 Forms\Components\RichEditor::make('description') // Description
                     ->required()
                     ->columnSpanFull(),
-
+                Forms\Components\DatePicker::make('registration_start_date') // Tanggal Mulai Pendaftaran
+                    ->hidden()
+                    ->nullable(),                
             ]);
     }
 

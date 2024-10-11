@@ -39,8 +39,8 @@
                     </div>
                     <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
                         <h4 class="mb-1 text-primary">About Us</h4>
-                        <h1 class="display-5 mb-4">Get Started Easily With a Personalized Product Tour</h1>
-                        <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, suscipit itaque quaerat dicta porro illum, autem, molestias ut animi ab aspernatur dolorum officia nam dolore. Voluptatibus aliquam earum labore atque.
+                        <h1 class="display-5 mb-4">Apa itu TeachHub Academy?</h1>
+                        <p class="mb-4">TeachHub Academy adalah platform edukasi yang dirancang khusus untuk mendukung pengembangan profesional guru dan lulusan baru. Kami menyediakan berbagai pelatihan berkualitas yang mencakup pelatihan Microsoft Office, coding, serta keterampilan penting lainnya yang diperlukan di era digital saat ini./.
                         </p>
                         <a href="#" class="btn btn-primary rounded-pill py-3 px-5">About More</a>
                     </div>

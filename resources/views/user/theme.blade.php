@@ -73,7 +73,7 @@
                     <a href="/list_pelatihan" class="nav-item nav-link">Pelatihan</a>
                     <a href="/tipepelatihan" class="nav-item nav-link">Tipe Pelatihan</a>
 
-                    <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+                    <a href="/contact" class="nav-item nav-link">Contact Us</a>
                     <a href="/about" class="nav-item nav-link">About</a>
                 </div>
                 <a href="/login"

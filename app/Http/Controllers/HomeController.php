@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Role;
+
 use Illuminate\Support\Facades\Log; // Tambahkan ini
 
 
@@ -44,11 +45,11 @@ class HomeController extends Controller
 
     public function detail_profile()
     {
-        $teacher = Guru::where('User_Id', Auth::id())->first();
-        if (!$teacher) {
-            return redirect()->route('updateprofile')->with('alert', 'Anda belum melengkapi data sebagai guru. Isi data terlebih dahulu.')->with('id', null);
+        $guru = Guru::where('user_id', Auth::id())->first();
+        if (!$guru) {
+            return view('user.detail_profile')->with('alert', 'Anda belum memiliki data guru. Silakan lengkapi data Anda.');
         }
-        return view('user.detail_profile', compact('teacher'));
+        return view('user.detail_profile', compact('guru'));
     }
 
     public function profile()
@@ -57,24 +58,17 @@ class HomeController extends Controller
         return view('user.detail_profile', compact('teacher'));
     }
 
-    public function showProfile($userId)
+    public function showProfile()
     {
-        // Mengambil data guru berdasarkan user_id
-        $guru = Guru::where('user_id', $userId)->first();
+        $guru = Guru::where('user_id', Auth::id())->first();
+        $user = Auth::user();
+        $roles = $user->roles; // Mengambil peran pengguna
 
-        // Debugging untuk memastikan data guru diambil
-        if (!$guru) {
-            dd('Data guru tidak ditemukan untuk user_id: ' . $userId);
-        }
-
-        // Mengirim data guru ke view
-        return view('profile', compact('guru'));
+        // Mengembalikan view dengan data pengguna, role, dan guru
+        return view('user.detail_profile', compact('user', 'roles', 'guru'));
     }
 
 
-
-
-    // END PROFILE
     public function updateprofile()
     {
         // Mengambil data profil guru berdasarkan User_Id yang sedang login
@@ -100,43 +94,68 @@ class HomeController extends Controller
 
     public function saveprofile(Request $request)
     {
-        // Validasi input
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'phone_number' => 'required|string|max:255',
             'school_name' => 'required|string|max:255',
             'nuptk' => 'required|string|max:255',
-            'address' => 'required|string|max:255',
             'birth_date' => 'required|date',
             'birth_place' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
             'village' => 'required|string|max:255',
             'district' => 'required|string|max:255',
             'city' => 'required|string|max:255',
             'province' => 'required|string|max:255',
             'last_education' => 'required|string|max:255',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'user_id' => 'required|integer',
+            'about' => 'nullable|string|max:1000',
+
         ]);
 
-        // Debugging untuk memastikan validasi berhasil
-        // dd('Validasi berhasil', $validatedData);
+        $validatedData['user_id'] = Auth::id();
 
-        // Cek apakah guru sudah ada berdasarkan user_id
-        $guru = Guru::where('user_id', $validatedData['user_id'])->first();
+        if ($request->hasFile('photo')) {
+            $photoPath = $request->file('photo')->store('profile_photos', 'public');
+            $validatedData['photo'] = $photoPath;
+        }
+
+        $guru = Guru::where('user_id', Auth::id())->first();
 
         if ($guru) {
-            // Update data yang sudah ada
             $guru->update($validatedData);
-            return redirect()->back()->with('success', 'Profile berhasil diupdate');
+            $message = 'Profil berhasil diperbarui';
         } else {
-            // Buat data baru
-            $guru = Guru::create($validatedData);
-            return redirect()->back()->with('success', 'Profile berhasil disimpan');
+            Guru::create($validatedData);
+            $message = 'Profil berhasil dibuat';
         }
+
+        return redirect()->route('profile.detail')->with('success', $message);
+    }
+    public function changePassword(Request $request)
+    {
+        // Validasi input
+        $request->validate([
+            'password' => 'required|string|min:8',
+            'newpassword' => 'required|string|min:8|confirmed',
+        ]);
+
+        // Cek apakah password saat ini benar
+        $user = Auth::user();
+        if (!Hash::check($request->password, $user->password)) {
+            return back()->withErrors(['password' => 'Password saat ini tidak sesuai.']);
+        }
+
+        // Update password
+        $user->password = Hash::make($request->newpassword);
+        $user->save();
+
+        // Redirect ke route profile
+        return redirect()->route('profile')->with('success', 'Password berhasil diubah.');
     }
 
 
+    // END PROFILE
 
 
 

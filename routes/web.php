@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\RedirectIfAuthenticated;
+use Spatie\Permission\Models\Role;
 
 
 Route::get('/', function () {
@@ -18,12 +19,19 @@ Route::get('/tipepelatihan', [\App\Http\Controllers\HomeController::class, 'tipe
 Route::get('/list_pelatihan', [\App\Http\Controllers\HomeController::class, 'pelatihan']);
 Route::get('/login', [\App\Http\Controllers\HomeController::class, 'login']);
 Route::get('/register', [\App\Http\Controllers\HomeController::class, 'register']);
+
+
+
+// PROFILE
 Route::get('/detail_pelatihan/{any}', [\App\Http\Controllers\HomeController::class, 'detail_pelatihan']);
 Route::get('/profile', [HomeController::class, 'detail_profile'])->name('profile.detail');
+Route::post('/profile', [HomeController::class, 'saveprofile'])->name('profile.save');
+Route::get('/profile', [HomeController::class, 'showProfile'])->name('profile.show');
+Route::post('/change-password', [HomeController::class, 'changePassword'])->name('change.password');
+Route::post('/change-password', [HomeController::class, 'changePassword'])->name('change.password');
+
 Route::get('/updateprofile', [\App\Http\Controllers\HomeController::class, 'updateprofile'])->name('updateprofile');
-// Route::get('/login/login', function () {
-//     return view('login.login');
-// });
+
 
 Route::get('register', [HomeController::class, 'showRegistrationForm'])->name('register');
 Route::post('register', [HomeController::class, 'register']);
