@@ -29,9 +29,8 @@
                 <div class="card mb-3">
                     <img src="{{ asset('theme/img/blog-1.png') }}" alt="Pelatihan Guru" class="card-img-top">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $detail->nama }}</h5>
-                        <p class="card-text">Tipe Pelatihan: {{ $detail->tipe_pelatihan->nama_tipe_pelatih }}</p>
-
+                        <h5 class="card-title">{{ $detail->name }}</h5> <!-- Menggunakan 'name' sesuai dengan kolom di database -->
+                        <p class="card-text">Tipe Pelatihan: {{ $detail->tipe_pelatihan->name }}</p> <!-- Pastikan relasi ini benar -->
                         <a href="/registercourse/{{ $detail->id }}" class="btn btn-primary">Daftar Pelatihan</a>
                     </div>
                 </div>
@@ -41,12 +40,12 @@
                     <div class="card-body">
                         <h5 class="card-title">Jadwal Pelatihan</h5>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">{!! $detail->deskripsi !!}</li>
+                            <li class="list-group-item">{!! $detail->description !!}</li> <!-- Menggunakan 'description' -->
                             <li class="list-group-item">Tanggal:
-                                {{ \Carbon\Carbon::parse($detail->tanggal_mulai)->translatedFormat('l, d F Y') }} -
-                                {{ \Carbon\Carbon::parse($detail->tanggal_akhir)->translatedFormat('l, d F Y') }}</li>
-                            <li class="list-group-item">Status: {{ $detail->status }}</li>
-                            <li class="list-group-item">Lokasi: {{ $detail->tempat_pelatihan }}</li>
+                                {{ \Carbon\Carbon::parse($detail->start_date)->translatedFormat('l, d F Y') }} -
+                                {{ \Carbon\Carbon::parse($detail->end_date)->translatedFormat('l, d F Y') }}</li> <!-- Menggunakan 'start_date' dan 'end_date' -->
+                            <li class="list-group-item">Status: {{ $detail->status }}</li> <!-- Menggunakan 'status' -->
+                            <li class="list-group-item">Lokasi: {{ $detail->training_location }}</li> <!-- Menggunakan 'training_location' -->
                         </ul>
                     </div>
                 </div>
@@ -70,18 +69,17 @@
                                 @foreach($peserta as $index => $p)
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
-                                        <td>{{ $p->guru ? $p->guru->Nama : '-' }}</td>
-                                        <td>{{ $p->guru ? $p->guru->Email : '-' }}</td>
-                                        <td>{{ $p->guru ? $p->guru->Nama_Sekolah : '-' }}</td>
+                                        <td>{{ $p->guru ? $p->guru->name : '-' }}</td> <!-- Menggunakan 'name' -->
+                                        <td>{{ $p->guru ? $p->guru->email : '-' }}</td> <!-- Menggunakan 'email' -->
+                                        <td>{{ $p->guru ? $p->guru->school_name : '-' }}</td> <!-- Menggunakan 'school_name' -->
                                     </tr>
                                 @endforeach
                             @endif
                         </tbody>
                     </table>
                 </div>
-
-
             </div>
         </div>
     </div>
+
 @endsection

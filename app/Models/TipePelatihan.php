@@ -15,5 +15,10 @@ class TipePelatihan extends Model
     {
         return $this->hasMany(Pelatihan::class, 'training_type_id');
     }
+    // Di model Pelatihan
+    public function tipe_pelatihan()
+    {
+        return $this->belongsTo(TipePelatihan::class, 'training_type_id');
+    }
 
 }

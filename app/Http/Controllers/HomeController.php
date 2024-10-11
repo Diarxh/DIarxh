@@ -165,7 +165,9 @@ class HomeController extends Controller
 
     public function tipe_pelatihan()
     {
-        return view('tipepelatihan');
+        $tipepelatihan = Pelatihan::latest()->get();
+
+        return view('tipepelatihan', data: compact('tipepelatihan'));
     }
 
     public function pelatihan()
@@ -181,14 +183,15 @@ class HomeController extends Controller
 
     public function detail_pelatihan(int $id)
     {
-        $detail = Pelatihan::where('id', $id)->firstOrFail();
-        $peserta = MemberCourse::with('guru') // Mengambil data guru yang terkait
-            ->where('pelatihan_id', $detail->id)
-            ->where('status', 2)
-            ->get();
+        // Mengambil detail pelatihan beserta peserta dan guru
+        $detail = Pelatihan::with('peserta.guru')->where('id', $id)->firstOrFail();
+
+        // Mengambil peserta yang terdaftar dengan status 2
+        $peserta = $detail->peserta()->where('status', 2)->get();
 
         // Debugging: Cek apakah peserta berhasil diambil
-        // dd($peserta);
+        // dd($detail);
+        // Ini akan menampilkan isi dari $peserta
 
         return view('detail_pelatihan', compact('detail', 'peserta'));
     }

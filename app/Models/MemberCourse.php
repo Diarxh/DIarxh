@@ -18,7 +18,7 @@ class MemberCourse extends Model
     }
     public function guru()
     {
-        return $this->belongsTo(Guru::class, 'user_id', 'id'); // Pastikan 'id' adalah primary key di tabel gurus
+        return $this->belongsTo(Guru::class, 'guru_id'); // Pastikan 'guru_id' adalah kolom yang benar
     }
 
 }

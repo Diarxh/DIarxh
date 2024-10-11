@@ -36,5 +36,14 @@ class Pelatihan extends Model
     {
         return $this->belongsTo(TipePelatihan::class, 'training_type_id');
     }
+    public function peserta()
+    {
+        return $this->hasMany(MemberCourse::class, 'pelatihan_id');
+    }
+    public function pelatihan()
+    {
+        return $this->belongsTo(Pelatihan::class, 'training_id', 'id');
+    }
+
 
 }

@@ -35,4 +35,11 @@ class Guru extends Model
     {
         return $this->belongsTo(User::class, 'User_Id');
     }
+    class Guru extends Model
+{
+    public function pelatihan()
+    {
+        return $this->belongsToMany(Pelatihan::class, 'peserta');
+    }
+}
 }
