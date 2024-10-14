@@ -45,4 +45,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    //relasi
+    public function toko()
+    {
+        return $this->hasOne(Toko::class);
+    }
+
 }
