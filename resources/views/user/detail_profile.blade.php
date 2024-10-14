@@ -15,7 +15,7 @@
             <li></li>
             <li></li>
         </ul>
-        <div class="container py-5 text-center" style="max-width: 900px;">
+        <div class="container py-5 text-center" style="max-width: 700px;">
             <h3 class="display-3 wow fadeInDown mb-4" data-wow-delay="0.1s">Profil Pengguna
                 </h1>
                 {{-- <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">

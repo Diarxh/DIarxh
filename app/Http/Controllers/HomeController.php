@@ -36,11 +36,6 @@ class HomeController extends Controller
         return view('about');
     }
 
-    public function tes()
-    {
-        return view('user.profile');
-    }
-
     // PROFILL
 
     public function detail_profile()
@@ -62,11 +57,12 @@ class HomeController extends Controller
     {
         $guru = Guru::where('user_id', Auth::id())->first();
         $user = Auth::user();
-        $roles = $user->roles; // Mengambil peran pengguna
+        $roles = $user->roles;
 
-        // Mengembalikan view dengan data pengguna, role, dan guru
+
         return view('user.detail_profile', compact('user', 'roles', 'guru'));
     }
+
 
 
     public function updateprofile()
@@ -251,16 +247,33 @@ class HomeController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            // Authentication passed...
-            Log::info('User logged in: ' . Auth::user()->email); // Log email pengguna
-            return redirect()->intended('/user/dashboard');
+            $user = Auth::user();
+
+            \Log::info('User authenticated: ' . $user->email);
+            \Log::info('User roles: ' . implode(', ', $user->getRoleNames()->toArray()));
+
+            if ($user->hasRole('super_admin')) {
+                \Log::info('User has super_admin role');
+                return redirect()->intended('/admin');
+            } elseif ($user->hasAnyRole(['perusahaan', 'guru'])) {
+                \Log::info('User has perusahaan or guru role');
+                return redirect()->intended('/user/dashboard');
+            } else {
+                \Log::info('User has no recognized role');
+                Auth::logout();
+                return back()->withErrors([
+                    'role' => 'Akses ditolak. Anda tidak memiliki peran yang sesuai.',
+                ]);
+            }
         }
 
-        // Authentication failed...
+        \Log::info('Login failed for email: ' . $request->email);
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'email' => 'Kredensial yang diberikan tidak cocok dengan catatan kami.',
         ]);
     }
+
+
 
 
 

@@ -10,6 +10,7 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 
+
 class User extends Authenticatable
 {
     use HasRoles;
@@ -61,6 +62,12 @@ class User extends Authenticatable
     {
         return $this->belongsTo(User::class);
     }
+    // Di model User
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
 
 
 }

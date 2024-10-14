@@ -31,7 +31,8 @@
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 900px;">
                     <h4 class="text-primary">Testimonial</h4>
                     <h1 class="display-5 mb-4">What Our Client Say About Us</h1>
-                    <p class="mb-0">Dolor sit amet consectetur, adipisicing elit. Ipsam, beatae maxime. Vel animi eveniet doloremque reiciendis soluta iste provident non rerum illum perferendis earum est architecto dolores vitae quia vero quod incidunt culpa corporis, porro doloribus. Voluptates nemo doloremque cum.
+                    <p class="mb-0">
+                    "Saya sangat puas dengan pelayanan yang diberikan oleh TeachHub Academy! Pelatihan ini sangat bermanfaat bagi kami para guru dan lulusan baru, karena metode pengajaran yang diterapkan sangat interaktif dan aplikatif. Kami merasa lebih siap menghadapi tantangan di dunia pendidikan setelah mengikuti program ini."
                     </p>
                 </div>
                 <div class="testimonial-carousel owl-carousel wow zoomInDown" data-wow-delay="0.2s">

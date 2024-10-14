@@ -41,6 +41,12 @@
                                 <img src="{{ asset('images/logo-cerah.png') }}" alt="Loading..."
                                     style="width: 6rem; height: 4rem;" class="content-center">
                                 <p class="text-muted mb-4">Silahkan Login</p>
+                                @if(session('error'))
+                                    <div class="alert alert-danger">
+                                        {{ session('error') }}
+                                    </div>
+                                @endif
+
                             </div>
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
@@ -61,6 +67,12 @@
                                 <button type="submit"
                                     class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Login</button>
                             </form>
+                            @if(session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
+
                             @if ($errors->any())
                                 <div class="alert alert-danger">
                                     <ul>
