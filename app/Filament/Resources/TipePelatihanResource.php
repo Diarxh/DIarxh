@@ -12,7 +12,8 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-
+use Illuminate\Support\Facades\Storage;
+use Filament\Tables\Columns\ImageColumn;
 class TipePelatihanResource extends Resource
 {
     protected static ?string $model = TipePelatihan::class;
@@ -29,8 +30,14 @@ class TipePelatihanResource extends Resource
                 Forms\Components\RichEditor::make('trainer_type_description')
                     ->required()
                     ->columnSpanFull(),
+                Forms\Components\FileUpload::make('photo')
+                    ->image()
+                    ->directory('training-types')
+                    ->visibility('public')
+                    ->nullable()
             ]);
     }
+
 
     public static function table(Table $table): Table
     {
@@ -46,6 +53,11 @@ class TipePelatihanResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+                ImageColumn::make('photo')
+                    ->disk('public')
+                    ->visibility('public')
+                    ->square()
+                    ->size(size: 50)
             ])
             ->filters([
                 //
@@ -59,6 +71,7 @@ class TipePelatihanResource extends Resource
                 ]),
             ]);
     }
+
 
     public static function getRelations(): array
     {

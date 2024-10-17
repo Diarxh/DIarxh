@@ -66,6 +66,9 @@
                                 </div>
                                 <button type="submit"
                                     class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Login</button>
+                                    <div class="mt-3 text-center">
+                                        <p>Belum punya akun? <a href="{{ route('register') }}" class="text-primary">Silakan daftar</a></p>
+                                    </div>
                             </form>
                             @if(session('error'))
                                 <div class="alert alert-danger">

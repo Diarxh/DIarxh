@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Guru;
 use App\Models\MemberCourse;
 use App\Models\Pelatihan;
+use App\Models\TipePelatihan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +22,18 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('home');
+        $query = TipePelatihan::orderBy('trainer_type_name', 'asc');
+
+        // Debug query
+        \Log::info($query->toSql());
+        \Log::info($query->getBindings());
+
+        $tipepelatihan = $query->get();
+
+        // Debug hasil query
+        \Log::info($tipepelatihan);
+
+        return view('home', compact('tipepelatihan'));
     }
 
 
@@ -132,8 +144,8 @@ class HomeController extends Controller
     {
         // Validasi input
         $request->validate([
-            'password' => 'required|string|min:8',
-            'newpassword' => 'required|string|min:8|confirmed',
+            'password' => 'required|string|min:3',
+            'newpassword' => 'required|string|min:3|confirmed',
         ]);
 
         // Cek apakah password saat ini benar
@@ -147,7 +159,7 @@ class HomeController extends Controller
         $user->save();
 
         // Redirect ke route profile
-        return redirect()->route('profile')->with('success', 'Password berhasil diubah.');
+        return redirect()->route('profile.show')->with('success', 'Password berhasil diubah.');
     }
 
 
@@ -211,6 +223,7 @@ class HomeController extends Controller
         // Jalankan validasi
         $this->validator($request->all())->validate();
 
+        // Buat pengguna baru
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -231,10 +244,19 @@ class HomeController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'], // Pastikan email unik
             'password' => ['required', 'string', 'min:2', 'confirmed'],
         ]);
     }
+
+    // protected function validator(array $data)
+    // {
+    //     return Validator::make($data, [
+    //         'name' => ['required', 'string', 'max:255'],
+    //         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+    //         'password' => ['required', 'string', 'min:2', 'confirmed'],
+    //     ]);
+    // }
 
     // TAMBAH METHODE LOGIN
     public function showLoginForm()

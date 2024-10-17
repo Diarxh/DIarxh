@@ -56,44 +56,46 @@
                             </div>
                             <form method="POST" action="{{ route('register') }}">
                                 @csrf
+                                <style>
+                                    .password-toggle {
+                                        position: absolute;
+                                        top: 50%;
+                                        right: 30px;
+                                        transform: translateY(-50%);
+                                        cursor: pointer;
+                                    }
+                                </style>
+
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
                                 <div class="form-group mb-3">
-                                    <input id="inputEmail" type="text" name="name" placeholder="Nama Lengkap"
-                                        required="" autofocus=""
-                                        class="form-control rounded-pill border-0 shadow-sm px-4">
+                                    <input id="inputName" type="text" name="name" placeholder="Nama Lengkap" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <input id="inputEmail" type="email" name="email" placeholder="Email address"
-                                        required="" autofocus=""
-                                        class="form-control rounded-pill border-0 shadow-sm px-4">
+                                    <input id="inputEmail" type="email" name="email" placeholder="Email address" required="" class="form-control rounded-pill border-0 shadow-sm px-4">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <input id="inputPassword" type="password" name="password" placeholder="Password"
-                                        required=""
-                                        class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
+                                    <input id="inputPassword" type="password" name="password" placeholder="Password" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <input id="inputPassword" type="password" name="password_confirmation"
-                                        placeholder="Password" required=""
-                                        class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
+                                    <input id="inputPasswordConfirmation" type="password" name="password_confirmation" placeholder="Confirm Password" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
                                 </div>
                                 <div class="custom-control custom-checkbox mb-3">
                                     <input id="customCheck1" type="checkbox" checked class="custom-control-input">
-                                    <label for="customCheck1" class="custom-control-label">Remember password</label>
-                                </div>
-                                <button type="submit"
-                                    class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Sign
-                                    in</button>
-                            </form>
-                            @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
 
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Sign Up</button>
+                                <div class="mt-3 text-center">
+                                    <p>Sudah punya akun? <a href="{{ route('login') }}" class="text-primary">Silakan login</a></p>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div><!-- End -->
@@ -119,6 +121,55 @@
 <!-- Template Javascript -->
 <script src="{{ asset('theme/js/main.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const newPassword = document.getElementById('inputPassword');
+        const renewPassword = document.getElementById('inputPasswordConfirmation');
+
+        function validatePassword() {
+            if (newPassword.value !== renewPassword.value) {
+                renewPassword.setCustomValidity("Password tidak cocok");
+                renewPassword.style.borderColor = "red"; // Mengubah warna border
+                newPassword.style.borderColor = "red";
+            } else {
+                renewPassword.setCustomValidity("");
+                renewPassword.style.borderColor = "green"; // Mengembalikan warna border
+                newPassword.style.borderColor = "green";
+
+            }
+        }
+
+        newPassword.addEventListener('input', validatePassword);
+        renewPassword.addEventListener('input', validatePassword);
+    });
+    function togglePasswordVisibility(inputId, iconId) {
+        const passwordInput = document.getElementById(inputId);
+        const icon = document.getElementById(iconId);
+
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            icon.classList.remove('bi-eye-slash');
+            icon.classList.add('bi-eye');
+        } else {
+            passwordInput.type = 'password';
+            icon.classList.remove('bi-eye');
+            icon.classList.add('bi-eye-slash');
+        }
+    }
+
+    document.getElementById('toggleCurrentPassword').addEventListener('click', function() {
+        togglePasswordVisibility('currentPassword', 'toggleCurrentPassword');
+    });
+
+    document.getElementById('toggleNewPassword').addEventListener('click', function() {
+        togglePasswordVisibility('newPassword', 'toggleNewPassword');
+    });
+
+    document.getElementById('toggleRenewPassword').addEventListener('click', function() {
+        togglePasswordVisibility('renewPassword', 'toggleRenewPassword');
+    });
+
+</script>
 
 <style>
     /*

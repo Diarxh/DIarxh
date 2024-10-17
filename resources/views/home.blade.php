@@ -1,6 +1,6 @@
 @extends('theme')
 @section('content')
-    
+
 
 
             <!-- Hero Header Start -->
@@ -10,108 +10,84 @@
                     <div class="rotate-sty-2"></div>
                 </div>
                 <div class="row gy-5 align-items-center">
-                    <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.1s">
+                    <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.4s">
+                    <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.5s" style="max-width: 900px;">
                         <h1 class="display-4 text-dark mb-4 wow fadeInUp" data-wow-delay="0.3s">TeachHub</h1>
                         <p class="fs-4 mb-4 wow fadeInUp" data-wow-delay="0.5s">Selamat datang di TeachHub, platform inovatif yang dirancang khusus untuk membantu guru dan lulusan baru dalam meningkatkan keterampilan dan pengetahuan mereka. Di TeachHub, kami memahami tantangan yang dihadapi oleh pendidik dan para pencari kerja di dunia yang terus berubah. Oleh karena itu, kami menyediakan berbagai pelatihan berkualitas yang dapat diakses kapan saja dan di mana saja.</p>
                         <a href="#" class="btn btn-primary rounded-pill py-3 px-5 wow fadeInUp" data-wow-delay="0.7s">Get Started</a>
                     </div>
+                </div>
                     <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.2s">
                         <img src="{{ asset('theme/img/hero-img-1.png')}}" class="img-fluid w-100 h-100" alt="">
                     </div>
                 </div>
             </div>
-            <!-- Hero Header End -->
         </div>
+        <!-- Hero Header End -->
+
+
+        <!-- Service Start -->
+        <div class="container-fluid service py-5">
+            <div class="container py-5">
+                <div class="row g-4 justify-content-center">
+                    @foreach ($tipepelatihan as $data)
+                        <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="service-item text-center rounded p-4">
+                                <div class="service-icon d-inline-block bg-light rounded p-6 mb-6">
+                                    @if($data->photo)
+                                        <img src="{{ asset('storage/' . $data->photo) }}" alt="{{ $data->trainer_type_name }}" class="img-fluid" style="max-height: 100px;">
+                                    @else
+                                        <i class="fas fa-mail-bulk fa-5x text-secondary"></i>
+                                    @endif
+                                </div>
+                                <div class="service-content">
+                                    <h4 class="mb-4">{{ $data->trainer_type_name }}</h4>
+                                    <p class="mb-4">{!! Str::limit($data->trainer_type_description, 100) !!}</p>
+                                    <a href="#" class="btn btn-light rounded-pill text-primary py-2 px-4">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        <!-- Service End -->
 
 
 
         <!-- Testimonial Start -->
-        <div class="container-fluid testimonial py-5">
-            <div class="container py-5">
-                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 900px;">
-                    <h4 class="text-primary">Testimonial</h4>
-                    <h1 class="display-5 mb-4">What Our Client Say About Us</h1>
-                    <p class="mb-0">
-                    "Saya sangat puas dengan pelayanan yang diberikan oleh TeachHub Academy! Pelatihan ini sangat bermanfaat bagi kami para guru dan lulusan baru, karena metode pengajaran yang diterapkan sangat interaktif dan aplikatif. Kami merasa lebih siap menghadapi tantangan di dunia pendidikan setelah mengikuti program ini."
-                    </p>
-                </div>
-                <div class="testimonial-carousel owl-carousel wow zoomInDown" data-wow-delay="0.2s">
-                    <div class="testimonial-item" data-dot="<img class='img-fluid' src='{{ asset('theme/img/testimonial-img-1.jpg') }}' alt=''>">
-                        <div class="testimonial-inner text-center p-5">
-                            <div class="d-flex align-items-center justify-content-center mb-4">
-                                <div class="testimonial-inner-img border border-primary border-3 me-4" style="width: 100px; height: 100px; border-radius: 50%;">
-                                    <img src="{{ asset('theme/img/testimonial-img-1.jpg')}}" class="img-fluid rounded-circle" alt="">
-                                </div>
-                                <div>
-                                    <h5 class="mb-2">John Abraham</h5>
-                                    <p class="mb-0">New York, USA</p>
-                                </div>
-                            </div>
-                            <p class="fs-7">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores nemo facilis tempora esse explicabo sed! Dignissimos quia ullam pariatur blanditiis sed voluptatum. Totam aut quidem laudantium tempora. Minima, saepe earum!
-                            </p>
-                            <div class="text-center">
-                                <div class="d-flex justify-content-center">
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-item" data-dot="<img class='img-fluid' src='img/testimonial-img-2.jpg' alt=''>">
-                        <div class="testimonial-inner text-center p-5">
-                            <div class="d-flex align-items-center justify-content-center mb-4">
-                                <div class="testimonial-inner-img border border-primary border-3 me-4" style="width: 100px; height: 100px; border-radius: 50%;">
-                                    <img src="{{ asset('theme/img/testimonial-img-2.jpg')}}" class="img-fluid rounded-circle" alt="">
-                                </div>
-                                <div>
-                                    <h5 class="mb-2">John Abraham</h5>
-                                    <p class="mb-0">New York, USA</p>
-                                </div>
-                            </div>
-                            <p class="fs-7">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores nemo facilis tempora esse explicabo sed! Dignissimos quia ullam pariatur blanditiis sed voluptatum. Totam aut quidem laudantium tempora. Minima, saepe earum!
-                            </p>
-                            <div class="text-center">
-                                <div class="d-flex justify-content-center">
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-item" data-dot="<img class='img-fluid' src='img/testimonial-img-3.jpg' alt=''>">
-                        <div class="testimonial-inner text-center p-5">
-                            <div class="d-flex align-items-center justify-content-center mb-4">
-                                <div class="testimonial-inner-img border border-primary border-3 me-4" style="width: 100px; height: 100px; border-radius: 50%;">
-                                    <img src="{{ asset('theme/img/testimonial-img-3.jpg')}}" class="img-fluid rounded-circle" alt="">
-                                </div>
-                                <div>
-                                    <h5 class="mb-2">John Abraham</h5>
-                                    <p class="mb-0">New York, USA</p>
-                                </div>
-                            </div>
-                            <p class="fs-7">Lorem ipsum ndolor, sit amet consectetur adipisicing elit. Asperiores nemo facilis tempora esse explicabo sed! Dignissimos quia ullam pariatur blanditiis sed voluptatum. Totam aut quidem laudantium tempora. Minima, saepe earum!
-                            </p>
-                            <div class="text-center">
-                                <div class="d-flex justify-content-center">
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                    <i class="fas fa-star text-primary"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Testimonial Klien</h2>
+    <div class="row">
+        <div class="col-md-12 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <p class="card-text">"Layanan yang luar biasa! Sangat membantu bisnis kami tumbuh."</p>
+                    <h5 class="card-title">John Doe</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">CEO, Perusahaan ABC</h6>
                 </div>
             </div>
         </div>
+        <div class="col-md-12 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <p class="card-text">"Tim yang profesional dan responsif. Saya sangat merekomendasikan mereka."</p>
+                    <h5 class="card-title">Jane Smith</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Pengusaha, Perusahaan XYZ</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <p class="card-text">"Kualitas layanan yang sangat baik. Hasilnya melebihi harapan saya!"</p>
+                    <h5 class="card-title">Ali Rahman</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Founder, Startup 123</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
         <!-- Testimonial End -->
-
-
         @endsection

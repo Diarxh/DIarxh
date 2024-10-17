@@ -1,4 +1,4 @@
-@extends('user.theme')
+@extends('theme')
 @section('content')
     <!-- Header Start -->
     <div class="container-fluid bg-breadcrumb py-3">
@@ -20,10 +20,17 @@
                 {{-- <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
                         <li class="breadcrumb-item"><a href="/home">Home</a></li>
                         <li class="breadcrumb-item"><a href="#">list Pelatihan</a></li>
+                                      <h4 class="text-primary">TeachHub</h4>
                         <li class="breadcrumb-item active text-primary"></li>
                     </ol>     --}}
         </div>
     </div>
+    <form class="d-flex">
+        <input class="form-control me-2 search-bar" type="search" placeholder="Cari..." aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">
+            <i class="fas fa-search"></i>
+        </button>
+    </form>
     <!-- Header End -->
 
 
@@ -32,7 +39,7 @@
     <div class="container-fluid blog py-5">
         <div class="container py-5">
             <div class="wow fadeInUp mx-auto mb-5 text-center" data-wow-delay="0.1s" style="max-width: 900px;">
-                <h4 class="text-primary">TeachHub</h4>
+  
                 <h1 class="display-5 mb-4">List Pelatihan</h1>
 
             </div>

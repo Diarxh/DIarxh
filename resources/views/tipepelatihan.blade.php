@@ -23,6 +23,7 @@
 
 
 <!-- Service Start -->
+<!-- Service Start -->
 <div class="container-fluid service py-5">
     <div class="container py-5">
         <div class="row g-4 justify-content-center">
@@ -30,11 +31,15 @@
                 <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="service-item text-center rounded p-4">
                         <div class="service-icon d-inline-block bg-light rounded p-4 mb-4">
-                            <i class="fas fa-mail-bulk fa-5x text-secondary"></i>
+                            @if($data->photo)
+                                <img src="{{ asset('storage/' . $data->photo) }}" alt="{{ $data->trainer_type_name }}" class="img-fluid" style="max-height: 100px;">
+                            @else
+                                <i class="fas fa-mail-bulk fa-5x text-secondary"></i>
+                            @endif
                         </div>
                         <div class="service-content">
-                            <h4 class="mb-4">{{ $data->name }}</h4>
-                            <p class="mb-4">{!! substr($data->description, 0, 100) !!}</p>
+                            <h4 class="mb-4">{{ $data->trainer_type_name }}</h4>
+                            <p class="mb-4">{!! Str::limit($data->trainer_type_description, 100) !!}</p>
                             <a href="#" class="btn btn-light rounded-pill text-primary py-2 px-4">Read More</a>
                         </div>
                     </div>
@@ -44,7 +49,7 @@
     </div>
 </div>
 <!-- Service End -->
-
+<!-- Service End -->
 
 
 <!-- FAQ Start -->

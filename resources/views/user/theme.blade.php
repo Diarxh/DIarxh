@@ -55,7 +55,7 @@
 
 
 
-        <div class="container-fluid header position-relative d:\dad\kanjut\profil.blade.php p-0">
+        <div class="container-fluid header position-relative p-0">
             <nav class="navbar navbar-expand-lg fixed-top navbar-light px-lg-5 py-lg-0 px-4 py-3">
                 <a href="/home" class="navbar-brand p-0">
                     <img src="{{ asset('images/logo-cerah.png') }}" alt="Logo">
@@ -70,7 +70,7 @@
                             <a href="/profile" class="nav-item nav-link">
                                 Hello, {{ Auth::user()->name }}
                             </a>
-                            <a href="/user/dashboard" class="nav-item nav-link active">Home</a>
+                            <a href="/user/dashboard" class="nav-item nav-link active">Dashboard</a>
                             <a href="/list_pelatihan" class="nav-item nav-link">Pelatihan</a>
                             <a href="/pelatihan_saya" class="nav-item nav-link">Pelatihan Saya</a>
                     </div>
@@ -133,7 +133,7 @@
         </div>
         <!-- Footer End -->
 
-      
+
         <!-- Copyright Start -->
         <div class="container-fluid copyright py-4">
             <div class="container">
@@ -145,7 +145,7 @@
                         <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
                         <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
                         <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
-                        Designed By <a class="border-bottom" href="https://htmlcodex.com">Tim It PELITA Dev.</a> 
+                        Designed By <a class="border-bottom" href="https://htmlcodex.com">Tim It PELITA Dev.</a>
                     </div>
                 </div>
             </div>

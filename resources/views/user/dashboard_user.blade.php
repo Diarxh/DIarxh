@@ -1,16 +1,24 @@
 @extends('user.theme')
 @section('content')
     <!-- Header Start -->
-    <div class="container-fluid bg-breadcrumb py-1">
+    <div class="container-fluid bg-breadcrumb py-2">
         <ul class="breadcrumb-animation">
             <li></li>
             <li></li>
             <li></li>
             <li></li>
             <li></li>
+            <li></li>
         </ul>
-        <div class="container py-1 text-center" style="max-width: 500px;">
-            <h3 class="display-2 wow fadeInDown mb-1" data-wow-delay="0.1s">Dashboard</h3>
+        <div class="container py-6 mt-5 text-center" style="max-width: 1000px;">
+            <h3 class="display-3 wow fadeInDown mb-4" data-wow-delay="0.1s">Dashboard
+                </h1>
+                {{-- <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                        <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">list Pelatihan</a></li>
+                            <h4 class="text-primary">TeachHub</h4>
+                        <li class="breadcrumb-item active text-primary"></li>
+                    </ol>     --}}
         </div>
     </div>
     <!-- Header End -->
@@ -70,6 +78,7 @@
                 </table>
             </div>
         </div>
+        <!-- Dashboard end -->
 
         <!-- New Statistics Section -->
         <div class="row mt-4">

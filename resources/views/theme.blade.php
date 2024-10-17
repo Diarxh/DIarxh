@@ -22,6 +22,7 @@
         <link href="{{ asset('theme/lib/animate/animate.min.css') }}" rel="stylesheet">
         <link href="{{ asset('theme/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
         <link href="{{ asset('theme/lib/lightbox/css/lightbox.min.css') }}" rel="stylesheet">
+        <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
 
         <!-- Customized Bootstrap Stylesheet -->
@@ -30,11 +31,18 @@
 
         <!-- Template Stylesheet -->
         <link href="{{ asset('theme/css/style.css') }}" rel="stylesheet">
+        {{--  <!-- MDB -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.0.0/mdb.min.css" rel="stylesheet" />
+        <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />  --}}
+
     </head>
 
     <body>
 
- <!-- Spinner Start -->
+<!-- Spinner Start -->
 <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
     <img src="{{ asset('images/logo-cerah.png') }}" alt="Loading..." style="width: 6rem; height: 4rem;">
 </div>
@@ -46,7 +54,7 @@
 
 
 
-        <div class="container-fluid header position-relative d:\dad\kanjut\profil.blade.php p-0">
+        <div class="container-fluid header position-relative p-0">
             <nav class="navbar navbar-expand-lg fixed-top navbar-light px-lg-5 py-lg-0 px-4 py-3">
                 <a href="/home" class="navbar-brand p-0">
                     <img src="{{ asset('images/logo-cerah.png') }}" alt="Logo">
@@ -57,36 +65,33 @@
                 </button>
                 <div class="navbar-collapse collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
-                        @if (auth()->check())
+                        @if (auth()->check() && auth()->user()->hasRole('guru'))
                             <a href="/profile" class="nav-item nav-link">
                                 Hello, {{ Auth::user()->name }}
                             </a>
                             <a href="/user/dashboard" class="nav-item nav-link active">Home</a>
                             <a href="/list_pelatihan" class="nav-item nav-link">Pelatihan</a>
                             <a href="/pelatihan_saya" class="nav-item nav-link">Pelatihan Saya</a>
-                    </div>
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="btn btn-primary rounded-pill px-4 py-2 text-white">Logout</button>
-                    </form>
-                @else
-                    <a href="/home" class="nav-item nav-link active">Home</a>
-                    <a href="/list_pelatihan" class="nav-item nav-link">Pelatihan</a>
-                    <a href="/tipepelatihan" class="nav-item nav-link">Tipe Pelatihan</a>
-
-                    <a href="/contact" class="nav-item nav-link">Contact Us</a>
-                    <a href="/about" class="nav-item nav-link">About</a>
+                        </div>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="btn btn-primary rounded-pill px-4 py-2 text-white">Logout</button>
+                        </form>
+                        @else
+                            <a href="/home" class="nav-item nav-link active">Home</a>
+                            <a href="/list_pelatihan" class="nav-item nav-link">Pelatihan</a>
+                            <a href="/tipepelatihan" class="nav-item nav-link">Tipe Pelatihan</a>
+                            <a href="/contact" class="nav-item nav-link">Contact Us</a>
+                            <a href="/about" class="nav-item nav-link">About</a>
+                            
+                        </div>
+                        <a href="/login" class="btn btn-light border-primary rounded-pill text-primary me-4 border px-4 py-2">Log In</a>
+                        <a href="/register" class="btn btn-primary rounded-pill px-4 py-2 text-white">Sign Up</a>
+                        
+                        @endif
+                    </nav>
                 </div>
-                <a href="/login"
-                    class="btn btn-light border-primary rounded-pill text-primary me-4 border px-4 py-2">Log In</a>
-                <a href="/register" class="btn btn-primary rounded-pill px-4 py-2 text-white">Sign Up</a>
-                @endif
-        </div>
 
-
-
-        </nav>
-        </div>
             @yield('content')
 
         <!-- Footer Start -->
@@ -104,7 +109,7 @@
                         <div class="footer-item d-flex flex-column">
                             <h4 class="mb-4 text-dark">Contact Info</h4>
                             <a href=""><i class="fa fa-map-marker-alt me-2"></i> Jln Raden Ali Sadikin KM.6 , Ujungjaya,Ujungjaya,Sumedang</a>
-                            <a href=""><i class="fas fa-envelope me-2"></i> TeachHub09@gmail.com</a>
+                            <a href=""><i class="fas fa-envelope me-2"></i> pelitatefa09@gmail.com</a>
                             <a href=""><i class="fas fa-phone me-2"></i> +62 813 9514 7197</a>
                             <a href="" class="mb-3"><i class="fas fa-print me-2"></i> +012 345 67890</a>
                             <div class="d-flex align-items-center">
@@ -113,6 +118,7 @@
                                 <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i class="fab fa-twitter"></i></a>
                                 <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i class="fab fa-instagram"></i></a>
                                 <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
+                                class.disar
                             </div>
                         </div>
                     </div>
@@ -147,7 +153,7 @@
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="loginModalLabel">Login</h5>
+                <h5 class="modal-title" id="logins  ModalLabel">Login</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body p-0">
@@ -181,6 +187,8 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('theme/js/main.js')}}"></script>
+    <!-- MDB -->
+    {{--  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.0.0/mdb.min.js">  --}}
 
     {{--  @push('scripts')
     <script>

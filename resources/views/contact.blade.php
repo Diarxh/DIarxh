@@ -37,7 +37,12 @@
     </ul>
 
     <h3 class="mt-5">Lokasi Kami</h3>
-    <div id="map"></div>
+    <div class="col-12 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="rounded h-100">
+                            <iframe class="rounded w-100" 
+                            style="height: 500px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.327203828082!2d108.11762297587393!3d-6.7298741658035555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6ed5eca345f52b%3A0x3a1aed6c68f272f4!2sSMK%20PELITA%20AL-IKHSAN!5e0!3m2!1sen!2sid!4v1728957605292!5m2!1sen!2sid"
+                            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
