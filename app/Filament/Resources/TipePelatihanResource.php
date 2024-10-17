@@ -5,18 +5,24 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\TipePelatihanResource\Pages;
 use App\Filament\Resources\TipePelatihanResource\RelationManagers;
 use App\Models\TipePelatihan;
-use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Table;
+use Filament\Forms;
+use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Storage;
-use Filament\Tables\Columns\ImageColumn;
+
 class TipePelatihanResource extends Resource
 {
     protected static ?string $model = TipePelatihan::class;
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Training_types';
+    }
 
     protected static ?string $navigationIcon = 'heroicon-o-building-office';
 
@@ -37,7 +43,6 @@ class TipePelatihanResource extends Resource
                     ->nullable()
             ]);
     }
-
 
     public static function table(Table $table): Table
     {
@@ -71,7 +76,6 @@ class TipePelatihanResource extends Resource
                 ]),
             ]);
     }
-
 
     public static function getRelations(): array
     {

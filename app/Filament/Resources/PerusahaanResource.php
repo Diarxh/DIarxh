@@ -5,11 +5,11 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\PerusahaanResource\Pages;
 use App\Filament\Resources\PerusahaanResource\RelationManagers;
 use App\Models\Perusahaan;
-use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Forms;
+use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Auth;
@@ -18,30 +18,35 @@ class PerusahaanResource extends Resource
 {
     protected static ?string $model = Perusahaan::class;
 
+    public static function getPluralModelLabel(): string
+    {
+        return 'Companies';
+    }
+
     protected static ?string $navigationIcon = 'heroicon-o-building-office-2';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('company_name') // Nama_Perusahaan
+                Forms\Components\TextInput::make('company_name')  // Nama_Perusahaan
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('address') // Alamat
+                Forms\Components\TextInput::make('address')  // Alamat
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('phone_number') // No_Telp
+                Forms\Components\TextInput::make('phone_number')  // No_Telp
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('email') // Email
+                Forms\Components\TextInput::make('email')  // Email
                     ->required()
                     ->maxLength(255),
-                Forms\Components\FileUpload::make('logo') // Logo
+                Forms\Components\FileUpload::make('logo')  // Logo
                     ->required(),
-                Forms\Components\RichEditor::make('description') // Description
+                Forms\Components\RichEditor::make('description')  // Description
                     ->required()
                     ->columnSpanFull(),
-                Forms\Components\DatePicker::make('registration_start_date') // Tanggal Mulai Pendaftaran
+                Forms\Components\DatePicker::make('registration_start_date')  // Tanggal Mulai Pendaftaran
                     ->hidden()
                     ->nullable(),
             ]);
@@ -63,24 +68,24 @@ class PerusahaanResource extends Resource
                 return Perusahaan::where('user_id', $user->id);
             })
             ->columns([
-                Tables\Columns\TextColumn::make('company_name') // Nama Perusahaan
+                Tables\Columns\TextColumn::make('company_name')  // Nama Perusahaan
                     ->searchable(),
-                Tables\Columns\TextColumn::make('address') // Alamat
+                Tables\Columns\TextColumn::make('address')  // Alamat
                     ->searchable(),
-                Tables\Columns\TextColumn::make('phone_number') // Nomor Telepon
+                Tables\Columns\TextColumn::make('phone_number')  // Nomor Telepon
                     ->searchable(),
-                Tables\Columns\TextColumn::make('email') // Email
+                Tables\Columns\TextColumn::make('email')  // Email
                     ->searchable(),
                 Tables\Columns\TextColumn::make('Logo')
                     ->html()
                     ->formatStateUsing(function ($state) {
                         return '<img src="' . asset('path/to/logo/' . $state) . '" alt="Logo" style="width:50px; height:auto;" />';
                     }),
-                Tables\Columns\TextColumn::make('created_at') // Tanggal Dibuat
+                Tables\Columns\TextColumn::make('created_at')  // Tanggal Dibuat
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at') // Tanggal Diperbarui
+                Tables\Columns\TextColumn::make('updated_at')  // Tanggal Diperbarui
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -97,7 +102,6 @@ class PerusahaanResource extends Resource
                 ]),
             ]);
     }
-
 
     public static function getRelations(): array
     {
