@@ -23,29 +23,33 @@
         </div>
     </div>
     <!-- Header End -->
-    <div class="container">
+    <div class="container mt-5">
         <div class="row">
             <div class="col-md-4">
-                <div class="card mb-3">
+                <div class="card mb-3 wow fadeInLeft" data-wow-delay="0.2s">
                     <img src="{{ asset('theme/img/blog-1.png') }}" alt="Pelatihan Guru" class="card-img-top">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $detail->name }}</h5> <!-- Menggunakan 'name' sesuai dengan kolom di database -->
-                        <p class="card-text">Tipe Pelatihan: {{ $detail->tipe_pelatihan->name }}</p> <!-- Pastikan relasi ini benar -->
-                        <a href="/registercourse/{{ $detail->id }}" class="btn btn-primary">Daftar Pelatihan</a>
+                        <h5 class="card-title">{{ $detail->name }}</h5>
+                        @if($detail->tipe_pelatihan)
+                            <p class="card-text">Tipe Pelatihan: {{ $detail->tipe_pelatihan->name }}</p>
+                        @else
+                            <p class="card-text">Tipe Pelatihan: Tidak tersedia</p>
+                        @endif
+                        <a href="{{ route('registercourse', $detail->id) }}" class="btn btn-primary">Daftar Pelatihan</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-8">
-                <div class="card mb-3">
+                <div class="card mb-3 wow fadeInRight" data-wow-delay="0.4s">
                     <div class="card-body">
                         <h5 class="card-title">Jadwal Pelatihan</h5>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">{!! $detail->description !!}</li> <!-- Menggunakan 'description' -->
+                            <li class="list-group-item">{!! $detail->description !!}</li>
                             <li class="list-group-item">Tanggal:
                                 {{ \Carbon\Carbon::parse($detail->start_date)->translatedFormat('l, d F Y') }} -
-                                {{ \Carbon\Carbon::parse($detail->end_date)->translatedFormat('l, d F Y') }}</li> <!-- Menggunakan 'start_date' dan 'end_date' -->
-                            <li class="list-group-item">Status: {{ $detail->status }}</li> <!-- Menggunakan 'status' -->
-                            <li class="list-group-item">Lokasi: {{ $detail->training_location }}</li> <!-- Menggunakan 'training_location' -->
+                                {{ \Carbon\Carbon::parse($detail->end_date)->translatedFormat('l, d F Y') }}</li>
+                            <li class="list-group-item">Status: {{ $detail->status }}</li>
+                            <li class="list-group-item">Lokasi: {{ $detail->training_location }}</li>
                         </ul>
                     </div>
                 </div>

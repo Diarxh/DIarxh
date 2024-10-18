@@ -39,7 +39,7 @@
     <div class="container-fluid blog py-5">
         <div class="container py-5">
             <div class="wow fadeInUp mx-auto mb-5 text-center" data-wow-delay="0.1s" style="max-width: 900px;">
-  
+
                 <h1 class="display-5 mb-4">List Pelatihan</h1>
 
             </div>
@@ -52,7 +52,7 @@
                                 <img src="{{ asset('theme/img/blog-1.png') }}" class="img-fluid w-100" alt="">
                                 <div class="blog-info">
                                     <span><i class="fa fa-clock"></i>
-                                        {{ \Carbon\Carbon::parse($data->tanggal_mulai)->translatedFormat('l, d F Y') }}</span>
+                                        {{ \Carbon\Carbon::parse($data->start_date)->translatedFormat('l, d F Y') }}</span>
                                     <div class="d-flex">
 
                                         <a href="#" class="text-white">100 <i class="fa fa-user"></i></a>
@@ -60,8 +60,8 @@
                                 </div>
                             </div>
                             <div class="blog-content text-dark border p-4">
-                                <h5 class="mb-4">{{ $data->nama }}</h5>
-                                <p class="mb-4">{!! substr($data->deskripsi, 0, 100) !!}</p>
+                                <h5 class="mb-4">{{ $data->name }}</h5>
+                                <p class="mb-4">{!! substr($data->description, 0, 100) !!}</p>
                                 <a class="btn btn-light rounded-pill px-4 py-2"
                                     href="/detail_pelatihan/{{ $data->id }}">Lihat
                                     Lebih...</a>

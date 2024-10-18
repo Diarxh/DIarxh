@@ -22,7 +22,14 @@ class PerusahaanResource extends Resource
     {
         return 'Companies';
     }
-
+    public static function getSlug(): string
+    {
+        return 'Companies';
+    }
+    public static function getModelLabel(): string
+    {
+        return 'Companies';
+    }
     protected static ?string $navigationIcon = 'heroicon-o-building-office-2';
 
     public static function form(Form $form): Form

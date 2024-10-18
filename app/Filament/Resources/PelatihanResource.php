@@ -25,7 +25,14 @@ class PelatihanResource extends Resource
     {
         return 'Training';
     }
-
+    public static function getSlug(): string
+    {
+        return 'Training';
+    }
+    public static function getModelLabel(): string
+    {
+        return 'Training';
+    }
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form

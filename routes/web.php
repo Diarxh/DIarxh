@@ -19,6 +19,8 @@ Route::get('/tipepelatihan', [HomeController::class, 'tipe_pelatihan']);
 Route::get('/list_pelatihan', [HomeController::class, 'pelatihan']);
 Route::get('/detail_pelatihan/{any}', [HomeController::class, 'detail_pelatihan']);
 
+Route::get('/profile', [HomeController::class, 'showProfile'])->name('profile');
+
 // Authentication routes
 Route::get('/login', [HomeController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [HomeController::class, 'login']);
@@ -35,6 +37,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/pelatihan_saya', [HomeController::class, 'pelatihan_saya']);
     Route::get('/registercourse/{any}', [HomeController::class, 'registercourse'])->name('registercourse');
     Route::post('registercourse-do', [HomeController::class, 'registercoursedo'])->name('registercoursedo');
+    Route::get('/profile', [HomeController::class, 'showProfile'])->name('profile.show');
 });
 
 // User dashboard routes

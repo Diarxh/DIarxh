@@ -22,6 +22,14 @@ class GuruResource extends Resource
         return 'Teachers';
     }
 
+    public static function getSlug(): string
+    {
+        return 'teachers';
+    }
+    public static function getModelLabel(): string
+    {
+        return 'Teacher';
+    }
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
 
     public static function form(Form $form): Form

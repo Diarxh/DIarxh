@@ -31,11 +31,13 @@ class Pelatihan extends Model
         return $this->belongsTo(Perusahaan::class, 'company_id');
     }
 
-    // Relasi dengan model TipePelatihan
-    public function tipePelatihan()
+    // Di model Pelatihan
+// Di model Pelatihan
+    public function tipe_pelatihan()
     {
         return $this->belongsTo(TipePelatihan::class, 'training_type_id');
     }
+
     public function peserta()
     {
         return $this->hasMany(MemberCourse::class, 'pelatihan_id');

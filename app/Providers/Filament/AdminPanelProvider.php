@@ -29,7 +29,6 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
-            // ->registration(CustomRegister::class)
             ->passwordReset()
             ->emailVerification()
             ->profile()
@@ -66,7 +65,6 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->plugins([
                 \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make(),
-                // FilamentSpatieRolesPermissionsPlugin::make()
             ]);
     }
 }

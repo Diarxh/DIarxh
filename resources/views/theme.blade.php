@@ -31,6 +31,8 @@
 
         <!-- Template Stylesheet -->
         <link href="{{ asset('theme/css/style.css') }}" rel="stylesheet">
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
         {{--  <!-- MDB -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.0.0/mdb.min.css" rel="stylesheet" />
         <link
@@ -83,11 +85,11 @@
                             <a href="/tipepelatihan" class="nav-item nav-link">Tipe Pelatihan</a>
                             <a href="/contact" class="nav-item nav-link">Contact Us</a>
                             <a href="/about" class="nav-item nav-link">About</a>
-                            
+
                         </div>
                         <a href="/login" class="btn btn-light border-primary rounded-pill text-primary me-4 border px-4 py-2">Log In</a>
                         <a href="/register" class="btn btn-primary rounded-pill px-4 py-2 text-white">Sign Up</a>
-                        
+
                         @endif
                     </nav>
                 </div>
@@ -184,7 +186,9 @@
     <script src="'{{ asset('theme/lib/owlcarousel/owl.carousel.min.js')}}"></script>
     <script src="'{{ asset('theme/lib/lightbox/js/lightbox.min.js')}}"></script>
 
-
+    <script>
+        AOS.init();
+      </script>
     <!-- Template Javascript -->
     <script src="{{ asset('theme/js/main.js')}}"></script>
     <!-- MDB -->

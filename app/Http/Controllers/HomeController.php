@@ -22,20 +22,13 @@ class HomeController extends Controller
 
     public function index()
     {
-        $query = TipePelatihan::orderBy('trainer_type_name', 'asc');
-
-        // Debug query
-        \Log::info($query->toSql());
-        \Log::info($query->getBindings());
-
-        $tipepelatihan = $query->get();
+        $tipepelatihan = TipePelatihan::orderBy('trainer_type_name', 'asc')->get();
 
         // Debug hasil query
         \Log::info($tipepelatihan);
 
         return view('home', compact('tipepelatihan'));
     }
-
 
     public function contact()
     {
@@ -102,6 +95,7 @@ class HomeController extends Controller
 
     public function saveprofile(Request $request)
     {
+        // Validasi data yang diterima dari form
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
@@ -118,27 +112,32 @@ class HomeController extends Controller
             'last_education' => 'required|string|max:255',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'about' => 'nullable|string|max:1000',
-
         ]);
 
+        // Menambahkan user_id ke data yang divalidasi
         $validatedData['user_id'] = Auth::id();
 
+        // Menyimpan foto jika ada
         if ($request->hasFile('photo')) {
             $photoPath = $request->file('photo')->store('profile_photos', 'public');
             $validatedData['photo'] = $photoPath;
         }
 
+        // Mencari data guru berdasarkan user_id
         $guru = Guru::where('user_id', Auth::id())->first();
 
+        // Jika data guru ditemukan, lakukan update
         if ($guru) {
             $guru->update($validatedData);
             $message = 'Profil berhasil diperbarui';
         } else {
+            // Jika tidak ditemukan, buat data baru
             Guru::create($validatedData);
             $message = 'Profil berhasil dibuat';
         }
 
-        return redirect()->route('profile.detail')->with('success', $message);
+        // Redirect ke rute profil dengan pesan sukses
+        return redirect()->route('profile.show')->with('success', $message);
     }
     public function changePassword(Request $request)
     {
@@ -191,15 +190,8 @@ class HomeController extends Controller
 
     public function detail_pelatihan(int $id)
     {
-        // Mengambil detail pelatihan beserta peserta dan guru
-        $detail = Pelatihan::with('peserta.guru')->where('id', $id)->firstOrFail();
-
-        // Mengambil peserta yang terdaftar dengan status 2
+        $detail = Pelatihan::with(['peserta.guru', 'tipe_pelatihan'])->findOrFail($id);
         $peserta = $detail->peserta()->where('status', 2)->get();
-
-        // Debugging: Cek apakah peserta berhasil diambil
-        // dd($detail);
-        // Ini akan menampilkan isi dari $peserta
 
         return view('detail_pelatihan', compact('detail', 'peserta'));
     }
