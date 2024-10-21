@@ -56,7 +56,9 @@ class HomeController extends Controller
 
     public function pelatihan_saya()
     {
-        return view('user.pelatihan_saya');
+        $user_id = auth()->id();
+        $pelatihan = MemberCourse::where('user_id', $user_id)->with('pelatihan')->get();
+        return view('user.pelatihan_saya', compact('pelatihan'));
     }
     public function contact()
     {
@@ -158,12 +160,11 @@ class HomeController extends Controller
     //     $data = $request->all();
     //     MemberCourse::create($data);
     //     return redirect()->back()->with('success', 'Berhasil mendaftar');
-    // }
     public function registercoursedo(Request $request)
     {
         $data = $request->all();
         MemberCourse::create($data);
-        return redirect()->back()->with('success', 'Berhasil mendaftar');
+        return redirect()->route('pelatihan_saya')->with('success', 'Berhasil mendaftar');
     }
 
     // TERUNTUK nambah data ke table guru

@@ -20,5 +20,8 @@ class MemberCourse extends Model
     {
         return $this->belongsTo(Guru::class, 'guru_id'); // Pastikan 'guru_id' adalah kolom yang benar
     }
-
+    public function pelatihan()
+    {
+        return $this->belongsTo(Pelatihan::class, 'pelatihan_id');
+    }
 }

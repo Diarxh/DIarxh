@@ -41,7 +41,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/profile', [UserController::class, 'saveprofile'])->name('profile.save');
     Route::post('/change-password', [HomeController::class, 'changePassword'])->name('change.password');
     Route::get('/updateprofile', [HomeController::class, 'updateprofile'])->name('updateprofile');
-    Route::get('/pelatihan_saya', [HomeController::class, 'pelatihan_saya']);
+    Route::get('/pelatihan_saya', [HomeController::class, 'pelatihan_saya'])->name('pelatihan_saya');
     Route::get('/registercourse/{any}', [HomeController::class, 'registercourse'])->name('registercourse');
     Route::post('registercourse-do', [HomeController::class, 'registercoursedo'])->name('registercoursedo');
 });

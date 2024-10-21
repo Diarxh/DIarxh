@@ -57,24 +57,29 @@
                             <p class="text-center">Anda Sudah Terdaftar</p>
                         @else
                             <div class="text-center">
-                                <img src="{{ asset("theme/img/blog-1.png") }}" alt="{{ $course->nama }}" class="img-fluid rounded mb-4" style="max-height: 300px;">
+                                <img src="{{ asset('theme/img/blog-1.png') }}" alt="{{ $course->name }}"
+                                    class="img-fluid rounded mb-4" style="max-height: 300px;">
                             </div>
-                            <p class="text-center">Nama Pelatihan : <span>{{ $course->nama }}</span></p>
+                            <p class="text-center">Nama Pelatihan : <span>{{ $course->name }}</span></p>
                             <form action="/registercourse-do" method="POST" class="container mt-4">
                                 @csrf
                                 <div class="row mb-3">
                                     <div class="col-sm-10">
-                                        <input type="hidden" class="form-control" id="user_id" name="user_id" value="{{ $user }}" readonly>
+                                        <input type="hidden" class="form-control" id="user_id" name="user_id"
+                                            value="{{ $user }}" readonly>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-sm-10">
-                                        <input type="hidden" class="form-control" id="pelatihan_id" name="pelatihan_id" value="{{ $course->id }}" readonly>
+                                        <input type="hidden" class="form-control" id="pelatihan_id" name="pelatihan_id"
+                                            value="{{ $course->id }}" readonly>
                                     </div>
                                 </div>
                                 <div class="form-check mb-3">
-                                    <input type="checkbox" class="form-check-input" id="check" name="check" onclick="toggleSubmitButton()">
-                                    <label class="form-check-label" for="check">Dengan ini menyetujui untuk mendaftar</label>
+                                    <input type="checkbox" class="form-check-input" id="check" name="check"
+                                        onclick="toggleSubmitButton()">
+                                    <label class="form-check-label" for="check">Dengan ini menyetujui untuk
+                                        mendaftar</label>
                                 </div>
                                 <div class="text-end">
                                     <button type="submit" class="btn btn-primary" id="submitBtn" disabled>Daftar</button>
@@ -85,6 +90,35 @@
                                         const submitBtn = document.getElementById('submitBtn');
                                         submitBtn.disabled = !checkbox.checked; // Enable/Disable button based on checkbox state
                                     }
+
+
+
+                                    document.getElementById('registrationForm').addEventListener('submit', function(e) {
+                                        e.preventDefault(); // Mencegah pengiriman form default
+                                        Swal.fire({
+                                            title: '{{ __('Konfirmasi Pendaftaran') }}',
+                                            text: "{{ __('Anda yakin ingin mendaftar pelatihan ini?') }}",
+                                            icon: 'question',
+                                            showCancelButton: true,
+                                            confirmButtonColor: '#3085d6',
+                                            cancelButtonColor: '#d33',
+                                            confirmButtonText: '{{ __('Ya, Daftar!') }}',
+                                            cancelButtonText: '{{ __('Batal') }}'
+                                        }).then((result) => {
+                                            if (result.isConfirmed) {
+                                                Swal.fire({
+                                                    title: '{{ __('Memproses...') }}',
+                                                    text: '{{ __('Mohon tunggu sebentar.') }}',
+                                                    allowOutsideClick: false,
+                                                    showConfirmButton: false,
+                                                    willOpen: () => {
+                                                        Swal.showLoading();
+                                                    }
+                                                });
+                                                this.submit(); // Kirim form setelah konfirmasi
+                                            }
+                                        });
+                                    });
                                 </script>
                             </form>
                         @endif
