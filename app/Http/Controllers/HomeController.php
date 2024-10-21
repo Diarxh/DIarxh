@@ -2,24 +2,40 @@
 
 namespace App\Http\Controllers;
 
+// use App\Models\District;
 use App\Models\Guru;
 use App\Models\MemberCourse;
 use App\Models\Pelatihan;
+// use App\Models\Province;
+use App\Models\Regency;
 use App\Models\TipePelatihan;
 use App\Models\User;
+use App\Models\Village;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use Spatie\Permission\Models\Role;
+// use Laravolt\Indonesia\Models\Province;
+// use Laravolt\Indonesia\Models\City;
+// use Laravolt\Indonesia\Models\District;
+// use Laravolt\Indonesia\Models\Village;
 
 use Illuminate\Support\Facades\Log; // Tambahkan ini
-
+use Illuminate\Support\Facades\Validator;
+use Laravolt\Indonesia\Indonesia;
+use Spatie\Permission\Models\Role;
+use Laravolt\Indonesia\Models\Province;
+use Laravolt\Indonesia\Models\City;
+use Laravolt\Indonesia\Models\District;
 
 class HomeController extends Controller
 {
     //
 
+    public function create()
+    {
+        $provinces = Province::pluck('name', 'id');
+        return view('your-view', compact('provinces'));
+    }
     public function index()
     {
         $tipepelatihan = TipePelatihan::orderBy('trainer_type_name', 'asc')->get();
@@ -29,7 +45,19 @@ class HomeController extends Controller
 
         return view('home', compact('tipepelatihan'));
     }
+    public function showRegistrationForm()
+    {
+        return view('register');
+    }
+    public function showLoginForm()
+    {
+        return view('login');
+    }
 
+    public function pelatihan_saya()
+    {
+        return view('user.pelatihan_saya');
+    }
     public function contact()
     {
         return view('contact');
@@ -41,138 +69,9 @@ class HomeController extends Controller
         return view('about');
     }
 
-    // PROFILL
-
-    public function detail_profile()
-    {
-        $guru = Guru::where('user_id', Auth::id())->first();
-        if (!$guru) {
-            return view('user.detail_profile')->with('alert', 'Anda belum memiliki data guru. Silakan lengkapi data Anda.');
-        }
-        return view('user.detail_profile', compact('guru'));
-    }
-
-    public function profile()
-    {
-        $teacher = Guru::where('User_Id', Auth::user()->id)->first();
-        return view('user.detail_profile', compact('teacher'));
-    }
-
-    public function showProfile()
-    {
-        $guru = Guru::where('user_id', Auth::id())->first();
-        $user = Auth::user();
-        $roles = $user->roles;
-
-
-        return view('user.detail_profile', compact('user', 'roles', 'guru'));
-    }
-
-
-
-    public function updateprofile()
-    {
-        // Mengambil data profil guru berdasarkan User_Id yang sedang login
-        $profile = Guru::where('User_Id', Auth::user()->id)->first();
-
-        // Mengembalikan view edit_profile dengan data profil
-        return view('user.edit_profile', compact('profile'));
-    }
-
-
-    public function editProfile()
-    {
-        // Cek apakah guru sudah ada
-        $guru = Guru::where('user_id', Auth::id())->first();
-
-        // Jika tidak ada, buat objek baru untuk form
-        if (!$guru) {
-            $guru = new Guru();
-        }
-
-        return view('user.edit_profile', compact('guru'));
-    }
-
-    public function saveprofile(Request $request)
-    {
-        // Validasi data yang diterima dari form
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'phone_number' => 'required|string|max:255',
-            'school_name' => 'required|string|max:255',
-            'nuptk' => 'required|string|max:255',
-            'birth_date' => 'required|date',
-            'birth_place' => 'required|string|max:255',
-            'address' => 'required|string|max:255',
-            'village' => 'required|string|max:255',
-            'district' => 'required|string|max:255',
-            'city' => 'required|string|max:255',
-            'province' => 'required|string|max:255',
-            'last_education' => 'required|string|max:255',
-            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'about' => 'nullable|string|max:1000',
-        ]);
-
-        // Menambahkan user_id ke data yang divalidasi
-        $validatedData['user_id'] = Auth::id();
-
-        // Menyimpan foto jika ada
-        if ($request->hasFile('photo')) {
-            $photoPath = $request->file('photo')->store('profile_photos', 'public');
-            $validatedData['photo'] = $photoPath;
-        }
-
-        // Mencari data guru berdasarkan user_id
-        $guru = Guru::where('user_id', Auth::id())->first();
-
-        // Jika data guru ditemukan, lakukan update
-        if ($guru) {
-            $guru->update($validatedData);
-            $message = 'Profil berhasil diperbarui';
-        } else {
-            // Jika tidak ditemukan, buat data baru
-            Guru::create($validatedData);
-            $message = 'Profil berhasil dibuat';
-        }
-
-        // Redirect ke rute profil dengan pesan sukses
-        return redirect()->route('profile.show')->with('success', $message);
-    }
-    public function changePassword(Request $request)
-    {
-        // Validasi input
-        $request->validate([
-            'password' => 'required|string|min:3',
-            'newpassword' => 'required|string|min:3|confirmed',
-        ]);
-
-        // Cek apakah password saat ini benar
-        $user = Auth::user();
-        if (!Hash::check($request->password, $user->password)) {
-            return back()->withErrors(['password' => 'Password saat ini tidak sesuai.']);
-        }
-
-        // Update password
-        $user->password = Hash::make($request->newpassword);
-        $user->save();
-
-        // Redirect ke route profile
-        return redirect()->route('profile.show')->with('success', 'Password berhasil diubah.');
-    }
-
-
-    // END PROFILE
-
-
-
-
-
-
-
     public function tipe_pelatihan()
     {
-        $tipepelatihan = Pelatihan::latest()->get();
+        $tipepelatihan = TipePelatihan::orderBy('trainer_type_name', 'asc')->get();
 
         return view('tipepelatihan', data: compact('tipepelatihan'));
     }
@@ -182,130 +81,55 @@ class HomeController extends Controller
         $pelatihan = Pelatihan::latest()->get();
         return view(view: 'pelatihan', data: compact('pelatihan'));
     }
-
-    public function login1ss()
+    public function detail_profile()
     {
-        return view('login');
+        $user = Auth::user();
+        $guru = Guru::where('user_id', $user->id)->first();
+        $roles = $user->roles; // Assuming you're using a roles relationship
+
+        if (!$guru) {
+            return view('user.detail_profile', compact('user', 'roles'))->with('alert', 'Anda belum memiliki data guru. Silakan lengkapi data Anda.');
+        }
+
+        return view('user.detail_profile', compact('user', 'guru', 'roles'));
     }
 
     public function detail_pelatihan(int $id)
     {
-        $detail = Pelatihan::with(['peserta.guru', 'tipe_pelatihan'])->findOrFail($id);
+        // Mengambil detail pelatihan beserta peserta dan guru
+        $detail = Pelatihan::with('peserta.guru')->where('id', $id)->firstOrFail();
+
+        // Mengambil peserta yang terdaftar dengan status 2
         $peserta = $detail->peserta()->where('status', 2)->get();
+
+        // Debugging: Cek apakah peserta berhasil diambil
+        // dd($detail);
+        // Ini akan menampilkan isi dari $peserta
 
         return view('detail_pelatihan', compact('detail', 'peserta'));
     }
 
 
 
-
-
-    public function showRegistrationForm()
+    public function getCities($provinceId)
     {
-        return view('register');
+        $cities = Regency::where('province_id', $provinceId)->pluck('name', 'id');
+        return response()->json($cities);
     }
 
-    public function pelatihan_saya()
+    public function getDistricts($cityId)
     {
-        return view('user.pelatihan_saya');
+        $districts = District::where('regency_id', $cityId)->pluck('name', 'id');
+        return response()->json($districts);
     }
 
-    public function register(Request $request)
+    public function getVillages($districtId)
     {
-        // Jalankan validasi
-        $this->validator($request->all())->validate();
-
-        // Buat pengguna baru
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        // Assign the role to the user
-        $role = Role::findByName('guru');  // Ganti 'guru' sesuai kebutuhan
-        $user->assignRole($role);
-
-        // Set session success message
-        session()->flash('success', 'Pendaftaran berhasil. Silakan login.');
-
-        return redirect()->route('login');  // Redirect ke halaman login
-    }
-
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'], // Pastikan email unik
-            'password' => ['required', 'string', 'min:2', 'confirmed'],
-        ]);
-    }
-
-    // protected function validator(array $data)
-    // {
-    //     return Validator::make($data, [
-    //         'name' => ['required', 'string', 'max:255'],
-    //         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-    //         'password' => ['required', 'string', 'min:2', 'confirmed'],
-    //     ]);
-    // }
-
-    // TAMBAH METHODE LOGIN
-    public function showLoginForm()
-    {
-        return view('login');
-    }
-
-    public function login(Request $request)
-    {
-        $credentials = $request->only('email', 'password');
-
-        if (Auth::attempt($credentials)) {
-            $user = Auth::user();
-
-            \Log::info('User authenticated: ' . $user->email);
-            \Log::info('User roles: ' . implode(', ', $user->getRoleNames()->toArray()));
-
-            if ($user->hasRole('super_admin')) {
-                \Log::info('User has super_admin role');
-                return redirect()->intended('/admin');
-            } elseif ($user->hasAnyRole(['perusahaan', 'guru'])) {
-                \Log::info('User has perusahaan or guru role');
-                return redirect()->intended('/user/dashboard');
-            } else {
-                \Log::info('User has no recognized role');
-                Auth::logout();
-                return back()->withErrors([
-                    'role' => 'Akses ditolak. Anda tidak memiliki peran yang sesuai.',
-                ]);
-            }
-        }
-
-        \Log::info('Login failed for email: ' . $request->email);
-        return back()->withErrors([
-            'email' => 'Kredensial yang diberikan tidak cocok dengan catatan kami.',
-        ]);
+        $villages = Village::where('district_id', $districtId)->pluck('name', 'id');
+        return response()->json($villages);
     }
 
 
-
-
-
-
-    public function logout(Request $request)
-    {
-        // Logout the user
-        Auth::logout();
-
-        // Invalidate the session
-        $request->session()->invalidate();
-
-        // Regenerate the session token to prevent CSRF attacks
-        $request->session()->regenerateToken();
-
-        // Redirect to homepage or any other page after logout
-        return redirect('/home');
-    }
 
 
     public function registercourse($id = null)

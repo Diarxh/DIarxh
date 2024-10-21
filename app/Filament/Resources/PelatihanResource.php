@@ -11,11 +11,12 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables\Table;
 use Filament\Forms;
+use Filament\Forms\Components\Tabs\Tab;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-// use App\Models\Pelatihan;
 use Illuminate\Support\Facades\Auth;
+use Filament\Tables\Columns\ImageColumn;
 
 class PelatihanResource extends Resource
 {
@@ -39,36 +40,41 @@ class PelatihanResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')  // Nama
+                Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\RichEditor::make('description')  // Deskripsi
+                Forms\Components\RichEditor::make('description')
                     ->required()
                     ->columnSpanFull(),
-                Forms\Components\RichEditor::make('requirements')  // Persyaratan
+                Forms\Components\RichEditor::make('requirements')
                     ->required()
                     ->columnSpanFull(),
-                Forms\Components\DatePicker::make('start_date')  // Tanggal_Mulai
+                Forms\Components\DatePicker::make('start_date')
                     ->required(),
-                Forms\Components\DatePicker::make('end_date')  // Tanggal_Akhir
+                Forms\Components\DatePicker::make('end_date')
                     ->required(),
-                Forms\Components\DateTimePicker::make('registration_start_date')  // Tanggal_Pendaftaran
+                Forms\Components\DateTimePicker::make('registration_start_date')
                     ->required(),
-                Forms\Components\DateTimePicker::make('registration_end_date')  // Tanggal_Akhir_Pendaftaran
+                Forms\Components\DateTimePicker::make('registration_end_date')
                     ->required(),
                 Forms\Components\Select::make('company_id')
-                    ->relationship('perusahaan', 'company_name')  // Pastikan nama relasi dan atribut yang benar
+                    ->relationship('perusahaan', 'company_name')
                     ->preload(),
                 Forms\Components\Select::make('training_type_id')
-                    ->relationship('tipePelatihan', 'trainer_type_name')  // Pastikan nama relasi dan atribut yang benar
+                    ->relationship('tipe_pelatihan', 'trainer_type_name')
                     ->preload(),
-                Forms\Components\TextInput::make('training_location')  // Tempat_Pelatihan
+                Forms\Components\TextInput::make('training_location')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('status')  // Status
+                Forms\Components\TextInput::make('status')
                     ->required()
                     ->default('open')
                     ->maxLength(255),
+                Forms\Components\FileUpload::make('photo')
+                    ->image()
+                    ->directory('training')
+                    ->visibility('public')
+                    ->nullable()
             ]);
     }
 
@@ -78,50 +84,52 @@ class PelatihanResource extends Resource
             ->query(function () {
                 $user = Auth::user();
 
-                // Cek jika user memiliki role 'admin'
                 if ($user && $user->hasRole('super_admin')) {
-                    // Jika admin, tampilkan semua data
-                    return Pelatihan::query();  // Ganti 'trainings' dengan 'Pelatihan'
+                    return Pelatihan::query();
                 }
 
-                // Jika bukan admin, tampilkan data berdasarkan user_id
-                return Pelatihan::where('user_id', $user->id);  // Ganti 'trainings' dengan 'Pelatihan'
+                return Pelatihan::where('user_id', $user->id);
             })
             ->columns([
-                Tables\Columns\TextColumn::make('name')  // Nama
+                Tables\Columns\TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('description')  // Deskripsi
+                Tables\Columns\TextColumn::make('description')
                     ->html()
                     ->wrap()
                     ->searchable(),
-                Tables\Columns\TextColumn::make('requirements')  // Persyaratan
+                Tables\Columns\TextColumn::make('requirements')
                     ->html()
                     ->wrap()
                     ->searchable(),
-                Tables\Columns\TextColumn::make('start_date')  // Tanggal_Mulai
+                Tables\Columns\TextColumn::make('start_date')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('end_date')  // Tanggal_Akhir
+                Tables\Columns\TextColumn::make('end_date')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('registration_start_date')  // Tanggal_Pendaftaran
+                Tables\Columns\TextColumn::make('registration_start_date')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('registration_end_date')  // Tanggal_Akhir_Pendaftaran
+                Tables\Columns\TextColumn::make('registration_end_date')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('perusahaan.company_name')  // Perusahaan.Nama_Perusahaan
+                Tables\Columns\TextColumn::make('perusahaan.company_name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('tipe_pelatihan.training_type_name')  // Tipe_Pelatihan.Nama_Tipe_Pelatih
+                Tables\Columns\TextColumn::make('tipe_pelatihan.trainer_type_name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('training_location')  // Tempat_Pelatihan
+                Tables\Columns\TextColumn::make('training_location')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('status')  // Status
+                Tables\Columns\TextColumn::make('status')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')  // Created_At
+                Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')  // Updated_At
+                Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\ImageColumn::make('photo')
+                    ->disk('public')
+                    ->visibility('public')
+                    ->square()
+                    ->size(50),
             ])
             ->filters([
                 //

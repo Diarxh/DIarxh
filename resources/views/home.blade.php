@@ -14,7 +14,8 @@
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.5s" style="max-width: 900px;">
                 <h1 class="display-4 text-dark mb-4">TeachHub</h1>
                 <p class="fs-4 mb-4">Selamat datang di TeachHub, platform inovatif yang dirancang khusus untuk membantu guru dan lulusan baru dalam meningkatkan keterampilan dan pengetahuan mereka. Di TeachHub, kami memahami tantangan yang dihadapi oleh pendidik dan para pencari kerja di dunia yang terus berubah. Oleh karena itu, kami menyediakan berbagai pelatihan berkualitas yang dapat diakses kapan saja dan di mana saja.</p>
-                <a href="#" class="btn btn-primary rounded-pill py-3 px-5">Get Started</a>
+                <a href="#" class="btn btn-primary rounded-pill py-3 px-5" onclick="showChoiceAlert()">Get Started</a>
+
             </div>
         </div>
         <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.2s">
@@ -72,9 +73,9 @@
                         <div class="blog-img wow fadeInUp" data-wow-delay="0.3s">
                             @if($data->photo)
                                 <img src="{{ asset('storage/' . $data->photo) }}"
-                                     alt="{{ $data->trainer_type_name }}"
-                                     class="img-fluid slightly-rounded-image"
-                                     style="max-height: 100%; width: 100%; object-fit: cover;">
+                                    alt="{{ $data->trainer_type_name }}"
+                                    class="img-fluid slightly-rounded-image"
+                                    style="max-height: 100%; width: 100%; object-fit: cover;">
                             @else
                                 <i class="fas fa-mail-bulk fa-5x text-secondary"></i>
                             @endif
@@ -203,7 +204,7 @@
 
         {{--  <!-- Testimonial Start -->
 
-<div class="container mt-5">
+<div class="container mt-5"  data-aos="fade-up" data-aos-delay="900">
     <h2 class="text-center mb-4">Testimonial Klien</h2>
     <div class="row">
         <div class="col-md-12 mb-4">
@@ -236,4 +237,30 @@
     </div>
 </div>
         <!-- Testimonial End -->  --}}
+
+        <script>
+function showChoiceAlert() {
+    Swal.fire({
+        title: 'Pilih Opsi',
+        text: 'Silakan pilih salah satu:',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Login',
+        cancelButtonText: 'Register',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Aksi untuk Login
+            Swal.fire('Anda memilih Login');
+            // Tambahkan logika untuk mengarahkan ke halaman login
+            window.location.href = '/login'; // Ganti dengan URL halaman login
+        } else if (result.isDismissed) {
+            // Aksi untuk Register
+            Swal.fire('Anda memilih Register');
+            // Tambahkan logika untuk mengarahkan ke halaman register
+            window.location.href = '/register'; // Ganti dengan URL halaman register
+        }
+    });
+}
+</script>
+
         @endsection

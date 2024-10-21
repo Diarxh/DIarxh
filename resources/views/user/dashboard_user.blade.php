@@ -11,14 +11,7 @@
             <li></li>
         </ul>
         <div class="container py-6 mt-5 text-center" style="max-width: 1000px;">
-            <h3 class="display-3 wow fadeInDown mb-4" data-wow-delay="0.1s">Dashboard
-                </h1>
-                {{-- <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-                        <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">list Pelatihan</a></li>
-                            <h4 class="text-primary">TeachHub</h4>
-                        <li class="breadcrumb-item active text-primary"></li>
-                    </ol>     --}}
+            <h3 class="display-3 wow fadeInDown mb-4" data-wow-delay="0.1s">Dashboard</h3>
         </div>
     </div>
     <!-- Header End -->
@@ -29,79 +22,85 @@
             <div class="col-md-4 mb-4">
                 <div class="card shadow-sm">
                     <div class="card-body">
-                        <h5 class="card-title">Total Pelatihan</h5>
-                        <p class="card-text">10</p>
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-book-open fa-2x text-primary me-3"></i>
+                            <h5 class="card-title mb-0">Total Pelatihan</h5>
+                        </div>
+                        <p class="card-text fs-4 fw-bold">{{ $totalPelatihan }}</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
                 <div class="card shadow-sm">
                     <div class="card-body">
-                        <h5 class="card-title">Pelatihan Saya</h5>
-                        <p class="card-text">150</p>
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-user-graduate fa-2x text-success me-3"></i>
+                            <h5 class="card-title mb-0">Pelatihan Saya</h5>
+                        </div>
+                        <p class="card-text fs-4 fw-bold">{{ $pelatihanSaya }}</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
                 <div class="card shadow-sm">
                     <div class="card-body">
-                        <h5 class="card-title">Pengguna Aktif</h5>
-                        <p class="card-text">75</p>
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-users fa-2x text-info me-3"></i>
+                            <h5 class="card-title mb-0">Pengguna Aktif</h5>
+                        </div>
+                        <p class="card-text fs-4 fw-bold">{{ $penggunaAktif }}</p>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="mb-3">Pelatihan Terbaru</h3>
+            <table class="table-bordered table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Pelatihan</th>
+                        <th>Tanggal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($recentPelatihan as $index => $pelatihan)
+                        <tr>
+                            <td>{{ $index + 1 }}</td>
+                            <td>{{ $pelatihan->nama }}</td>
+                            <td>{{ $pelatihan->tanggal_mulai }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Dashboard end -->
 
-        <div class="row">
-            <div class="col-md-12">
-                <h3 class="mb-3">Recent Activities</h3>
-                <table class="table-bordered table">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Kegiatan</th>
-                            <th>Tanggal</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Pelatihan JavaScript</td>
-                            <td>2024-09-15</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Pelatihan PHP</td>
-                            <td>2024-09-20</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <!-- Dashboard end -->
-
-        <!-- New Statistics Section -->
-        <div class="row mt-4">
-            <div class="col-md-6 mb-4">
-                <div class="card shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">Statistik Peserta per Pelatihan</h5>
-                        <canvas id="participantsChart"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 mb-4">
-                <div class="card shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">Feedback Terbaru</h5>
-                        <ul class="list-group">
-                            <li class="list-group-item">Pelatihan JavaScript: "Sangat bermanfaat!"</li>
-                            <li class="list-group-item">Pelatihan PHP: "Materi sangat jelas."</li>
-                        </ul>
-                    </div>
+    <!-- New Statistics Section -->
+    <div class="row mt-4">
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Statistik Peserta per Pelatihan</h5>
+                    <canvas id="participantsChart"></canvas>
                 </div>
             </div>
         </div>
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Feedback Terbaru</h5>
+                    <ul class="list-group">
+                        <li class="list-group-item">Pelatihan JavaScript: "Sangat bermanfaat!"</li>
+                        <li class="list-group-item">Pelatihan PHP: "Materi sangat jelas."</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
     </div>
     <!-- Dashboard End -->
