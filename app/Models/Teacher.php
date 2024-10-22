@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Teacher extends Model
 {
+    use HasFactory;
+
     protected $table = 'teachers';
 
     protected $fillable = [
@@ -26,6 +29,11 @@ class Teacher extends Model
         'user_id',
         'about',
     ];
+
+    public function trainings()
+    {
+        return $this->hasMany(Training::class);
+    }
 
     public function user()
     {

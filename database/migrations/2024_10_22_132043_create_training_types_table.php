@@ -13,16 +13,13 @@ return new class extends Migration {
         Schema::create('training_types', function (Blueprint $table) {
             $table->id();
             $table->string('trainer_type_name');
-            $table->text('trainer_type_description');
+            $table->text('trainer_type_description')->nullable();
             $table->string('photo')->nullable();
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('training_types');
     }

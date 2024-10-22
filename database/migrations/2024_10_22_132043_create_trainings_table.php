@@ -13,23 +13,19 @@ return new class extends Migration {
         Schema::create('trainings', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description');
-            $table->text('requirements');
-            $table->date('start_date');
-            $table->date('end_date');
-            $table->date('registration_start_date');
-            $table->date('registration_end_date');
-            $table->unsignedBigInteger('company_id');
-            $table->unsignedBigInteger('training_type_id');
-            $table->string('training_location');
-            $table->string('status');
-            $table->unsignedBigInteger('user_id');
+            $table->text('description')->nullable();
+            $table->text('requirements')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
+            $table->date('registration_start_date')->nullable();
+            $table->date('registration_end_date')->nullable();
+            $table->foreignId('company_id')->constrained()->onDelete('cascade');
+            $table->foreignId('training_type_id')->constrained()->onDelete('cascade');
+            $table->string('training_location')->nullable();
+            $table->string('status')->default('active');  // Misalnya status aktif
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');  // Asumsi ada relasi dengan tabel users
             $table->string('photo')->nullable();
             $table->timestamps();
-
-            $table->foreign('company_id')->references('id')->on('companies');
-            $table->foreign('training_type_id')->references('id')->on('training_types');
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

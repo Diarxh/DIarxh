@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Training extends Model
 {
+    use HasFactory;
+
     protected $table = 'trainings';
 
     protected $fillable = [
@@ -32,6 +35,11 @@ class Training extends Model
     public function trainingType()
     {
         return $this->belongsTo(TrainingType::class);
+    }
+
+    public function teacher()
+    {
+        return $this->belongsTo(Teacher::class);
     }
 
     public function user()
