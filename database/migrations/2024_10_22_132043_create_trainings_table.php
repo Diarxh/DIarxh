@@ -19,11 +19,10 @@ return new class extends Migration {
             $table->date('end_date')->nullable();
             $table->date('registration_start_date')->nullable();
             $table->date('registration_end_date')->nullable();
-            $table->foreignId('company_id')->constrained()->onDelete('cascade');
-            $table->foreignId('training_type_id')->constrained()->onDelete('cascade');
+            $table->foreignId('company_id')->constrained('company')->onDelete('cascade');  // Pastikan nama tabel benar            $table->foreignId('training_types_id')->constrained()->onDelete('cascade');
             $table->string('training_location')->nullable();
             $table->string('status')->default('active');  // Misalnya status aktif
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');  // Asumsi ada relasi dengan tabel users
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');  // Asumsi ada relasi dengan tabel users
             $table->string('photo')->nullable();
             $table->timestamps();
         });
