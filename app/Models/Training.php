@@ -26,7 +26,10 @@ class Training extends Model
         'user_id',
         'photo',
     ];
-
+    public function peserta()
+    {
+        return $this->hasMany(MemberCourse::class, 'training_id');
+    }
     public function company()
     {
         return $this->belongsTo(Company::class);

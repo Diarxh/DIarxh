@@ -17,7 +17,7 @@ class TrainingTypeResource extends Resource
 {
     protected static ?string $model = TrainingType::class;
 
-    // protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-building-office';
 
     public static function form(Form $form): Form
     {
