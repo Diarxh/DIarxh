@@ -1,97 +1,101 @@
 @extends('theme')
 @section('content')
+    <!-- Tambahkan di bagian atas setelah Header -->
+    <div class="background-pattern"></div>
     <!-- Header Start -->
-    <div class="container-fluid bg-breadcrumb py-3">
+    <div class="py-5 container-fluid bg-breadcrumb">
         <ul class="breadcrumb-animation">
-            <!-- ... (kode animasi breadcrumb tetap sama) ... -->
+            @for ($i = 0; $i < 10; $i++)
+                <li></li>
+            @endfor
         </ul>
-        <div class="container py-5 text-center" style="max-width: 900px;">
-            <h1 class="display-3 wow fadeInDown mb-4" data-wow-delay="0.1s">Pelatihan</h1>
+        <div class="container py-5 text-center">
+            <h1 class="display-3 wow fadeInDown" data-wow-delay="0.1s">Pelatihan</h1>
+            <p class="text-muted wow fadeInUp" data-wow-delay="0.2s">Temukan pelatihan yang sesuai dengan kebutuhan Anda</p>
         </div>
     </div>
     <!-- Header End -->
 
-    <!-- Blog Start -->
-    <div class="container-fluid blog py-5">
+    <!-- Training List Start -->
+    <div class="py-5 container-fluid">
         <div class="container py-5">
-            <div class="wow fadeInUp mx-auto mb-5 text-center" data-wow-delay="0.1s" style="max-width: 900px;">
-                <h2 class="display-5 mb-4">List Pelatihan</h2>
+            <!-- Section Title -->
+            <div class="mb-5 text-center section-title wow fadeInUp" data-wow-delay="0.1s">
+                <h2 class="mb-4 display-5">List Pelatihan</h2>
             </div>
 
             <!-- Search Form -->
-            <form class="d-flex justify-content-center mb-5">
-                <div class="input-group" style="max-width: 500px;">
-                    <input class="form-control" type="search" placeholder="Cari pelatihan..." aria-label="Search">
-                    <button class="btn btn-outline-primary" type="submit">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-            </form>
+            <div class="mb-5 search-wrapper wow fadeInUp" data-wow-delay="0.2s">
+                <form class="d-flex justify-content-center">
+                    <div class="input-group">
+                        <input type="search" class="form-control search-input" placeholder="Cari pelatihan..."
+                            aria-label="Search">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-search me-1"></i> Cari
+                        </button>
+                    </div>
+                </form>
+            </div>
 
+            <!-- Training Cards -->
             <div class="row g-4">
-                @foreach ($pelatihan as $data)
+                @forelse ($pelatihan as $data)
                     <div class="col-sm-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="card h-100 shadow-sm">
-                            @if ($data->photo)
-                                <img src="{{ asset('storage/' . $data->photo) }}" alt="{{ $data->name }}"
-                                    class="img-fluid slightly-rounded-image"
-                                    style="max-height: 100%; width: 100%; object-fit: cover;">
-                            @else
-                                <i class="fas fa-mail-bulk fa-5x text-secondary"></i>
-                            @endif
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">{{ $data->name }}</h5>
-                                <p class="card-text flex-grow-1">{!! Str::limit($data->description, 100) !!}</p>
-                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <small class="text-muted">
-                                        <i class="fa fa-calendar-alt me-1"></i>
-                                        {{ \Carbon\Carbon::parse($data->start_date)->translatedFormat('d M Y') }}
-                                    </small>
-                                    <small class="text-muted"><i class="fa fa-user me-1"></i> 100</small>
+                        <div class="card training-card h-100">
+                            <div class="card-img-wrapper">
+                                @if ($data->photo)
+                                    <img src="{{ asset('storage/' . $data->photo) }}" alt="{{ $data->name }}"
+                                        class="card-img-top" loading="lazy">
+                                @else
+                                    <div class="placeholder-img">
+                                        <i class="fas fa-chalkboard-teacher"></i>
+                                    </div>
+                                @endif
+                                <div class="card-img-overlay">
+                                    <span class="badge bg-primary">
+                                        <i class="fas fa-users me-1"></i> 100 Peserta
+                                    </span>
                                 </div>
-                                <a href="/detail_pelatihan/{{ $data->id }}" class="btn btn-primary mt-3">Lihat
-                                    Detail</a>
+                            </div>
+
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="mb-3 text-center card-title">{{ $data->name }}</h5>
+                                <p class="card-text flex-grow-1">{!! Str::limit($data->description, 100) !!}</p>
+
+                                <div class="mb-3 training-meta">
+                                    <div class="d-flex justify-content-between text-muted">
+                                        <span>
+                                            <i class="fa fa-calendar-alt me-1"></i>
+                                            {{ \Carbon\Carbon::parse($data->start_date)->translatedFormat('d M Y') }}
+                                        </span>
+                                        <span>
+                                            <i class="fa fa-clock me-1"></i>
+                                            {{ \Carbon\Carbon::parse($data->start_date)->format('H:i') }}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <a href="/detail_pelatihan/{{ $data->id }}"
+                                    class="mt-auto btn btn-primary rounded-pill">
+                                    <i class="fas fa-arrow-right me-1"></i> Detail Pelatihan
+                                </a>
                             </div>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    <div class="text-center col-12">
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>Belum ada pelatihan yang tersedia.
+                        </div>
+                    </div>
+                @endforelse
             </div>
 
             <!-- Pagination -->
-            <div class="d-flex justify-content-center mt-5">
+            <div class="mt-5 d-flex justify-content-center wow fadeInUp" data-wow-delay="0.3s">
                 {{ $pelatihan->onEachSide(1)->links('vendor.pagination.bootstrap-4') }}
             </div>
-
         </div>
     </div>
-    <!-- Blog End -->
+    <!-- Training List End -->
 @endsection
-
-<style>
-    .card {
-        transition: transform 0.3s;
-    }
-
-    .card:hover {
-        transform: translateY(-5px);
-    }
-
-    .bg-breadcrumb {
-        background-color: #f8f9fa;
-    }
-
-    .search-bar {
-        max-width: 300px;
-        margin: 0 auto;
-    }
-
-    @media (max-width: 767px) {
-        .display-3 {
-            font-size: 2.5rem;
-        }
-
-        .display-5 {
-            font-size: 1.8rem;
-        }
-    }
-</style>
