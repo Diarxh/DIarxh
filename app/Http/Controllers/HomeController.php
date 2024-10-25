@@ -11,13 +11,14 @@ use App\Models\Training;
 use App\Models\TrainingType;
 use App\Models\User;
 use App\Models\Village;
+use id;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 // use Laravolt\Indonesia\Models\Province;
 // use Laravolt\Indonesia\Models\City;
 // use Laravolt\Indonesia\Models\District;
 // use Laravolt\Indonesia\Models\Village;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log; // Tambahkan ini
 use Illuminate\Support\Facades\Validator;
@@ -33,10 +34,14 @@ class HomeController extends Controller
     public function index()
     {
         $tipepelatihan = TrainingType::orderBy('trainer_type_name', 'asc')->get();
+        $pelatihan = Training::query()
+            ->latest()
+            ->get(); // Pastikan untuk mengambil data dengan get()
 
-        // Debug hasil query
-        // \Log::info($tipepelatihan);
-        return view('home', compact('tipepelatihan'));
+        // Debug hasil query (jika diperlukan)
+        // \Log::info($pelatihan);
+
+        return view('home', compact('pelatihan', 'tipepelatihan')); // Mengirimkan $pelatihan dan $tipepelatihan ke view
     }
     public function showRegistrationForm()
     {
@@ -90,7 +95,7 @@ class HomeController extends Controller
     public function detail_profile()
     {
         $user = Auth::user();
-        $guru = Guru::where('user_id', $user->id)->first();
+        $guru = Teacher::where('user_id', $user->id)->first();
         $roles = $user->roles; // Assuming you're using a roles relationship
 
         if (!$guru) {

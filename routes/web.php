@@ -45,16 +45,7 @@ Route::middleware(['auth', 'updateLastLogin'])->group(function () {
     Route::post('registercourse-do', [HomeController::class, 'registercoursedo'])->name('registercoursedo');
 });
 
-// // User dashboard routes
-// // Route::middleware(['auth', 'user', 'updateLastLogin'])->group(function () {
-// //     Route::get('/user/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard_user');
-// //     Route::get('/user/pelatihan-saya', [HomeController::class, 'pelatihan_saya'])->name('user.pelatihan_saya');
-// // });
-// // Rute untuk dashboard pengguna
-// Route::middleware(['auth'])->group(function () {
-//     Route::get('/user/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard_user');
 
-// });
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/user/dashboard', [UserDashboardController::class, 'index'])
