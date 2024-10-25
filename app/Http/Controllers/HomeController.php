@@ -103,7 +103,7 @@ class HomeController extends Controller
     public function detail_pelatihan(int $id)
     {
         $detail = Training::with('peserta.guru')->findOrFail($id);
-        $peserta = $detail->peserta()->where('status', 1)->with('guru')->get(); // Pastikan status sesuai
+        $peserta = MemberCourse::with('guru')->where('training_id', $id)->get();
 
         return view('detail_pelatihan', compact('detail', 'peserta'));
     }

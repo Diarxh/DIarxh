@@ -84,10 +84,9 @@
                                 @foreach ($peserta as $index => $p)
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
-                                        <td>{{ $p->guru ? $p->guru->name : '-' }}</td> <!-- Menggunakan 'name' -->
-                                        <td>{{ $p->guru ? $p->guru->email : '-' }}</td> <!-- Menggunakan 'email' -->
-                                        <td>{{ $p->guru ? $p->guru->school_name : '-' }}</td>
-                                        <!-- Menggunakan 'school_name' -->
+                                        <td>{{ optional($p->guru)->name ?? '-' }}</td>
+                                        <td>{{ optional($p->guru)->email ?? '-' }}</td>
+                                        <td>{{ optional($p->guru)->school_name ?? '-' }}</td>
                                     </tr>
                                 @endforeach
                             @endif

@@ -34,7 +34,7 @@ class MemberCourse extends Model
     }
     public function guru()
     {
-        return $this->belongsTo(Teacher::class, 'teachers_id'); // Pastikan 'guru_id' adalah kolom yang benar
+        return $this->belongsTo(Teacher::class, 'teacher_id'); // Sesuaikan dengan nama kolom di database
     }
     /**
      * Get the training that owns the member course.
