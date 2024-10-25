@@ -130,7 +130,7 @@
 
             <!-- Your existing pelatihan cards with improvements -->
             <!-- Training Cards -->
-            <div class="row g-4">
+            <div class="row g-4 justify-content-center"> <!-- Menambahkan justify-content-center -->
                 @forelse ($pelatihan as $data)
                     <div class="col-sm-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="card training-card h-100">
@@ -228,6 +228,14 @@
     </section>
 
     <style>
+        .centered-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            /* Jika Anda ingin menumpuk elemen secara vertikal */
+        }
+
         /* Feature Cards */
         .feature-card {
             padding: 2rem;
