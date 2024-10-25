@@ -1,291 +1,595 @@
 @extends('theme')
 @section('content')
     <!-- Hero Header Start -->
-    <div class="hero-header overflow-hidden px-5" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
-        <div class="rotate-img">
-            <img src="{{ asset('theme/img/sty-1.png') }}" class="img-fluid w-100" alt="">
-            <div class="rotate-sty-2"></div>
-        </div>
-        <div class="row gy-5 align-items-center">
-            <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.4s">
-                <div class="text-center mx-auto mb-5 " data-aos="fade-up" data-aos-anchor-placement="top-bottom"
-                    style="max-width: 900px;">
-                    <h1 class="display-4 text-dark mb-4">TeachHub</h1>
-                    <p class="fs-4 mb-4">Selamat datang di TeachHub, platform inovatif yang dirancang khusus untuk membantu
-                        guru dan lulusan baru dalam meningkatkan keterampilan dan pengetahuan mereka. Di TeachHub, kami
-                        memahami tantangan yang dihadapi oleh pendidik dan para pencari kerja di dunia yang terus berubah.
-                        Oleh karena itu, kami menyediakan berbagai pelatihan berkualitas yang dapat diakses kapan saja dan
-                        di mana saja.</p>
-                    <a href="#" class="btn btn-primary rounded-pill py-3 px-5" onclick="showChoiceAlert()">Get
-                        Started</a>
+    <div class="hero-section position-relative">
+        <!-- Gradient Overlay -->
+        <div class="gradient-overlay"></div>
 
+        <!-- Background Animation -->
+        <div class="animated-background"></div>
+        <!-- Main Content -->
+        <div class="container position-relative z-index-2">
+            <div class="row gy-5 align-items-center">
+                <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.4s">
+                    <div class="hero-content">
+                        <span class="mb-3 badge bg-primary">Platform Edukasi #1</span>
+                        <h1 class="mb-4 display-4 text-gradient">TeachHub</h1>
+                        <p class="mb-4 lead">Selamat datang di TeachHub, platform inovatif yang dirancang khusus untuk
+                            membantu
+                            guru dan lulusan baru dalam meningkatkan keterampilan dan pengetahuan mereka.</p>
+                        <div class="gap-3 d-flex">
+                            <a href="#" class="btn btn-primary btn-lg rounded-pill" onclick="showChoiceAlert()">
+                                Get Started <i class="fas fa-arrow-right ms-2"></i>
+                            </a>
+                            <a href="#features" class="btn btn-outline-primary btn-lg rounded-pill">
+                                Learn More <i class="fas fa-info-circle ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.2s">
-                <img src="{{ asset('theme/img/hero-img-1.png') }}" class="img-fluid w-100 h-auto" alt="">
+                <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.2s">
+                    <div class="hero-image-wrapper">
+                        <img src="{{ asset('theme/img/hero-img-1.png') }}" class="hero-image" alt="Hero Image">
+                        <div class="floating-shapes">
+                            <div class="shape shape-1"></div>
+                            <div class="shape shape-2"></div>
+                            <div class="shape shape-3"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <!-- Hero Header End -->
+
+    <!-- Features Section -->
+    <section id="features" class="py-5">
+        <div class="container">
+            <div class="mb-5 text-center">
+                <h2 class="mb-3 display-5">Kenapa Memilih TeachHub?</h2>
+                <p class="lead text-muted">Platform terbaik untuk mengembangkan karir Anda</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Feature Cards -->
+                <div class="col-md-4 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="feature-card">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>Pelatihan Berkualitas</h3>
+                        <p>Materi pembelajaran yang terstruktur dan up-to-date</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="feature-card">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Instruktur Profesional</h3>
+                        <p>Dibimbing oleh para ahli di bidangnya</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="feature-card">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h3>Sertifikasi Resmi</h3>
+                        <p>Dapatkan sertifikat yang diakui industri</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <div class="py-5 container-fluid bg-light">
+        <div class="container">
+            <div class="text-center row g-4">
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="counter-card">
+                        <i class="mb-3 fas fa-user-graduate fa-3x text-primary"></i>
+                        <h2 class="counter" data-target="1000">0</h2>
+                        <p>Peserta Aktif</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="counter-card">
+                        <i class="mb-3 fas fa-chalkboard-teacher fa-3x text-primary"></i>
+                        <h2 class="counter" data-target="50">0</h2>
+                        <p>Mentor Profesional</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="counter-card">
+                        <i class="mb-3 fas fa-book fa-3x text-primary"></i>
+                        <h2 class="counter" data-target="100">0</h2>
+                        <p>Program Pelatihan</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+                    <div class="counter-card">
+                        <i class="mb-3 fas fa-trophy fa-3x text-primary"></i>
+                        <h2 class="counter" data-target="95">0</h2>
+                        <p>Tingkat Kepuasan</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- Pelatihan Section (Your existing code with improvements) -->
+    <div class="py-5 container-fluid">
+        <div class="container">
+            <div class="mb-5 text-center section-title">
+                <h2 class="display-5">Program Pelatihan Unggulan</h2>
+                <p class="lead">Pilih program yang sesuai dengan kebutuhan Anda</p>
+            </div>
+
+            <!-- Your existing pelatihan cards with improvements -->
+            @foreach ($tipepelatihan as $data)
+                <!-- ... -->
+            @endforeach
+        </div>
+    </div>
+
+    <!-- Testimonial Section -->
+    <section class="py-5 testimonial-section bg-light">
+
+        <!-- Testimonial Section -->
+        {{-- <div class="py-5 container-fluid"> --}}
+        <div class="container">
+            <div class="mb-5 text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h2 class="display-5">Apa Kata Mereka?</h2>
+                <p class="lead">Testimoni dari para alumni TeachHub</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="testimonial-card">
+                        <div class="testimonial-img">
+                            <img src="{{ asset('theme/img/testimonial-1.jpg') }}" alt="Testimonial">
+                        </div>
+                        <div class="testimonial-content">
+                            <p class="mb-4">"Program pelatihan yang sangat bermanfaat untuk pengembangan karir saya
+                                sebagai guru."</p>
+                            <h5>Sarah Johnson</h5>
+                            <span>Guru Matematika</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add more testimonials -->
+            </div>
+        </div>
+        {{-- </div> --}}
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-5 cta-section">
+        <div class="container text-center">
+            <h2 class="mb-4 display-5">Siap Untuk Memulai?</h2>
+            <p class="mb-4 lead">Bergabunglah dengan ribuan profesional yang telah meningkatkan karirnya bersama TeachHub
+            </p>
+            <a href="#" class="btn btn-primary btn-lg rounded-pill" onclick="showChoiceAlert()">
+                Daftar Sekarang <i class="fas fa-arrow-right ms-2"></i>
+            </a>
+        </div>
+    </section>
 
     <style>
-        .hero-header {
-            position: relative;
-            overflow: hidden;
-            padding: 8rem 0 4rem;
-            /* Menambahkan padding atas yang lebih besar */
-            margin-top: 2rem;
-            /* Menambahkan margin atas */
-            background-color: #f8f9fa;
+        /* Feature Cards */
+        .feature-card {
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            text-align: center;
+            height: 100%;
         }
 
-        /* Kode CSS lainnya tetap sama */
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
 
-        .rotate-img img {
+        .icon-box {
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 123, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .icon-box i {
+            font-size: 2rem;
+            color: #007bff;
+        }
+
+        /* Counter Cards */
+        .counter-card {
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .counter-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .counter {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        /* Testimonial Cards */
+        .testimonial-card {
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .testimonial-img {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1.5rem;
+            overflow: hidden;
+            border-radius: 50%;
+        }
+
+        .testimonial-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Hero Section Styling */
+        /* Hapus animasi float dari hero-image */
+        .hero-image {
+            width: 100%;
+            height: auto;
+            position: relative;
+            z-index: 2;
+            /* Hapus animation: float */
+        }
+
+        /* Gunakan animasi hanya untuk elemen dekoratif */
+        .floating-shapes .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(0, 123, 255, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Tambahkan efek hover yang lebih halus untuk gambar */
+        .hero-image-wrapper {
+            position: relative;
+            padding: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .hero-image-wrapper:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Animasi untuk elemen dekoratif saja */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .hero-section {
+            min-height: 100vh;
+            padding-top: calc(70px + 2rem);
+            /* 70px navbar height + extra padding */
+            position: relative;
+            overflow: hidden;
+            background: #f8f9fa;
+        }
+
+        /* Gradient Overlay */
+        .gradient-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: auto;
+            height: 100%;
+            background: linear-gradient(180deg,
+                    rgba(255, 255, 255, 0.95) 0%,
+                    rgba(255, 255, 255, 0.8) 20%,
+                    rgba(255, 255, 255, 0.6) 100%);
             z-index: 1;
-            opacity: 0.5;
         }
 
-        .text-center {
+        /* Animated Background */
+        .animated-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #007bff15 0%, #00ff8815 100%);
+            animation: gradient 15s ease infinite;
+            z-index: 0;
+        }
+
+        /* Content Z-index */
+        .z-index-2 {
             position: relative;
             z-index: 2;
         }
 
-        .btn-primary {
-            transition: background-color 0.3s, transform 0.3s;
+        /* Hero Content Styling */
+        .hero-content {
+            padding: 2rem 0;
         }
 
-        .btn-primary:hover {
-            background-color: #0056b3;
-            transform: scale(1.05);
-        }
-    </style>
-
-
-    <!-- Blog Start -->
-    <div class="container-fluid FAQ bg-light overflow-hidden py-5" data-aos="fade-up" data-aos-delay="300">
-        <div class="container py-5">
-            <div class="wow fadeInUp mx-auto mb-5 text-start" data-wow-delay="0.1s" style="max-width: 900px;">
-                <h1 class="display-5 mb-4">List Pelatihan</h1>
-                <br>
-            </div>
-            <div class="service-item row g-4 justify-content-center">
-                @foreach ($tipepelatihan as $data)
-                    {{--  @php
-                        dd($tipepelatihan);
-                    @endphp  --}}
-                    <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="blog-item shadow-effect wow fadeInUp" data-wow-delay="0.2s">
-                            <!-- Tambahkan kelas wow di sini -->
-                            <div class="blog-img wow fadeInUp" data-wow-delay="0.3s">
-                                @if ($data->photo)
-                                    <img src="{{ asset('storage/' . $data->photo) }}" alt="{{ $data->trainer_type_name }}"
-                                        class="img-fluid slightly-rounded-image"
-                                        style="max-height: 100%; width: 100%; object-fit: cover;">
-                                @else
-                                    <i class="fas fa-mail-bulk fa-5x text-secondary"></i>
-                                @endif
-                            </div>
-                            <div class="blog-content text-dark border p-4 wow fadeInUp" data-wow-delay="0.4s">
-                                <h2 class="mb-4 text-center">{{ $data->trainer_type_name }}</h2>
-                                <p class="mb-4 text-center">{!! Str::limit($data->trainer_type_description, 100) !!}</p>
-                                <a class="btn btn-light rounded-pill px-4 py-2"
-                                    href="/detail_pelatihan/{{ $data->id }}">Lihat
-                                    Lebih...</a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
-    <!-- Blog End -->
-    <style>
-        .slightly-rounded-image {
-            border-radius: 10px;
-            /* Menambahkan sedikit kelengkungan pada gambar */
+        .text-gradient {
+            background: linear-gradient(45deg, #007bff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .service-item {
-            display: flex;
-            /* Menggunakan Flexbox */
-            flex-wrap: wrap;
-            /* Membungkus item jika diperlukan */
-            justify-content: center;
-            /* Menyelaraskan item di tengah */
+        /* Hero Image Styling */
+        .hero-image-wrapper {
+            position: relative;
+            padding: 2rem;
         }
 
-        .blog-item {
-            display: flex;
-            flex-direction: column;
-            /* Mengatur arah kolom untuk item blog */
+        /* .hero-image {
+                                                    width: 100%;
+                                                    height: auto;
+                                                    position: relative;
+                                                    z-index: 2;
+                                                    animation: float 6s ease-in-out infinite;
+                                                } */
+
+        /* Floating Shapes */
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
             height: 100%;
-            /* Memastikan item blog mengambil tinggi penuh */
+            top: 0;
+            left: 0;
         }
 
-        .blog-content {
-            flex-grow: 1;
-            /* Memungkinkan konten untuk tumbuh dan mengisi ruang yang tersedia */
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(0, 123, 255, 0.1);
         }
 
-        .shadow-effect {
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            /* Mengatur bayangan */
-            transition: transform 0.3s;
-            /* Efek transisi saat hover */
+        .shape-1 {
+            width: 100px;
+            height: 100px;
+            top: 20%;
+            left: 10%;
+            animation: float 8s ease-in-out infinite;
         }
 
-        .shadow-effect:hover {
-            transform: translateY(-5px);
-            /* Efek mengangkat saat hover */
+        .shape-2 {
+            width: 150px;
+            height: 150px;
+            top: 50%;
+            right: 10%;
+            animation: float 10s ease-in-out infinite;
+        }
+
+        .shape-3 {
+            width: 70px;
+            height: 70px;
+            bottom: 20%;
+            left: 20%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Animations */
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* Navbar Styling (Add to your existing navbar) */
+        .navbar {
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding-top: calc(60px + 1rem);
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
+            .floating-shapes {
+                display: none;
+            }
+        }
+
+        .text-gradient {
+            background: linear-gradient(45deg, #007bff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Feature Cards */
+        .feature-card {
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .icon-wrapper {
+            width: 70px;
+            height: 70px;
+            background: #007bff15;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .icon-wrapper i {
+            font-size: 30px;
+            color: #007bff;
+        }
+
+        /* Statistics */
+        .stat-card {
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        /* Animations */
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-header {
+                padding: 60px 0;
+            }
+
+            .display-4 {
+                font-size: 2.5rem;
+            }
         }
     </style>
-
-    <!-- Pricing Start -->
-    <div class="container-fluid price py-5" data-aos="fade-up" data-aos-delay="300">
-        <div class="container py-5">
-            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 900px;">
-                <h4 class="text-primary">Paket Berlangganan</h4>
-                <h1 class="display-5 mb-4">Pilih Paket yang Sesuai untuk Anda</h1>
-                <p class="mb-0">Tingkatkan keterampilan mengajar Anda dengan berbagai pilihan paket berlangganan kami.
-                    Setiap paket dirancang untuk memenuhi kebutuhan guru modern dalam mengembangkan kompetensi profesional
-                    mereka.</p>
-            </div>
-            <div class="row g-5 justify-content-center">
-                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="price-item bg-light rounded text-center">
-                        <div class="text-center text-dark border-bottom d-flex flex-column justify-content-center p-4"
-                            style="height: 160px;">
-                            <p class="fs-2 fw-bold text-uppercase mb-0">DASAR</p>
-                            <div class="d-flex justify-content-center">
-                                <strong class="align-self-start">Rp</strong>
-                                <p class="mb-0"><span class="display-5">0</span>/bln</p>
-                            </div>
-                        </div>
-                        <div class="text-start p-5">
-                            <p><i class="fas fa-check text-success me-1"></i> Akses terbatas ke perpustakaan materi</p>
-                            <p><i class="fas fa-check text-success me-1"></i> Dukungan pelanggan dasar</p>
-                            <p><i class="fas fa-check text-success me-1"></i> 5 pelatihan gratis per bulan</p>
-                            <p><i class="fas fa-times text-danger me-1"></i> Sertifikat pelatihan</p>
-                            <p><i class="fas fa-times text-danger me-1"></i> Konsultasi pribadi</p>
-                            <p class="mb-4"><i class="fas fa-times text-danger me-1"></i> Akses ke webinar eksklusif</p>
-                            <a href="#" class="btn btn-primary rounded-pill py-2 px-5">Mulai Sekarang</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="price-item bg-light rounded text-center">
-                        <div class="pice-item-offer">Populer</div>
-                        <div class="text-center text-primary border-bottom d-flex flex-column justify-content-center p-4"
-                            style="height: 160px;">
-                            <p class="fs-2 fw-bold text-uppercase mb-0">PROFESIONAL</p>
-                            <div class="d-flex justify-content-center">
-                                <strong class="align-self-start">Rp</strong>
-                                <p class="mb-0"><span class="display-5">199k</span>/bln</p>
-                            </div>
-                        </div>
-                        <div class="text-start p-5">
-                            <p><i class="fas fa-check text-success me-1"></i> Akses penuh ke perpustakaan materi</p>
-                            <p><i class="fas fa-check text-success me-1"></i> Dukungan pelanggan prioritas</p>
-                            <p><i class="fas fa-check text-success me-1"></i> Pelatihan tak terbatas</p>
-                            <p><i class="fas fa-check text-success me-1"></i> Sertifikat pelatihan</p>
-                            <p><i class="fas fa-check text-success me-1"></i> 2 sesi konsultasi pribadi per bulan</p>
-                            <p class="mb-4"><i class="fas fa-check text-success me-1"></i> Akses ke webinar eksklusif</p>
-                            <a href="#" class="btn btn-primary rounded-pill py-2 px-5">Mulai Sekarang</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="price-item bg-light rounded text-center">
-                        <div class="text-center text-secondary border-bottom d-flex flex-column justify-content-center p-4"
-                            style="height: 160px;">
-                            <p class="fs-2 fw-bold text-uppercase mb-0">PREMIUM</p>
-                            <div class="d-flex justify-content-center">
-                                <strong class="align-self-start">Rp</strong>
-                                <p class="mb-0"><span class="display-5">399k</span>/bln</p>
-                            </div>
-                        </div>
-                        <div class="text-start p-5">
-                            <p><i class="fas fa-check text-success me-1"></i> Semua fitur Profesional</p>
-                            <p><i class="fas fa-check text-success me-1"></i> Akses ke materi eksklusif</p>
-                            <p><i class="fas fa-check text-success me-1"></i> Pelatihan tatap muka bulanan</p>
-                            <p><i class="fas fa-check text-success me-1"></i> Sertifikasi tingkat lanjut</p>
-                            <p><i class="fas fa-check text-success me-1"></i> Konsultasi pribadi tak terbatas</p>
-                            <p class="mb-4"><i class="fas fa-check text-success me-1"></i> Akses VIP ke semua acara</p>
-                            <a href="#" class="btn btn-primary rounded-pill py-2 px-5">Mulai Sekarang</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Pricing End -->
-
-
-
-    {{--  <!-- Testimonial Start -->
-
-<div class="container mt-5"  data-aos="fade-up" data-aos-delay="900">
-    <h2 class="text-center mb-4">Testimonial Klien</h2>
-    <div class="row">
-        <div class="col-md-12 mb-4">
-            <div class="card text-center">
-                <div class="card-body">
-                    <p class="card-text">"Layanan yang luar biasa! Sangat membantu bisnis kami tumbuh."</p>
-                    <h5 class="card-title">John Doe</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">CEO, Perusahaan ABC</h6>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12 mb-4">
-            <div class="card text-center">
-                <div class="card-body">
-                    <p class="card-text">"Tim yang profesional dan responsif. Saya sangat merekomendasikan mereka."</p>
-                    <h5 class="card-title">Jane Smith</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Pengusaha, Perusahaan XYZ</h6>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12 mb-4">
-            <div class="card text-center">
-                <div class="card-body">
-                    <p class="card-text">"Kualitas layanan yang sangat baik. Hasilnya melebihi harapan saya!"</p>
-                    <h5 class="card-title">Ali Rahman</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Founder, Startup 123</h6>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-        <!-- Testimonial End -->  --}}
 
     <script>
-        function showChoiceAlert() {
-            Swal.fire({
-                title: 'Pilih Opsi',
-                text: 'Silakan pilih salah satu:',
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonText: 'Login',
-                cancelButtonText: 'Register',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Aksi untuk Login
-                    Swal.fire('Anda memilih Login');
-                    // Tambahkan logika untuk mengarahkan ke halaman login
-                    window.location.href = '/login'; // Ganti dengan URL halaman login
-                } else if (result.isDismissed) {
-                    // Aksi untuk Register
-                    Swal.fire('Anda memilih Register');
-                    // Tambahkan logika untuk mengarahkan ke halaman register
-                    window.location.href = '/register'; // Ganti dengan URL halaman register
+        // Counter Animation
+        const counters = document.querySelectorAll('.counter');
+        counters.forEach(counter => {
+            const target = +counter.getAttribute('data-target');
+            const increment = target / 200;
+
+            function updateCount() {
+                const count = +counter.innerText;
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(updateCount, 10);
+                } else {
+                    counter.innerText = target;
                 }
-            });
-        }
+            }
+
+            updateCount();
+        });
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        window.addEventListener('scroll', function() {
+            const heroImage = document.querySelector('.hero-image-wrapper');
+            const scrolled = window.pageYOffset;
+
+            // Subtle parallax effect
+            heroImage.style.transform = `translateY(${scrolled * 0.1}px)`;
+        });
+
+        // Your existing scripts
+
+        // Statistics Counter Animation
+        const counters = document.querySelectorAll('.stat-number');
+        counters.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-target'));
+            const increment = target / 200;
+
+            function updateCount() {
+                const count = parseInt(counter.innerText);
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(updateCount, 10);
+                } else {
+                    counter.innerText = target;
+                }
+            }
+
+            updateCount();
+        });
+
+        // Your existing scripts
     </script>
 @endsection
