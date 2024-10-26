@@ -48,7 +48,7 @@
     <!-- Spinner Start -->
     <div id="spinner"
         class="bg-white show position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <img src="{{ asset('images/logo-cerah.png') }}" alt="Loading..." style="width: 6rem; height: 4rem;">
+        <img src="{{ asset('images/x.svg') }}" alt="Loading..." style="width: 16rem; height: 20rem;">
     </div>
     <!-- Spinner End -->
 
@@ -61,7 +61,8 @@
     <div class="p-0 container-fluid header position-relative">
         <nav class="px-4 py-3 navbar navbar-expand-lg fixed-top navbar-light px-lg-5 py-lg-0">
             <a href="/home" class="p-0 navbar-brand">
-                <img src="{{ asset('images/logo-cerah.png') }}" alt="Logo">
+                <img src="{{ asset('images/x.svg') }}" alt="Logo"
+                    style="width: 20rem; height: auto; position: relative; z-index: 10;">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="fa fa-bars"></span>
@@ -84,8 +85,8 @@
                 <a href="/home" class="nav-item nav-link active">Home</a>
                 <a href="/list_pelatihan" class="nav-item nav-link">Pelatihan</a>
                 <a href="/tipepelatihan" class="nav-item nav-link">Tipe Pelatihan</a>
-                <a href="/contact" class="nav-item nav-link">Contact Us</a>
-                <a href="/about" class="nav-item nav-link">About</a>
+                <a href="/contact" class="nav-item nav-link">Hubungi Saya</a>
+                <a href="/about" class="nav-item nav-link">Tentang kami</a>
 
             </div>
             <a href="/login" class="px-4 py-2 border btn btn-light border-primary rounded-pill text-primary me-4">Log

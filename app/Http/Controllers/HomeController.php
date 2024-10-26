@@ -13,26 +13,40 @@ use App\Models\User;
 use App\Models\Village;
 use id;
 use Illuminate\Http\Request;
-// use Laravolt\Indonesia\Models\Province;
-// use Laravolt\Indonesia\Models\City;
-// use Laravolt\Indonesia\Models\District;
+// // // use Laravolt\Indonesia\Models\District;
 // use Laravolt\Indonesia\Models\Village;
 
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log; // Tambahkan ini
-use Illuminate\Support\Facades\Validator;
-use Laravolt\Indonesia\Indonesia;
-use Laravolt\Indonesia\Models\City;
 use Laravolt\Indonesia\Models\District;
-use Laravolt\Indonesia\Models\Province;
-use Spatie\Permission\Models\Role;
 
 class HomeController extends Controller
 {
+    public function getCities($provinceId)
+    {
+        $cities = Regency::where('province_id', $provinceId)->pluck('name', 'id');
+        return response()->json($cities);
+    }
+
+    public function getDistricts($cityId)
+    {
+        $districts = District::where('regency_id', $cityId)->pluck('name', 'id');
+        return response()->json($districts);
+    }
+
+    public function getVillages($districtId)
+    {
+        $villages = Village::where('district_id', $districtId)->pluck('name', 'id');
+        return response()->json($villages);
+    }
+
     //home
     public function index()
     {
+        $totalPelatihan = Training::count(); // Total semua pelatihan
+        $pelatihanSaya = MemberCourse::where('user_id', Auth::id())->count(); // Hitung pelatihan yang diikuti oleh pengguna
+        $penggunaAktif = User::count(); // Menghitung semua pengguna
+        $recentPelatihan = Training::latest()->take(5)->get(); // Ambil 5 pelatihan terbaru
         $tipepelatihan = TrainingType::orderBy('trainer_type_name', 'asc')->get();
         $pelatihan = Training::query()
             ->latest()
@@ -41,7 +55,7 @@ class HomeController extends Controller
         // Debug hasil query (jika diperlukan)
         // \Log::info($pelatihan);
 
-        return view('home', compact('pelatihan', 'tipepelatihan')); // Mengirimkan $pelatihan dan $tipepelatihan ke view
+        return view('home', compact('pelatihan', 'tipepelatihan', 'totalPelatihan', 'pelatihanSaya', 'penggunaAktif', 'recentPelatihan')); // Mengirimkan $pelatihan dan $tipepelatihan ke view
     }
     public function showRegistrationForm()
     {
@@ -124,7 +138,7 @@ class HomeController extends Controller
             if ($existing) {
                 return response()->json([
                     'status' => 'error',
-                    'message' => 'Anda sudah terdaftar di pelatihan ini'
+                    'message' => 'Anda sudah terdaftar di pelatihan ini',
                 ], 400);
             }
 
@@ -132,18 +146,18 @@ class HomeController extends Controller
             MemberCourse::create([
                 'training_id' => $request->training_id,
                 'user_id' => $request->user_id,
-                'status' => 1
+                'status' => 1,
             ]);
 
             return response()->json([
                 'status' => 'success',
-                'message' => 'Berhasil mendaftar pelatihan'
+                'message' => 'Berhasil mendaftar pelatihan',
             ]);
 
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Terjadi kesalahan: ' . $e->getMessage()
+                'message' => 'Terjadi kesalahan: ' . $e->getMessage(),
             ], 500);
         }
     }

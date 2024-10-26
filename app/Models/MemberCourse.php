@@ -13,7 +13,7 @@ class MemberCourse extends Model
     protected $fillable = [
         'training_id',
         'user_id',
-        'status'
+        'status',
 
     ];
 
@@ -42,5 +42,10 @@ class MemberCourse extends Model
     public function training(): BelongsTo
     {
         return $this->belongsTo(Training::class);
+    }
+// Model MemberCourse
+    public function pelatihan()
+    {
+        return $this->belongsTo(Training::class, 'training_id'); // Pastikan 'training_id' sesuai dengan kolom di database
     }
 }

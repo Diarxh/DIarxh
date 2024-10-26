@@ -9,7 +9,7 @@
         <!-- Main Content -->
         <div class="container position-relative z-index-2">
             <div class="row gy-5 align-items-center">
-                <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.4s">
+                <div class="col-lg-6 wow fadeInLeft" data-aos="zoom-in">
                     <div class="hero-content">
                         <span class="mb-3 badge bg-primary">Platform Edukasi #1</span>
                         <h1 class="mb-4 display-4 text-gradient">TeachHub</h1>
@@ -26,7 +26,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.2s">
+                <div class="col-lg-6 wow fadeInRight" data-aos="fade-up" data-aos-duration="300">
                     <div class="hero-image-wrapper">
                         <img src="{{ asset('theme/img/hero-img-1.png') }}" class="hero-image" alt="Hero Image">
                         <div class="floating-shapes">
@@ -42,7 +42,7 @@
 
     <!-- Features Section -->
     <section id="features" class="py-5">
-        <div class="container">
+        <div class="container "data-aos="fade-up" data-aos-duration="300">
             <div class="mb-5 text-center">
                 <h2 class="mb-3 display-5">Kenapa Memilih TeachHub?</h2>
                 <p class="lead text-muted">Platform terbaik untuk mengembangkan karir Anda</p>
@@ -84,34 +84,34 @@
     </section>
 
     <!-- Statistics Section -->
-    <div class="py-5 container-fluid bg-light">
+    <div class="py-5 container-fluid bg-light" data-aos="fade-up" data-aos-duration="600">
         <div class="container">
             <div class="text-center row g-4">
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="counter-card">
                         <i class="mb-3 fas fa-user-graduate fa-3x text-primary"></i>
-                        <h2 class="counter" data-target="1000">0</h2>
+                        <h2 class="counter" data-target="1000">{{ $penggunaAktif }}</h2>
                         <p>Peserta Aktif</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="counter-card">
                         <i class="mb-3 fas fa-chalkboard-teacher fa-3x text-primary"></i>
-                        <h2 class="counter" data-target="50">0</h2>
+                        <h2 class="counter" data-target="50">30</h2>
                         <p>Mentor Profesional</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="counter-card">
                         <i class="mb-3 fas fa-book fa-3x text-primary"></i>
-                        <h2 class="counter" data-target="100">0</h2>
+                        <h2 class="counter" data-target="100">{{ $totalPelatihan }}</h2>
                         <p>Program Pelatihan</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
                     <div class="counter-card">
                         <i class="mb-3 fas fa-trophy fa-3x text-primary"></i>
-                        <h2 class="counter" data-target="95">0</h2>
+                        <h2 class="counter" data-target="95">1</h2>
                         <p>Tingkat Kepuasan</p>
                     </div>
                 </div>
@@ -120,7 +120,7 @@
     </div>
     </section>
 
-    <!-- Pelatihan Section (Your existing code with improvements) -->
+    {{--  <!-- Pelatihan Section (Your existing code with improvements) -->  --}}
     <div class="py-5 container-fluid">
         <div class="container">
             <div class="mb-5 text-center section-title">
@@ -132,7 +132,7 @@
             <!-- Training Cards -->
             <div class="row g-4 justify-content-center"> <!-- Menambahkan justify-content-center -->
                 @forelse ($pelatihan as $data)
-                    <div class="col-sm-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="col-sm-6 col-lg-4 col-xl-3 wow fadeInUp" data-aos="fade-up" data-aos-duration="300">
                         <div class="card training-card h-100">
                             <div class="card-img-wrapper">
                                 @if ($data->photo)
@@ -186,25 +186,25 @@
     </div>
 
     <!-- Testimonial Section -->
-    <section class="py-5 testimonial-section bg-light">
+    <section class="py-5 testimonial-section bg-light"data-aos="fade-up" data-aos-duration="300">
 
         <!-- Testimonial Section -->
         {{-- <div class="py-5 container-fluid"> --}}
         <div class="container">
-            <div class="mb-5 text-center wow fadeInUp" data-wow-delay="0.1s">
+            <div class="mb-5 text-center wow fadeInUp" data-aos="fade-up" data-aos-duration="300">
                 <h2 class="display-5">Apa Kata Mereka?</h2>
                 <p class="lead">Testimoni dari para alumni TeachHub</p>
             </div>
             <div class="row g-4">
-                <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="col-lg-4 wow fadeInUp" data-aos="fade-up" data-aos-duration="300">
                     <div class="testimonial-card">
                         <div class="testimonial-img">
-                            <img src="{{ asset('theme/img/testimonial-1.jpg') }}" alt="Testimonial">
+                            <img src="{{ asset('NiceAdmin\assets\img\profile-img.jpg') }}" alt="Testimonial">
                         </div>
                         <div class="testimonial-content">
                             <p class="mb-4">"Program pelatihan yang sangat bermanfaat untuk pengembangan karir saya
                                 sebagai guru."</p>
-                            <h5>Sarah Johnson</h5>
+                            <h5>Diarxh</h5>
                             <span>Guru Matematika</span>
                         </div>
                     </div>
@@ -216,7 +216,7 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="py-5 cta-section">
+    <section class="py-5 cta-section"data-aos="fade-up" data-aos-anchor-placement="top-bottom">
         <div class="container text-center">
             <h2 class="mb-4 display-5">Siap Untuk Memulai?</h2>
             <p class="mb-4 lead">Bergabunglah dengan ribuan profesional yang telah meningkatkan karirnya bersama TeachHub

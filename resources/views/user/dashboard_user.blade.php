@@ -37,7 +37,8 @@
                             <i class="fas fa-user-graduate fa-2x text-success me-3"></i>
                             <h5 class="card-title mb-0">Pelatihan Saya</h5>
                         </div>
-                        <p class="card-text fs-4 fw-bold"></p>
+                        <p class="card-text fs-4 fw-bold">{{ $pelatihanSaya }}</p>
+                        <!-- Menampilkan total pelatihan yang diikuti -->
                     </div>
                 </div>
             </div>

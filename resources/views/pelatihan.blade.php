@@ -40,7 +40,7 @@
             <!-- Training Cards -->
             <div class="row g-4">
                 @forelse ($pelatihan as $data)
-                    <div class="col-sm-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="col-sm-6 col-lg-4 col-xl-3 justify-content-center wow fadeInUp" data-wow-delay="0.1s">
                         <div class="card training-card h-100">
                             <div class="card-img-wrapper">
                                 @if ($data->photo)
@@ -66,28 +66,42 @@
                                     <div class="d-flex justify-content-between text-muted">
                                         <span>
                                             <i class="fa fa-calendar-alt me-1"></i>
-                                            {{ \Carbon\Carbon::parse($data->start_date)->translatedFormat('d M Y') }}
+                                            {{ \Carbon\Carbon::parse($data->start_date)->translatedFormat('d M Y') }} -
+                                            {{ \Carbon\Carbon::parse($data->end_date)->translatedFormat('d M Y') }}
+                                            <!-- Menampilkan tanggal akhir -->
                                         </span>
-                                        <span>
+                                        {{--  <span>
                                             <i class="fa fa-clock me-1"></i>
-                                            {{ \Carbon\Carbon::parse($data->start_date)->format('H:i') }}
+                                            {{ \Carbon\Carbon::parse($data->start_date)->format('H:i') }} -
+                                            {{ \Carbon\Carbon::parse($data->end_date)->format('H:i') }}
+                                            <!-- Menampilkan waktu akhir -->
+                                        </span>  --}}
+                                        <span>
+                                            <i class="fa fa-map-marker-alt me-1"></i>
+                                            {{ $data->training_location }} <!-- Menampilkan lokasi pelatihan -->
                                         </span>
                                     </div>
-                                </div>
+                                    {{--  <div class="text-muted">
+                                        <span>
+                                            <i class="fa fa-map-marker-alt me-1"></i>
+                                            {{ $data->training_location }} <!-- Menampilkan lokasi pelatihan -->
+                                        </span>
+                                    </div>
+                                </div>  --}}
 
-                                <a href="/detail_pelatihan/{{ $data->id }}"
-                                    class="mt-auto btn btn-primary rounded-pill">
-                                    <i class="fas fa-arrow-right me-1"></i> Detail Pelatihan
-                                </a>
+                                    <a href="/detail_pelatihan/{{ $data->id }}"
+                                        class="mt-auto btn btn-primary rounded-pill">
+                                        <i class="fas fa-arrow-right me-1"></i> Detail Pelatihan
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @empty
-                    <div class="text-center col-12">
-                        <div class="alert alert-info">
-                            <i class="fas fa-info-circle me-2"></i>Belum ada pelatihan yang tersedia.
+                    @empty
+                        <div class="text-center col-12">
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle me-2"></i>Belum ada pelatihan yang tersedia.
+                            </div>
                         </div>
-                    </div>
                 @endforelse
             </div>
 

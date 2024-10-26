@@ -182,9 +182,14 @@
                                             <div class="col-md-8 col-lg-9">
                                                 <div
                                                     style="width: 150px; height: 150px; overflow: hidden; border-radius: 50%;">
-                                                    <img src="{{ asset('storage/' . $guru->photo) }}"
-                                                        alt="{{ $user->name }}"
-                                                        style="width: 100%; height: 100%; object-fit: cover;">
+                                                    @if ($guru && $guru->photo)
+                                                        <img src="{{ asset('storage/' . $guru->photo) }}"
+                                                            alt="{{ $user->name }}"
+                                                            style="width: 100%; height: 100%; object-fit: cover;">
+                                                    @else
+                                                        <i
+                                                            class="fas fa-solid fa-user fa-5x text-secondary rounded-circle"></i>
+                                                    @endif
                                                 </div>
                                                 <div class="pt-2">
                                                     <input type="file" name="photo" class="btn btn-primary btn-sm"

@@ -2,28 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Guru;
-use App\Models\MemberCourse;
-use App\Models\Pelatihan;
-use App\Models\TipePelatihan;
+use App\Models\District;
+use App\Models\Province;
+use App\Models\Regency;
+use App\Models\Teacher;
 use App\Models\User;
+use App\Models\Village;
+// use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use Spatie\Permission\Models\Role;
-// use Illuminate\Support\Facades\Auth;
-use App\Models\Province;
-use App\Models\Regency;
-use App\Models\District;
 
 class UserController extends Controller
 {
+    public function getCities($provinceId)
+    {
+        $cities = Regency::where('province_id', $provinceId)->pluck('name', 'id');
+        return response()->json($cities);
+    }
+
+    public function getVillages($districtId)
+    {
+        $villages = Village::where('district_id', $districtId)->pluck('name', 'id');
+        return response()->json($villages);
+    }
+
     public function showProfile()
     {
         $provinces = Province::all();
         $user = Auth::user();
-        $guru = Guru::where('user_id', $user->id)->first();
+        $guru = Teacher::where('user_id', $user->id)->first();
         $roles = $user->roles;
 
         return view('user.detail_profile', compact('provinces', 'guru', 'roles', 'user'));
@@ -44,22 +52,33 @@ class UserController extends Controller
 
     public function detail_profile()
     {
-        $guru = Guru::where('user_id', Auth::id())->first();
-        if (!$guru) {
-            return view('user.detail_profile')->with('alert', 'Anda belum memiliki data guru. Silakan lengkapi data Anda.');
+        try {
+            $guru = Teacher::where('user_id', Auth::id())->first();
+            $user = Auth::user();
+
+            if (!$guru) {
+                return view('user.detail_profile', [
+                    'guru' => null,
+                    'user' => $user,
+                    'alert' => 'Anda belum memiliki data guru. Silakan lengkapi data Anda.',
+                ]);
+            }
+
+            return view('user.detail_profile', compact('guru', 'user'));
+        } catch (\Exception $e) {
+            return back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }
-        return view('user.detail_profile', compact('guru'));
     }
 
     public function profile()
     {
-        $teacher = Guru::where('User_Id', Auth::user()->id)->first();
+        $teacher = Teacher::where('User_Id', Auth::user()->id)->first();
         return view('user.detail_profile', compact('teacher'));
     }
 
     // public function showProfile()
     // {
-    //     $guru = Guru::where('user_id', Auth::id())->first();
+    //     $guru = Teacher::where('user_id', Auth::id())->first();
     //     $user = Auth::user();
     //     $roles = $user->roles;
     //     // $provinces = Province::pluck('name', 'id');
@@ -67,26 +86,23 @@ class UserController extends Controller
     //     return view('user.detail_profile', compact('user', 'roles', 'guru', 'provinces'));
     // }
 
-
-
     public function updateprofile()
     {
         // Mengambil data profil guru berdasarkan User_Id yang sedang login
-        $profile = Guru::where('User_Id', Auth::user()->id)->first();
+        $profile = Teacher::where('User_Id', Auth::user()->id)->first();
 
         // Mengembalikan view edit_profile dengan data profil
         return view('user.edit_profile', compact('profile'));
     }
 
-
     public function editProfile()
     {
         // Cek apakah guru sudah ada
-        $guru = Guru::where('user_id', Auth::id())->first();
+        $guru = Teacher::where('user_id', Auth::id())->first();
 
         // Jika tidak ada, buat objek baru untuk form
         if (!$guru) {
-            $guru = new Guru();
+            $guru = new Teacher();
         }
 
         return view('user.edit_profile', compact('guru'));
@@ -123,7 +139,7 @@ class UserController extends Controller
         }
 
         // Mencari data guru berdasarkan user_id
-        $guru = Guru::where('user_id', Auth::id())->first();
+        $guru = Teacher::where('user_id', Auth::id())->first();
 
         // Jika data guru ditemukan, lakukan update
         if ($guru) {
@@ -131,7 +147,7 @@ class UserController extends Controller
             $message = 'Profil berhasil diperbarui';
         } else {
             // Jika tidak ditemukan, buat data baru
-            Guru::create($validatedData);
+            Teacher::create($validatedData);
             $message = 'Profil berhasil dibuat';
         }
 
@@ -159,7 +175,6 @@ class UserController extends Controller
         // Redirect ke route profile
         return redirect()->route('profile.show')->with('success', 'Password berhasil diubah.');
     }
-
 
     // END PROFILE
 }

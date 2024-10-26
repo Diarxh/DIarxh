@@ -23,7 +23,8 @@
                 <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.1s">
                     <div class="position-relative image-wrapper">
                         <div class="about-img-bg"></div>
-                        <img src="img/about-1.png" class="img-fluid rounded-3 shadow-lg" alt="About TeachHub">
+                        <img src="{{ asset('/images/about.png') }}" class="img-fluid rounded-3 shadow-lg"
+                            alt="About TeachHub">
                         <div class="experience-badge">
                             <span class="number">5+</span>
                             <span class="text">Years of Excellence</span>
