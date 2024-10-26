@@ -18,16 +18,33 @@
         <div class="container py-5 text-center" style="max-width: 700px;">
             <h3 class="display-3 wow fadeInDown mb-4" data-wow-delay="0.1s">Profil Pengguna
                 </h1>
+                {{-- <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                        <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">list Pelatihan</a></li>
+                        <li class="breadcrumb-item active text-primary"></li>
+                    </ol>     --}}
         </div>
     </div>
     <main id="main" class="main">
 
-        <section class="section profile ">
+        {{--  <div class="pagetitle">
+      <h1>Profile</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Users</li>
+          <li class="breadcrumb-item active">Profile</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->  --}}
+
+        <section class="section profile">
             <div class="row">
                 <div class="col-xl-4">
 
-                    <div class="card shadow">
+                    <div class="card">
                         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+
                             @if ($guru && $guru->photo)
                                 <div style="width: 150px; height: 150px; overflow: hidden; border-radius: 50%;">
                                     <img src="{{ asset('storage/' . $guru->photo) }}" alt="{{ $user->name }}"
@@ -36,7 +53,6 @@
                             @else
                                 <i class="fas fa-solid fa-user fa-5x text-secondary rounded-circle"></i>
                             @endif
-
                             <h2>{{ $user->name }}</h2>
                             <h3>{{ $roles->isNotEmpty() ? $roles->first()->name : 'No Role' }}</h3>
                             <!-- Menampilkan name dari peran pertama -->
@@ -56,7 +72,7 @@
 
                 <div class="col-xl-8">
 
-                    <div class="card shadow">
+                    <div class="card">
                         <div class="card-body pt-3">
                             <!-- Bordered Tabs -->
                             <ul class="nav nav-tabs nav-tabs-bordered">
@@ -98,11 +114,6 @@
                                     @if (session('success'))
                                         <div class="alert alert-success">
                                             {{ session('success') }}
-                                        </div>
-                                    @endif
-                                    @if (!isset($guru))
-                                        <div class="alert alert-warning" role="alert">
-                                            Data guru belum ada. Silakan tambahkan segera.
                                         </div>
                                     @endif
                                     <h5 class="card-title">About</h5>
@@ -182,157 +193,150 @@
                                             <div class="col-md-8 col-lg-9">
                                                 <div
                                                     style="width: 150px; height: 150px; overflow: hidden; border-radius: 50%;">
-                                                    @if ($guru && $guru->photo)
-                                                        <img src="{{ asset('storage/' . $guru->photo) }}"
-                                                            alt="{{ $user->name }}"
-                                                            style="width: 100%; height: 100%; object-fit: cover;">
-                                                    @else
-                                                        <i
-                                                            class="fas fa-solid fa-user fa-5x text-secondary rounded-circle"></i>
-                                                    @endif
-                                                    <div class="pt-2">
-                                                        <input type="file" name="photo"
-                                                            class="btn btn-primary btn-sm"
-                                                            title="Upload new profile image">
-                                                    </div>
+                                                    <img src="{{ asset('storage/' . $guru->photo) }}"
+                                                        alt="{{ $user->name }}"
+                                                        style="width: 100%; height: 100%; object-fit: cover;">
+                                                </div>
+                                                <div class="pt-2">
+                                                    <input type="file" name="photo" class="btn btn-primary btn-sm"
+                                                        title="Upload new profile image">
                                                 </div>
                                             </div>
-                                            <div class="row mb-3">
-                                                <label for="about"
-                                                    class="col-md-4 col-lg-3 col-form-label">About</label>
-                                                <div class="col-md-8 col-lg-9">
-                                                    <textarea name="about" class="form-control" id="about" style="height: 100px">{{ $guru->about ?? '' }}</textarea>
-                                                </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="about" class="col-md-4 col-lg-3 col-form-label">About</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <textarea name="about" class="form-control" id="about" style="height: 100px">{{ $guru->about ?? '' }}</textarea>
                                             </div>
+                                        </div>
 
 
-                                            <div class="row mb-3">
-                                                <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full
-                                                    Name</label>
-                                                <div class="col-md-8 col-lg-9">
-                                                    <input name="name" type="text" class="form-control"
-                                                        id="fullName" value="{{ $guru->name ?? '' }}" required>
-                                                </div>
+                                        <div class="row mb-3">
+                                            <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full
+                                                Name</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="name" type="text" class="form-control" id="fullName"
+                                                    value="{{ $guru->name ?? '' }}" required>
                                             </div>
+                                        </div>
 
 
-                                            <div class="row mb-3">
-                                                <label for="email"
-                                                    class="col-md-4 col-lg-3 col-form-label">Email</label>
-                                                <div class="col-md-8 col-lg-9">
-                                                    <input name="email" type="email" class="form-control"
-                                                        id="email" value="{{ $guru->email ?? '' }}">
-                                                </div>
+                                        <div class="row mb-3">
+                                            <label for="email" class="col-md-4 col-lg-3 col-form-label">Email</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="email" type="email" class="form-control" id="email"
+                                                    value="{{ $guru->email ?? '' }}">
                                             </div>
+                                        </div>
 
-                                            <div class="row mb-3">
-                                                <label for="phone" class="col-md-4 col-lg-3 col-form-label">Phone
-                                                    Number</label>
-                                                <div class="col-md-8 col-lg-9">
-                                                    <input name="phone_number" type="text" class="form-control"
-                                                        id="phone" value="{{ $guru->phone_number ?? '' }}">
-                                                </div>
+                                        <div class="row mb-3">
+                                            <label for="phone" class="col-md-4 col-lg-3 col-form-label">Phone
+                                                Number</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="phone_number" type="text" class="form-control"
+                                                    id="phone" value="{{ $guru->phone_number ?? '' }}">
                                             </div>
+                                        </div>
 
-                                            <div class="row mb-3">
-                                                <label for="schoolName" class="col-md-4 col-lg-3 col-form-label">School
-                                                    Name</label>
-                                                <div class="col-md-8 col-lg-9">
-                                                    <input name="school_name" type="text" class="form-control"
-                                                        id="schoolName" value="{{ $guru->school_name ?? '' }}">
-                                                </div>
+                                        <div class="row mb-3">
+                                            <label for="schoolName" class="col-md-4 col-lg-3 col-form-label">School
+                                                Name</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="school_name" type="text" class="form-control"
+                                                    id="schoolName" value="{{ $guru->school_name ?? '' }}">
                                             </div>
+                                        </div>
 
-                                            <div class="row mb-3">
-                                                <label for="nuptk"
-                                                    class="col-md-4 col-lg-3 col-form-label">NUPTK</label>
-                                                <div class="col-md-8 col-lg-9">
-                                                    <input name="nuptk" type="text" class="form-control"
-                                                        id="nuptk" value="{{ $guru->nuptk ?? '' }}">
-                                                </div>
+                                        <div class="row mb-3">
+                                            <label for="nuptk" class="col-md-4 col-lg-3 col-form-label">NUPTK</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="nuptk" type="text" class="form-control" id="nuptk"
+                                                    value="{{ $guru->nuptk ?? '' }}">
                                             </div>
+                                        </div>
 
-                                            <div class="row mb-3">
-                                                <label for="birthDate" class="col-md-4 col-lg-3 col-form-label">Birth
-                                                    Date</label>
-                                                <div class="col-md-8 col-lg-9">
-                                                    <input name="birth_date" type="date" class="form-control"
-                                                        id="birthDate" value="{{ $guru->birth_date ?? '' }}">
-                                                </div>
+                                        <div class="row mb-3">
+                                            <label for="birthDate" class="col-md-4 col-lg-3 col-form-label">Birth
+                                                Date</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="birth_date" type="text" class="form-control"
+                                                    id="birthDate" value="{{ $guru->birth_date ?? '' }}">
                                             </div>
+                                        </div>
 
-                                            <div class="row mb-3">
-                                                <label for="birthPlace" class="col-md-4 col-lg-3 col-form-label">Birth
-                                                    Place</label>
-                                                <div class="col-md-8 col-lg-9">
-                                                    <input name="birth_place" type="text" class="form-control"
-                                                        id="birthPlace" value="{{ $guru->birth_place ?? '' }}">
-                                                </div>
+                                        <div class="row mb-3">
+                                            <label for="birthPlace" class="col-md-4 col-lg-3 col-form-label">Birth
+                                                Place</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="birth_place" type="text" class="form-control"
+                                                    id="birthPlace" value="{{ $guru->birth_place ?? '' }}">
                                             </div>
-                                            <div class="row mb-3">
-                                                <label for="NiceAdmin/address"
-                                                    class="col-md-4 col-lg-3 col-form-label">Address</label>
-                                                <div class="col-md-8 col-lg-9">
-                                                    <textarea name="address" class="form-control" id="address" style="height: 100px">{{ $guru->address ?? '' }}</textarea>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <label for="village"
-                                                    class="col-md-4 col-lg-3 col-form-label">Village</label>
-                                                <div class="col-md-8 col-lg-9">
-                                                    <input name="village" type="text" class="form-control"
-                                                        id="village" value="{{ $guru->village ?? '' }}">
-                                                </div>
-                                            </div>
-                                            {{--  AUTO LIST  --}}
-                                            <div class="row mb-3">
-                                                <label for="province"
-                                                    class="col-md-4 col-lg-3 col-form-label">Province</label>
-                                                <div class="col-md-8 col-lg-9">
-                                                    <select name="province" id="province" class="form-control">
-                                                        <option value="">Select Province</option>
-                                                        @foreach ($provinces as $province)
-                                                            <option value="{{ $province->id }}"
-                                                                {{ $guru && $guru->province == $province->name ? 'selected' : '' }}>
-                                                                {{ $province->name }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
+                                        </div>
 
-                                            <div class="row mb-3">
-                                                <label for="city"
-                                                    class="col-md-4 col-lg-3 col-form-label">City</label>
-                                                <div class="col-md-8 col-lg-9">
-                                                    <select name="city" id="city" class="form-control">
-                                                        <option value="">Select City</option>
-                                                    </select>
-                                                </div>
+                                        <div class="row mb-3">
+                                            <label for="'NiceAdmin/address"
+                                                class="col-md-4 col-lg-3 col-form-label">Address</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="address" type="text" class="form-control" id="address"
+                                                    value="{{ $guru->address ?? '' }}">
                                             </div>
+                                        </div>
 
-                                            <div class="row mb-3">
-                                                <label for="district"
-                                                    class="col-md-4 col-lg-3 col-form-label">District</label>
-                                                <div class="col-md-8 col-lg-9">
-                                                    <select name="district" id="district" class="form-control">
-                                                        <option value="">Select District</option>
-                                                    </select>
-                                                </div>
+                                        <div class="row mb-3">
+                                            <label for="village" class="col-md-4 col-lg-3 col-form-label">Village</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="village" type="text" class="form-control" id="village"
+                                                    value="{{ $guru->village ?? '' }}">
                                             </div>
+                                        </div>
+                                        {{--  AUTO LIST  --}}
+                                        <div class="row mb-3">
+                                            <label for="province"
+                                                class="col-md-4 col-lg-3 col-form-label">Province</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <select name="province" id="province" class="form-control">
+                                                    <option value="">Select Province</option>
+                                                    @foreach ($provinces as $province)
+                                                        <option value="{{ $province->id }}"
+                                                            {{ $guru && $guru->province == $province->name ? 'selected' : '' }}>
+                                                            {{ $province->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
 
-                                            <div class="row mb-3">
-                                                <label for="lastEducation" class="col-md-4 col-lg-3 col-form-label">Last
-                                                    Education</label>
-                                                <div class="col-md-8 col-lg-9">
-                                                    <input name="last_education" type="text" class="form-control"
-                                                        id="lastEducation" value="{{ $guru->last_education ?? '' }}">
-                                                </div>
+                                        <div class="row mb-3">
+                                            <label for="city" class="col-md-4 col-lg-3 col-form-label">City</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <select name="city" id="city" class="form-control">
+                                                    <option value="">Select City</option>
+                                                </select>
                                             </div>
+                                        </div>
 
-                                            <div class="text-center">
-                                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                                        <div class="row mb-3">
+                                            <label for="district"
+                                                class="col-md-4 col-lg-3 col-form-label">District</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <select name="district" id="district" class="form-control">
+                                                    <option value="">Select District</option>
+                                                </select>
                                             </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <label for="lastEducation" class="col-md-4 col-lg-3 col-form-label">Last
+                                                Education</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="last_education" type="text" class="form-control"
+                                                    id="lastEducation" value="{{ $guru->last_education ?? '' }}">
+                                            </div>
+                                        </div>
+
+                                        <div class="text-center">
+                                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                                        </div>
                                     </form><!-- End Profile Edit Form -->
 
 
@@ -465,25 +469,7 @@
 
     <!-- Template Main JS File -->
     <script src="{{ asset('NiceAdmin/assets/js/main.js') }}"></script>
-    {{--
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var alertList = document.querySelectorAll('.alert');
-        alertList.forEach(function (alert) {
-            new bootstrap.Alert(alert);
-            setTimeout(function() {
-                alert.classList.remove('show');
-                setTimeout(function() {
-                    alert.remove();
-                }, 150);
-            }, 3000); // Alert akan hilang setelah 3 detik
-        });
-    });
-</script> --}}
 
-
-
-    {{--  LIST   --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -535,7 +521,7 @@
             });
         });
     </script>
-    {{-- konfirmasi password --}}
+    {{--  konfirmasi password   --}}
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const newPassword = document.getElementById('newPassword');

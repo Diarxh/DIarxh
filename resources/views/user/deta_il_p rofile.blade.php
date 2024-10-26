@@ -18,15 +18,20 @@
         <div class="container py-5 text-center" style="max-width: 700px;">
             <h3 class="display-3 wow fadeInDown mb-4" data-wow-delay="0.1s">Profil Pengguna
                 </h1>
+                {{-- <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                        <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">list Pelatihan</a></li>
+                        <li class="breadcrumb-item active text-primary"></li>
+                    </ol>     --}}
         </div>
     </div>
     <main id="main" class="main">
 
-        <section class="section profile ">
+        <section class="section profile">
             <div class="row">
                 <div class="col-xl-4">
 
-                    <div class="card shadow">
+                    <div class="card">
                         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
                             @if ($guru && $guru->photo)
                                 <div style="width: 150px; height: 150px; overflow: hidden; border-radius: 50%;">
@@ -36,7 +41,6 @@
                             @else
                                 <i class="fas fa-solid fa-user fa-5x text-secondary rounded-circle"></i>
                             @endif
-
                             <h2>{{ $user->name }}</h2>
                             <h3>{{ $roles->isNotEmpty() ? $roles->first()->name : 'No Role' }}</h3>
                             <!-- Menampilkan name dari peran pertama -->
@@ -56,7 +60,7 @@
 
                 <div class="col-xl-8">
 
-                    <div class="card shadow">
+                    <div class="card">
                         <div class="card-body pt-3">
                             <!-- Bordered Tabs -->
                             <ul class="nav nav-tabs nav-tabs-bordered">
@@ -98,11 +102,6 @@
                                     @if (session('success'))
                                         <div class="alert alert-success">
                                             {{ session('success') }}
-                                        </div>
-                                    @endif
-                                    @if (!isset($guru))
-                                        <div class="alert alert-warning" role="alert">
-                                            Data guru belum ada. Silakan tambahkan segera.
                                         </div>
                                     @endif
                                     <h5 class="card-title">About</h5>
@@ -180,17 +179,8 @@
                                             <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile
                                                 Image</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <div
-                                                    style="width: 150px; height: 150px; overflow: hidden; border-radius: 50%;">
-                                                    @if ($guru && $guru->photo)
-                                                        <img src="{{ asset('storage/' . $guru->photo) }}"
-                                                            alt="{{ $user->name }}"
-                                                            style="width: 100%; height: 100%; object-fit: cover;">
-                                                    @else
-                                                        <i
-                                                            class="fas fa-solid fa-user fa-5x text-secondary rounded-circle"></i>
-                                                    @endif
-                                                </div>
+                                                <img src="{{ asset($guru->photo ?? 'assets/img/profile-img.jpg') }}"
+                                                    alt="Profile" style="width: 100px; height: auto;">
                                                 <div class="pt-2">
                                                     <input type="file" name="photo" class="btn btn-primary btn-sm"
                                                         title="Upload new profile image">
@@ -253,7 +243,7 @@
                                             <label for="birthDate" class="col-md-4 col-lg-3 col-form-label">Birth
                                                 Date</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <input name="birth_date" type="date" class="form-control"
+                                                <input name="birth_date" type="text" class="form-control"
                                                     id="birthDate" value="{{ $guru->birth_date ?? '' }}">
                                             </div>
                                         </div>
@@ -267,21 +257,15 @@
                                             </div>
                                         </div>
 
-                                        {{-- <div class="row mb-3">
-                                        <label for="'NiceAdmin/address"
-                                            class="col-md-4 col-lg-3 col-form-label">Address</label>
-                                        <div class="col-md-8 col-lg-9">
-                                            <input name="address" type="text" class="form-control" id="address"
-                                                value="{{ $guru->address ?? '' }}">
-                                        </div>
-                                    </div> --}}
                                         <div class="row mb-3">
-                                            <label for="NiceAdmin/address"
+                                            <label for="'NiceAdmin/address"
                                                 class="col-md-4 col-lg-3 col-form-label">Address</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <textarea name="address" class="form-control" id="address" style="height: 100px">{{ $guru->address ?? '' }}</textarea>
+                                                <input name="address" type="text" class="form-control" id="address"
+                                                    value="{{ $guru->address ?? '' }}">
                                             </div>
                                         </div>
+
                                         <div class="row mb-3">
                                             <label for="village" class="col-md-4 col-lg-3 col-form-label">Village</label>
                                             <div class="col-md-8 col-lg-9">
@@ -289,41 +273,33 @@
                                                     value="{{ $guru->village ?? '' }}">
                                             </div>
                                         </div>
-                                        {{--  AUTO LIST  --}}
+
                                         <div class="row mb-3">
-                                            <label for="province"
-                                                class="col-md-4 col-lg-3 col-form-label">Province</label>
+                                            <label for="district"
+                                                class="col-md-4 col-lg-3 col-form-label">District</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <select name="province" id="province" class="form-control">
-                                                    <option value="">Select Province</option>
-                                                    @foreach ($provinces as $province)
-                                                        <option value="{{ $province->id }}"
-                                                            {{ $guru && $guru->province == $province->name ? 'selected' : '' }}>
-                                                            {{ $province->name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
+                                                <input name="district" type="text" class="form-control"
+                                                    id="district" value="{{ $guru->district ?? '' }}">
                                             </div>
                                         </div>
 
                                         <div class="row mb-3">
                                             <label for="city" class="col-md-4 col-lg-3 col-form-label">City</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <select name="city" id="city" class="form-control">
-                                                    <option value="">Select City</option>
-                                                </select>
+                                                <input name="city" type="text" class="form-control" id="city"
+                                                    value="{{ $guru->city ?? '' }}">
                                             </div>
                                         </div>
 
                                         <div class="row mb-3">
-                                            <label for="district"
-                                                class="col-md-4 col-lg-3 col-form-label">District</label>
+                                            <label for="province"
+                                                class="col-md-4 col-lg-3 col-form-label">Province</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <select name="district" id="district" class="form-control">
-                                                    <option value="">Select District</option>
-                                                </select>
+                                                <input name="province" type="text" class="form-control"
+                                                    id="province" value="{{ $guru->province ?? '' }}">
                                             </div>
                                         </div>
+
                                         <div class="row mb-3">
                                             <label for="lastEducation" class="col-md-4 col-lg-3 col-form-label">Last
                                                 Education</label>
@@ -482,112 +458,9 @@
             }, 3000); // Alert akan hilang setelah 3 detik
         });
     });
-</script> --}}
+    </script>  --}}
 
-    <script>
-        $(function() {
-            $('#province').on('change', function() {
-                var provinceId = $(this).val();
-                if (provinceId) {
-                    $.ajax({
-                        url: '{{ route('cities') }}',
-                        type: 'GET',
-                        data: {
-                            province_id: provinceId
-                        },
-                        success: function(data) {
-                            $('#city').empty();
-                            $('#city').append('<option value="">Select City</option>');
-                            $.each(data, function(key, value) {
-                                $('#city').append('<option value="' + key + '">' +
-                                    value + '</option>');
-                            });
-                        }
-                    });
-                } else {
-                    $('#city').empty();
-                    $('#district').empty();
-                }
-            });
-
-            $('#city').on('change', function() {
-                var cityId = $(this).val();
-                if (cityId) {
-                    $.ajax({
-                        url: '{{ route('districts') }}',
-                        type: 'GET',
-                        data: {
-                            city_id: cityId
-                        },
-                        success: function(data) {
-                            $('#district').empty();
-                            $('#district').append('<option value="">Select District</option>');
-                            $.each(data, function(key, value) {
-                                $('#district').append('<option value="' + key + '">' +
-                                    value + '</option>');
-                            });
-                        }
-                    });
-                } else {
-                    $('#district').empty();
-                }
-            });
-        });
-    </script>
-
-    {{--  LIST   --}}
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            // Handler untuk province
-            $('#province').on('change', function() {
-                var provinceId = $(this).val();
-                if (provinceId) {
-                    $.ajax({
-                        url: '{{ route('get.regencies') }}',
-                        type: 'GET',
-                        data: {
-                            province_id: provinceId
-                        },
-                        success: function(data) {
-                            $('#city').empty().append('<option value="">Select City</option>');
-                            $.each(data, function(key, value) {
-                                $('#city').append(
-                                    `<option value="${value.id}">${value.name}</option>`
-                                );
-                            });
-                            $('#district').empty().append(
-                                '<option value="">Select District</option>');
-                        }
-                    });
-                }
-            });
-
-            // Handler untuk city
-            $('#city').on('change', function() {
-                var regencyId = $(this).val();
-                if (regencyId) {
-                    $.ajax({
-                        url: '{{ route('get.districts') }}',
-                        type: 'GET',
-                        data: {
-                            regency_id: regencyId
-                        },
-                        success: function(data) {
-                            $('#district').empty().append(
-                                '<option value="">Select District</option>');
-                            $.each(data, function(key, value) {
-                                $('#district').append(
-                                    `<option value="${value.id}">${value.name}</option>`
-                                );
-                            });
-                        }
-                    });
-                }
-            });
-        });
-    </script>
-    {{-- konfirmasi password --}}
+    {{--  konfirmasi password   --}}
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const newPassword = document.getElementById('newPassword');
