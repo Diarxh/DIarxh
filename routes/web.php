@@ -3,11 +3,9 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserDashboardController;
-
 use Filament\Http\Middleware\Authenticate as FilamentAuthenticate;
+use Illuminate\Support\Facades\Route;
 
 // Redirect root to home
 Route::get('/', function () {
@@ -26,6 +24,13 @@ Route::get('/detail_pelatihan/{any}', [HomeController::class, 'detail_pelatihan'
 // AUTO DISTRIK
 Route::get('/get-regencies', [UserController::class, 'getRegencies'])->name('get.regencies');
 Route::get('/get-districts', [UserController::class, 'getDistricts'])->name('get.districts');
+Route::get('/getRegencies', [UserController::class, 'getRegencies']);
+Route::get('/getDistricts', [UserController::class, 'getDistricts']);
+// Hapus route duplikat berikut ini
+// Route::get('/get-regencies', [UserController::class, 'getRegencies'])->name('get.regencies');
+// Route::get('/get-districts', [UserController::class, 'getDistricts'])->name('get.districts');
+// Route::get('/get-regencies', [UserController::class, 'getRegencies'])->name('get.regencies');
+// Route::get('/get-districts', [UserController::class, 'getDistricts'])->name('get.districts');
 
 // Authentication routes
 Route::get('/login', [HomeController::class, 'showLoginForm'])->name('login');
@@ -34,10 +39,17 @@ Route::get('/register', [HomeController::class, 'showRegistrationForm'])->name('
 Route::post('/register', [LoginController::class, 'register']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+// Hapus route berikut ini karena sudah didefinisikan sebelumnya
+// Route::get('/cities', [UserController::class, 'cities'])->name('cities');
+// Route::get('/districts', [UserController::class, 'districts'])->name('districts');
+// Route::get('/get-regencies', [UserController::class, 'getRegencies'])->name('get.regencies');
+// Route::get('/get-districts', [UserController::class, 'getDistricts'])->name('get.districts');
+
 // Authenticated user routes
 Route::middleware(['auth', 'updateLastLogin'])->group(function () {
     Route::get('/profile', [UserController::class, 'showProfile'])->name('profile.show');
     Route::post('/profile', [UserController::class, 'saveprofile'])->name('profile.save');
+
     Route::post('/change-password', [HomeController::class, 'changePassword'])->name('change.password');
     Route::get('/updateprofile', [HomeController::class, 'updateprofile'])->name('updateprofile');
     Route::get('/pelatihan_saya', [HomeController::class, 'pelatihan_saya'])->name('pelatihan_saya');
@@ -45,21 +57,18 @@ Route::middleware(['auth', 'updateLastLogin'])->group(function () {
     Route::post('registercourse-do', [HomeController::class, 'registercoursedo'])->name('registercoursedo');
 });
 
-
-
 Route::middleware(['auth'])->group(function () {
     Route::get('/user/dashboard', [UserDashboardController::class, 'index'])
         ->middleware(['user', 'updateLastLogin'])
         ->name('user.dashboard_user');
     Route::get('/user/pelatihan-saya', [HomeController::class, 'pelatihan_saya'])->name('user.pelatihan_saya');
-
 });
-// Admin dashboard routes
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/user/dashboard', [UserDashboardController::class, 'index'])
-        ->name('user.dashboard_user');
-});
+// Hapus route duplikat berikut ini
+// Route::middleware(['auth'])->group(function () {
+//     Route::get('/user/dashboard', [UserDashboardController::class, 'index'])
+//         ->name('user.dashboard_user');
+// });
 
 // Filament routes
 Route::domain(config('filament.domain'))
@@ -73,15 +82,3 @@ Route::domain(config('filament.domain'))
         'auth.filament', // Gunakan middleware baru di sini
         FilamentAuthenticate::class,
     ]);
-// ->group(function () {
-//     Route::get('/', \App\Filament\Pages\Dashboard::class)->name('filament.pages.dashboard');
-
-// Route::middleware([
-//     'auth:sanctum',
-//     config('jetstream.auth_session'),
-//     'verified'
-// ])->group(function () {
-//     Route::get('/dashboard', function () {
-//         return view('dashboard');
-//     })->name('dashboard');
-// });

@@ -7,26 +7,41 @@ use App\Models\Province;
 use App\Models\Regency;
 use App\Models\Teacher;
 use App\Models\User;
-use App\Models\Village;
-// use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function getCities($provinceId)
+    /**
+     * Mengambil data kota berdasarkan ID provinsi.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getRegencies(Request $request)
     {
-        $cities = Regency::where('province_id', $provinceId)->pluck('name', 'id');
+        $cities = Regency::where('province_id', $request->province_id)->get();
         return response()->json($cities);
     }
 
-    public function getVillages($districtId)
+    /**
+     * Mengambil data kecamatan berdasarkan ID kota.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getDistricts(Request $request)
     {
-        $villages = Village::where('district_id', $districtId)->pluck('name', 'id');
-        return response()->json($villages);
+        $districts = District::where('regency_id', $request->regency_id)->get();
+        return response()->json($districts);
     }
 
+    /**
+     * Menampilkan halaman profil pengguna.
+     *
+     * @return \Illuminate\View\View
+     */
     public function showProfile()
     {
         $provinces = Province::all();
@@ -36,20 +51,12 @@ class UserController extends Controller
 
         return view('user.detail_profile', compact('provinces', 'guru', 'roles', 'user'));
     }
-    public function getRegencies(Request $request)
-    {
-        $regencies = Regency::where('province_id', $request->province_id)->get();
-        return response()->json($regencies);
-    }
 
-    public function getDistricts(Request $request)
-    {
-        $districts = District::where('regency_id', $request->regency_id)->get();
-        return response()->json($districts);
-    }
-
-    // PROFILL
-
+    /**
+     * Menampilkan halaman detail profil pengguna.
+     *
+     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
+     */
     public function detail_profile()
     {
         try {
@@ -70,37 +77,15 @@ class UserController extends Controller
         }
     }
 
-    public function profile()
-    {
-        $teacher = Teacher::where('User_Id', Auth::user()->id)->first();
-        return view('user.detail_profile', compact('teacher'));
-    }
-
-    // public function showProfile()
-    // {
-    //     $guru = Teacher::where('user_id', Auth::id())->first();
-    //     $user = Auth::user();
-    //     $roles = $user->roles;
-    //     // $provinces = Province::pluck('name', 'id');
-
-    //     return view('user.detail_profile', compact('user', 'roles', 'guru', 'provinces'));
-    // }
-
-    public function updateprofile()
-    {
-        // Mengambil data profil guru berdasarkan User_Id yang sedang login
-        $profile = Teacher::where('User_Id', Auth::user()->id)->first();
-
-        // Mengembalikan view edit_profile dengan data profil
-        return view('user.edit_profile', compact('profile'));
-    }
-
+    /**
+     * Menampilkan halaman edit profil pengguna.
+     *
+     * @return \Illuminate\View\View
+     */
     public function editProfile()
     {
-        // Cek apakah guru sudah ada
         $guru = Teacher::where('user_id', Auth::id())->first();
 
-        // Jika tidak ada, buat objek baru untuk form
         if (!$guru) {
             $guru = new Teacher();
         }
@@ -108,9 +93,14 @@ class UserController extends Controller
         return view('user.edit_profile', compact('guru'));
     }
 
+    /**
+     * Menyimpan profil pengguna.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function saveprofile(Request $request)
     {
-        // Validasi data yang diterima dari form
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
@@ -129,52 +119,47 @@ class UserController extends Controller
             'about' => 'nullable|string|max:1000',
         ]);
 
-        // Menambahkan user_id ke data yang divalidasi
         $validatedData['user_id'] = Auth::id();
 
-        // Menyimpan foto jika ada
         if ($request->hasFile('photo')) {
             $photoPath = $request->file('photo')->store('profile_photos', 'public');
             $validatedData['photo'] = $photoPath;
         }
 
-        // Mencari data guru berdasarkan user_id
         $guru = Teacher::where('user_id', Auth::id())->first();
 
-        // Jika data guru ditemukan, lakukan update
         if ($guru) {
             $guru->update($validatedData);
             $message = 'Profil berhasil diperbarui';
         } else {
-            // Jika tidak ditemukan, buat data baru
             Teacher::create($validatedData);
             $message = 'Profil berhasil dibuat';
         }
 
-        // Redirect ke rute profil dengan pesan sukses
         return redirect()->route('profile.show')->with('success', $message);
     }
+
+    /**
+     * Mengubah kata sandi pengguna.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function changePassword(Request $request)
     {
-        // Validasi input
         $request->validate([
             'password' => 'required|string|min:3',
             'newpassword' => 'required|string|min:3|confirmed',
         ]);
 
-        // Cek apakah password saat ini benar
         $user = Auth::user();
         if (!Hash::check($request->password, $user->password)) {
             return back()->withErrors(['password' => 'Password saat ini tidak sesuai.']);
         }
 
-        // Update password
         $user->password = Hash::make($request->newpassword);
         $user->save();
 
-        // Redirect ke route profile
         return redirect()->route('profile.show')->with('success', 'Password berhasil diubah.');
     }
-
-    // END PROFILE
 }

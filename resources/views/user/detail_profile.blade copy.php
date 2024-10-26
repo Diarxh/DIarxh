@@ -190,149 +190,152 @@
                                                         <i
                                                             class="fas fa-solid fa-user fa-5x text-secondary rounded-circle"></i>
                                                     @endif
-                                                    <div class="pt-2">
-                                                        <input type="file" name="photo"
-                                                            class="btn btn-primary btn-sm"
-                                                            title="Upload new profile image">
-                                                    </div>
+                                                </div>
+                                                <div class="pt-2">
+                                                    <input type="file" name="photo" class="btn btn-primary btn-sm"
+                                                        title="Upload new profile image">
                                                 </div>
                                             </div>
-                                            <div class="row mb-3">
-                                                <label for="about"
-                                                    class="col-md-4 col-lg-3 col-form-label">About</label>
-                                                <div class="col-md-8 col-lg-9">
-                                                    <textarea name="about" class="form-control" id="about" style="height: 100px">{{ $guru->about ?? '' }}</textarea>
-                                                </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="about" class="col-md-4 col-lg-3 col-form-label">About</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <textarea name="about" class="form-control" id="about" style="height: 100px">{{ $guru->about ?? '' }}</textarea>
                                             </div>
+                                        </div>
 
 
-                                            <div class="row mb-3">
-                                                <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full
-                                                    Name</label>
-                                                <div class="col-md-8 col-lg-9">
-                                                    <input name="name" type="text" class="form-control"
-                                                        id="fullName" value="{{ $guru->name ?? '' }}" required>
-                                                </div>
+                                        <div class="row mb-3">
+                                            <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full
+                                                Name</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="name" type="text" class="form-control" id="fullName"
+                                                    value="{{ $guru->name ?? '' }}" required>
                                             </div>
+                                        </div>
 
 
-                                            <div class="row mb-3">
-                                                <label for="email"
-                                                    class="col-md-4 col-lg-3 col-form-label">Email</label>
-                                                <div class="col-md-8 col-lg-9">
-                                                    <input name="email" type="email" class="form-control"
-                                                        id="email" value="{{ $guru->email ?? '' }}">
-                                                </div>
+                                        <div class="row mb-3">
+                                            <label for="email" class="col-md-4 col-lg-3 col-form-label">Email</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="email" type="email" class="form-control" id="email"
+                                                    value="{{ $guru->email ?? '' }}">
                                             </div>
+                                        </div>
 
-                                            <div class="row mb-3">
-                                                <label for="phone" class="col-md-4 col-lg-3 col-form-label">Phone
-                                                    Number</label>
-                                                <div class="col-md-8 col-lg-9">
-                                                    <input name="phone_number" type="text" class="form-control"
-                                                        id="phone" value="{{ $guru->phone_number ?? '' }}">
-                                                </div>
+                                        <div class="row mb-3">
+                                            <label for="phone" class="col-md-4 col-lg-3 col-form-label">Phone
+                                                Number</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="phone_number" type="text" class="form-control"
+                                                    id="phone" value="{{ $guru->phone_number ?? '' }}">
                                             </div>
+                                        </div>
 
-                                            <div class="row mb-3">
-                                                <label for="schoolName" class="col-md-4 col-lg-3 col-form-label">School
-                                                    Name</label>
-                                                <div class="col-md-8 col-lg-9">
-                                                    <input name="school_name" type="text" class="form-control"
-                                                        id="schoolName" value="{{ $guru->school_name ?? '' }}">
-                                                </div>
+                                        <div class="row mb-3">
+                                            <label for="schoolName" class="col-md-4 col-lg-3 col-form-label">School
+                                                Name</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="school_name" type="text" class="form-control"
+                                                    id="schoolName" value="{{ $guru->school_name ?? '' }}">
                                             </div>
+                                        </div>
 
-                                            <div class="row mb-3">
-                                                <label for="nuptk"
-                                                    class="col-md-4 col-lg-3 col-form-label">NUPTK</label>
-                                                <div class="col-md-8 col-lg-9">
-                                                    <input name="nuptk" type="text" class="form-control"
-                                                        id="nuptk" value="{{ $guru->nuptk ?? '' }}">
-                                                </div>
+                                        <div class="row mb-3">
+                                            <label for="nuptk" class="col-md-4 col-lg-3 col-form-label">NUPTK</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="nuptk" type="text" class="form-control" id="nuptk"
+                                                    value="{{ $guru->nuptk ?? '' }}">
                                             </div>
+                                        </div>
 
-                                            <div class="row mb-3">
-                                                <label for="birthDate" class="col-md-4 col-lg-3 col-form-label">Birth
-                                                    Date</label>
-                                                <div class="col-md-8 col-lg-9">
-                                                    <input name="birth_date" type="date" class="form-control"
-                                                        id="birthDate" value="{{ $guru->birth_date ?? '' }}">
-                                                </div>
+                                        <div class="row mb-3">
+                                            <label for="birthDate" class="col-md-4 col-lg-3 col-form-label">Birth
+                                                Date</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="birth_date" type="date" class="form-control"
+                                                    id="birthDate" value="{{ $guru->birth_date ?? '' }}">
                                             </div>
+                                        </div>
 
-                                            <div class="row mb-3">
-                                                <label for="birthPlace" class="col-md-4 col-lg-3 col-form-label">Birth
-                                                    Place</label>
-                                                <div class="col-md-8 col-lg-9">
-                                                    <input name="birth_place" type="text" class="form-control"
-                                                        id="birthPlace" value="{{ $guru->birth_place ?? '' }}">
-                                                </div>
+                                        <div class="row mb-3">
+                                            <label for="birthPlace" class="col-md-4 col-lg-3 col-form-label">Birth
+                                                Place</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="birth_place" type="text" class="form-control"
+                                                    id="birthPlace" value="{{ $guru->birth_place ?? '' }}">
                                             </div>
-                                            <div class="row mb-3">
-                                                <label for="NiceAdmin/address"
-                                                    class="col-md-4 col-lg-3 col-form-label">Address</label>
-                                                <div class="col-md-8 col-lg-9">
-                                                    <textarea name="address" class="form-control" id="address" style="height: 100px">{{ $guru->address ?? '' }}</textarea>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <label for="village"
-                                                    class="col-md-4 col-lg-3 col-form-label">Village</label>
-                                                <div class="col-md-8 col-lg-9">
-                                                    <input name="village" type="text" class="form-control"
-                                                        id="village" value="{{ $guru->village ?? '' }}">
-                                                </div>
-                                            </div>
-                                            {{--  AUTO LIST  --}}
-                                            <div class="row mb-3">
-                                                <label for="province"
-                                                    class="col-md-4 col-lg-3 col-form-label">Province</label>
-                                                <div class="col-md-8 col-lg-9">
-                                                    <select name="province" id="province" class="form-control">
-                                                        <option value="">Select Province</option>
-                                                        @foreach ($provinces as $province)
-                                                            <option value="{{ $province->id }}"
-                                                                {{ $guru && $guru->province == $province->name ? 'selected' : '' }}>
-                                                                {{ $province->name }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
+                                        </div>
 
-                                            <div class="row mb-3">
-                                                <label for="city"
-                                                    class="col-md-4 col-lg-3 col-form-label">City</label>
-                                                <div class="col-md-8 col-lg-9">
-                                                    <select name="city" id="city" class="form-control">
-                                                        <option value="">Select City</option>
-                                                    </select>
-                                                </div>
+                                        {{-- <div class="row mb-3">
+                                        <label for="'NiceAdmin/address"
+                                            class="col-md-4 col-lg-3 col-form-label">Address</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="address" type="text" class="form-control" id="address"
+                                                value="{{ $guru->address ?? '' }}">
+                                        </div>
+                                    </div> --}}
+                                        <div class="row mb-3">
+                                            <label for="NiceAdmin/address"
+                                                class="col-md-4 col-lg-3 col-form-label">Address</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <textarea name="address" class="form-control" id="address" style="height: 100px">{{ $guru->address ?? '' }}</textarea>
                                             </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="village" class="col-md-4 col-lg-3 col-form-label">Village</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="village" type="text" class="form-control" id="village"
+                                                    value="{{ $guru->village ?? '' }}">
+                                            </div>
+                                        </div>
+                                        {{--  AUTO LIST  --}}
+                                        <div class="row mb-3">
+                                            <label for="province"
+                                                class="col-md-4 col-lg-3 col-form-label">Province</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <select name="province" id="province" class="form-control">
+                                                    <option value="">Select Province</option>
+                                                    @foreach ($provinces as $province)
+                                                        <option value="{{ $province->id }}"
+                                                            {{ $guru && $guru->province == $province->name ? 'selected' : '' }}>
+                                                            {{ $province->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
 
-                                            <div class="row mb-3">
-                                                <label for="district"
-                                                    class="col-md-4 col-lg-3 col-form-label">District</label>
-                                                <div class="col-md-8 col-lg-9">
-                                                    <select name="district" id="district" class="form-control">
-                                                        <option value="">Select District</option>
-                                                    </select>
-                                                </div>
+                                        <div class="row mb-3">
+                                            <label for="city" class="col-md-4 col-lg-3 col-form-label">City</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <select name="city" id="city" class="form-control">
+                                                    <option value="">Select City</option>
+                                                </select>
                                             </div>
+                                        </div>
 
-                                            <div class="row mb-3">
-                                                <label for="lastEducation" class="col-md-4 col-lg-3 col-form-label">Last
-                                                    Education</label>
-                                                <div class="col-md-8 col-lg-9">
-                                                    <input name="last_education" type="text" class="form-control"
-                                                        id="lastEducation" value="{{ $guru->last_education ?? '' }}">
-                                                </div>
+                                        <div class="row mb-3">
+                                            <label for="district"
+                                                class="col-md-4 col-lg-3 col-form-label">District</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <select name="district" id="district" class="form-control">
+                                                    <option value="">Select District</option>
+                                                </select>
                                             </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="lastEducation" class="col-md-4 col-lg-3 col-form-label">Last
+                                                Education</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="last_education" type="text" class="form-control"
+                                                    id="lastEducation" value="{{ $guru->last_education ?? '' }}">
+                                            </div>
+                                        </div>
 
-                                            <div class="text-center">
-                                                <button type="submit" class="btn btn-primary">Save Changes</button>
-                                            </div>
+                                        <div class="text-center">
+                                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                                        </div>
                                     </form><!-- End Profile Edit Form -->
 
 
@@ -481,17 +484,13 @@
     });
 </script> --}}
 
-
-
-    {{--  LIST   --}}
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $(document).ready(function() {
+        $(function() {
             $('#province').on('change', function() {
                 var provinceId = $(this).val();
                 if (provinceId) {
                     $.ajax({
-                        url: '/getRegencies',
+                        url: '{{ route('cities') }}',
                         type: 'GET',
                         data: {
                             province_id: provinceId
@@ -500,8 +499,8 @@
                             $('#city').empty();
                             $('#city').append('<option value="">Select City</option>');
                             $.each(data, function(key, value) {
-                                $('#city').append('<option value="' + value.id + '">' +
-                                    value.name + '</option>');
+                                $('#city').append('<option value="' + key + '">' +
+                                    value + '</option>');
                             });
                         }
                     });
@@ -515,22 +514,75 @@
                 var cityId = $(this).val();
                 if (cityId) {
                     $.ajax({
-                        url: '/getDistricts',
+                        url: '{{ route('districts') }}',
                         type: 'GET',
                         data: {
-                            regency_id: cityId
+                            city_id: cityId
                         },
                         success: function(data) {
                             $('#district').empty();
                             $('#district').append('<option value="">Select District</option>');
                             $.each(data, function(key, value) {
-                                $('#district').append('<option value="' + value.id +
-                                    '">' + value.name + '</option>');
+                                $('#district').append('<option value="' + key + '">' +
+                                    value + '</option>');
                             });
                         }
                     });
                 } else {
                     $('#district').empty();
+                }
+            });
+        });
+    </script>
+
+    {{--  LIST   --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Handler untuk province
+            $('#province').on('change', function() {
+                var provinceId = $(this).val();
+                if (provinceId) {
+                    $.ajax({
+                        url: '{{ route('get.regencies') }}',
+                        type: 'GET',
+                        data: {
+                            province_id: provinceId
+                        },
+                        success: function(data) {
+                            $('#city').empty().append('<option value="">Select City</option>');
+                            $.each(data, function(key, value) {
+                                $('#city').append(
+                                    `<option value="${value.id}">${value.name}</option>`
+                                );
+                            });
+                            $('#district').empty().append(
+                                '<option value="">Select District</option>');
+                        }
+                    });
+                }
+            });
+
+            // Handler untuk city
+            $('#city').on('change', function() {
+                var regencyId = $(this).val();
+                if (regencyId) {
+                    $.ajax({
+                        url: '{{ route('get.districts') }}',
+                        type: 'GET',
+                        data: {
+                            regency_id: regencyId
+                        },
+                        success: function(data) {
+                            $('#district').empty().append(
+                                '<option value="">Select District</option>');
+                            $.each(data, function(key, value) {
+                                $('#district').append(
+                                    `<option value="${value.id}">${value.name}</option>`
+                                );
+                            });
+                        }
+                    });
                 }
             });
         });
