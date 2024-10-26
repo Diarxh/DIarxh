@@ -354,7 +354,7 @@
         }
 
         .hero-section {
-            min-height: 100vh;
+            min-height: 80vh;
             padding-top: calc(70px + 2rem);
             /* 70px navbar height + extra padding */
             position: relative;
