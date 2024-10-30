@@ -123,7 +123,7 @@ class HomeController extends Controller
     {
         $detail = Training::with('peserta.guru')->findOrFail($id);
         $peserta = MemberCourse::with('guru')->where('training_id', $id)->get();
-
+        dd($peserta);
         return view('detail_pelatihan', compact('detail', 'peserta'));
     }
     // / TrainingController.php

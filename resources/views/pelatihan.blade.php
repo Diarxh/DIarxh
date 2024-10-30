@@ -38,9 +38,9 @@
             </div>
 
             <!-- Training Cards -->
-            <div class="row g-4">
+            <div class="row g-4 justify-content-center">
                 @forelse ($pelatihan as $data)
-                    <div class="col-sm-6 col-lg-4 col-xl-3 justify-content-center wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="col-sm-6 col-lg-4 col-xl-3 justify-content-center wow fadeInUp" data-aos-delay="0.1s">
                         <div class="card training-card h-100">
                             <div class="card-img-wrapper">
                                 @if ($data->photo)

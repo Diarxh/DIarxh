@@ -34,8 +34,8 @@
                         <img src="{{ asset('theme/img/blog-1.png') }}" alt="Pelatihan Guru" class="card-img-top">
                     @endif
 
-                    {{--  <img src="{{ asset('storage/' . $detail->photo) }}" alt="{{ $data->trainer_type_name }}"
-                        class="card-img-top" style="max-height: 100%; width: 100%; object-fit: cover;">  --}}
+                    {{-- <img src="{{ asset('storage/' . $detail->photo) }}" alt="{{ $data->trainer_type_name }}"
+                    class="card-img-top" style="max-height: 100%; width: 100%; object-fit: cover;"> --}}
                     <div class="card-body">
                         <h5 class="card-title">{{ $detail->name }}</h5>
                         @if ($detail->tipe_pelatihan)

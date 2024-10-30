@@ -60,9 +60,11 @@
 
     <div class="p-0 container-fluid header position-relative">
         <nav class="px-4 py-3 navbar navbar-expand-lg fixed-top navbar-light px-lg-5 py-lg-0">
-            <a href="/home" class="p-0 navbar-brand">
-                <img src="{{ asset('images/x.svg') }}" alt="Logo"
-                    style="width: 20rem; height: auto; position: relative; z-index: 10;">
+            <a href="/home" class="p-0 navbar-brand"
+                style=" display: inline-block;
+            width: 30rem; /* atau sesuaikan dengan lebar yang diinginkan */">
+                <img src="{{ asset('images/x.svg') }}" alt="Logo" class="image-navbar"
+                    style="width: 50%; height: 100%; position: relative; z-index: 10; ">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="fa fa-bars"></span>
@@ -109,7 +111,8 @@
                     <div class="footer-item d-flex flex-column">
                         <h4 class="mb-4 text-dark">Menu</h4>
                         <a href="/home" class="mb-2"><i class="fas fa-home me-2"></i>Home</a>
-                        <a href="/list_pelatihan" class="mb-2"><i class="fas fa-graduation-cap me-2"></i>Pelatihan</a>
+                        <a href="/list_pelatihan" class="mb-2"><i
+                                class="fas fa-graduation-cap me-2"></i>Pelatihan</a>
                         <a href="/tipepelatihan" class="mb-2"><i class="fas fa-list me-2"></i>Tipe Pelatihan</a>
                         <a href="/contact" class="mb-2"><i class="fas fa-envelope me-2"></i>Contact Us</a>
                         <a href="/about" class="mb-2"><i class="fas fa-info-circle me-2"></i>About</a>
