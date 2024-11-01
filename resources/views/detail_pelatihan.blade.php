@@ -84,9 +84,9 @@
                                 @foreach ($peserta as $index => $p)
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
-                                        <td>{{ optional($p->guru)->name ?? '-' }}</td>
-                                        <td>{{ optional($p->guru)->email ?? '-' }}</td>
-                                        <td>{{ optional($p->guru)->school_name ?? '-' }}</td>
+                                        <td>{{ optional($p->teacher)->name ?? '-' }}</td> <!-- Menggunakan teacher -->
+                                        <td>{{ optional($p->teacher)->email ?? '-' }}</td>
+                                        <td>{{ optional($p->teacher)->school_name ?? '-' }}</td>
                                     </tr>
                                 @endforeach
                             @endif

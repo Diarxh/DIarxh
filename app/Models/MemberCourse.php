@@ -13,6 +13,8 @@ class MemberCourse extends Model
     protected $fillable = [
         'training_id',
         'user_id',
+        'teacher_id', // Tambahkan kolom teacher_id di sini
+
         'status',
 
     ];

@@ -123,7 +123,7 @@ class HomeController extends Controller
     {
         $detail = Training::with('peserta.guru')->findOrFail($id);
         $peserta = MemberCourse::with('guru')->where('training_id', $id)->get();
-        dd($peserta);
+        // dd($peserta);
         return view('detail_pelatihan', compact('detail', 'peserta'));
     }
     // / TrainingController.php
@@ -142,10 +142,14 @@ class HomeController extends Controller
                 ], 400);
             }
 
+            // Ambil teacher_id dari user yang sedang login
+            $teacherId = Auth::user()->teacher_id; // Pastikan kolom teacher_id ada di model User
+
             // Buat pendaftaran baru
             MemberCourse::create([
                 'training_id' => $request->training_id,
                 'user_id' => $request->user_id,
+                'teacher_id' => $teacherId, // Tambahkan teacher_id di sini
                 'status' => 1,
             ]);
 

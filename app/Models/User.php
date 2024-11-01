@@ -36,10 +36,10 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-    public function teacher()
-    {
-        return $this->hasOne(Teacher::class);
-    }
+    // public function teacher()
+    // {
+    //     return $this->hasOne(Teacher::class);
+    // }
     /**
      * Get the attributes that should be cast.
      *
@@ -53,5 +53,9 @@ class User extends Authenticatable
             'last_login_at' => 'datetime',
 
         ];
+    }
+    public function teacher()
+    {
+        return $this->hasOne(Teacher::class, 'user_id'); // Pastikan ini sesuai dengan struktur database Anda
     }
 }
