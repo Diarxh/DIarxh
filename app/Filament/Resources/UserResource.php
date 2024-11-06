@@ -4,12 +4,12 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
 use App\Models\User;
-use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Filament\Forms;
+use Filament\Tables;
 
 class UserResource extends Resource
 {
@@ -64,9 +64,8 @@ class UserResource extends Resource
                     ->label('Last Login')
                     ->description(
                         fn($record) =>
-                        $record->last_login_at?->diffForHumans()
+                            $record->last_login_at?->diffForHumans()
                     ),
-
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('roles')

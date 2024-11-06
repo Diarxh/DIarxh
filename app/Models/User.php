@@ -23,8 +23,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'last_login_at', // Pastikan kolom ini ada di sini
-        'is_admin', // Jika Anda menambahkannya
+        'last_login_at',  // Pastikan kolom ini ada di sini
+        'is_admin',  // Jika Anda menambahkannya
     ];
 
     /**
@@ -36,10 +36,12 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
     // public function teacher()
     // {
     //     return $this->hasOne(Teacher::class);
     // }
+
     /**
      * Get the attributes that should be cast.
      *
@@ -51,11 +53,16 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'last_login_at' => 'datetime',
-
         ];
     }
+
     public function teacher()
     {
-        return $this->hasOne(Teacher::class, 'user_id'); // Pastikan ini sesuai dengan struktur database Anda
+        return $this->hasOne(Teacher::class, 'user_id');  // Pastikan ini sesuai dengan struktur database Anda
+    }
+
+    public function company()
+    {
+        return $this->hasOne(Company::class);
     }
 }

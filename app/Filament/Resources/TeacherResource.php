@@ -6,13 +6,13 @@ use App\Filament\Resources\TeacherResource\Pages;
 use App\Models\Teacher;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Tables;
 
 class TeacherResource extends Resource
 {
     protected static ?string $model = Teacher::class;
-
+    protected static ?string $navigationGroup = 'Management';
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
@@ -57,5 +57,4 @@ class TeacherResource extends Resource
             'edit' => Pages\EditTeacher::route('/{record}/edit'),
         ];
     }
-
 }
