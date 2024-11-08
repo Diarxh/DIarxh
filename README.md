@@ -86,3 +86,13 @@ Catatan Tambahan
 
     Pastikan bahwa versi VS Code di laptop dan PC sekolah adalah sama untuk menghindari masalah kompatibilitas.```
 ````
+
+<!-- Version: 1.94.2
+Commit: 384ff7382de624fb94dbaf6da11977bba1ecd427
+Date: 2024-10-11T16:41:53.891Z
+Electron: 30.5.1
+ElectronBuildId: undefined
+Chromium: 124.0.6367.243
+Node.js: 20.16.0
+V8: 12.4.254.20-electron.0
+OS: Linux x64 6.11.3-zen1-1-zen -->
