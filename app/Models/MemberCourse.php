@@ -26,6 +26,8 @@ class MemberCourse extends Model
     {
         return $this->belongsTo(User::class);
     }
+    // Di dalam model MemberCourse
+
 
     /**
      * Get the teacher that owns the member course.
@@ -41,11 +43,11 @@ class MemberCourse extends Model
     /**
      * Get the training that owns the member course.
      */
-    public function training(): BelongsTo
+    public function Training()
     {
-        return $this->belongsTo(Training::class);
+        return $this->belongsTo(Training::class, 'training_id'); // Pastikan 'training_id' adalah kolom yang menghubungkan ke tabel trainings
     }
-// Model MemberCourse
+    // Model MemberCourse
     public function pelatihan()
     {
         return $this->belongsTo(Training::class, 'training_id'); // Pastikan 'training_id' sesuai dengan kolom di database

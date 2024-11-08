@@ -17,8 +17,9 @@ class TrainingType extends Model
         'photo',
     ];
 
+    // Relasi hasMany untuk mendapatkan training yang terkait
     public function trainings()
     {
-        return $this->hasMany(Training::class);
+        return $this->hasMany(Training::class, 'training_type_id');
     }
 }

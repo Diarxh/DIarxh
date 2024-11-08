@@ -11,7 +11,7 @@ class UserMiddleware
     public function handle(Request $request, Closure $next)
     {
         // Cek apakah pengguna terautentikasi dan memiliki peran yang sesuai
-        if (Auth::check() && Auth::user()->hasRole('user')) {
+        if (Auth::check() && (Auth::user()->hasRole('user') || Auth::user()->hasRole('guru'))) {
             return $next($request);
         }
 

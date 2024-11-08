@@ -8,6 +8,7 @@ use App\Models\Regency;
 use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -99,6 +100,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
+
     public function saveprofile(Request $request)
     {
         $validatedData = $request->validate([
@@ -107,7 +109,7 @@ class UserController extends Controller
             'phone_number' => 'required|string|max:255',
             'school_name' => 'required|string|max:255',
             'nuptk' => 'required|string|max:255',
-            'birth_date' => 'required|date',
+            'birth_date' => 'required|date', // Pastikan ini menggunakan tipe date
             'birth_place' => 'required|string|max:255',
             'address' => 'required|string|max:255',
             'village' => 'required|string|max:255',
@@ -119,6 +121,7 @@ class UserController extends Controller
             'about' => 'nullable|string|max:1000',
         ]);
 
+        // Tidak perlu konversi ulang jika input HTML sudah dalam format Y-m-d
         $validatedData['user_id'] = Auth::id();
 
         if ($request->hasFile('photo')) {
@@ -138,6 +141,8 @@ class UserController extends Controller
 
         return redirect()->route('profile.show')->with('success', $message);
     }
+
+
 
     /**
      * Mengubah kata sandi pengguna.

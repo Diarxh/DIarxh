@@ -20,17 +20,17 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
 
-            \Log::info('User authenticated: ' . $user->email);
-
             // Pengalihan berdasarkan peran
             if ($user->hasRole('super_admin')) {
-                \Log::info('User has super_admin role');
+                // Super admin diarahkan ke /admin
                 return redirect()->intended('/admin');
-            } elseif ($user->hasAnyRole(['perusahaan', 'guru'])) {
-                \Log::info('User has perusahaan or guru role');
-                return redirect()->intended('/user/dashboard'); // Pastikan ini mengarah ke dashboard_user
+            } elseif ($user->hasRole('perusahaan')) {
+                // Perusahaan diarahkan ke /admin/initial-company-setup
+                return redirect()->intended('/admin/initial-company-setup');
+            } elseif ($user->hasRole('guru')) {
+                // Guru diarahkan ke dashboard pengguna
+                return redirect()->intended('/user/dashboard');
             } else {
-                \Log::info('User has no recognized role');
                 Auth::logout();
                 return back()->withErrors([
                     'role' => 'Akses ditolak. Anda tidak memiliki peran yang sesuai.',
@@ -38,11 +38,11 @@ class LoginController extends Controller
             }
         }
 
-        \Log::info('Login failed for email: ' . $request->email);
         return back()->withErrors([
             'email' => 'Kredensial yang diberikan tidak cocok dengan catatan kami.',
         ]);
     }
+
 
     public function logout(Request $request)
     {
@@ -89,4 +89,33 @@ class LoginController extends Controller
             'password' => ['required', 'string', 'min:2', 'confirmed'],
         ]);
     }
+
+    // REGISTRASI COMPANY
+    public function showCompanyRegisterForm()
+    {
+        return view('register_company');  // Pastikan ada view `register_company.blade.php`
+    }
+
+    public function registerCompany(Request $request)
+    {
+        // Jalankan validasi
+        $this->validator($request->all())->validate();
+
+        // Buat pengguna baru
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        // Assign peran 'perusahaan' ke pengguna
+        $role = Role::findByName('perusahaan');  // Pastikan 'perusahaan' adalah nama role yang benar
+        $user->assignRole($role);
+
+        // Set session success message
+        session()->flash('success', 'Pendaftaran perusahaan berhasil. Silakan login.');
+
+        return redirect()->route('login');  // Redirect ke halaman login
+    }
+
 }

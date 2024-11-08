@@ -23,8 +23,22 @@
             <div class="alert alert-warning" role="alert">
                 Anda belum mendaftar pelatihan apapun.
             </div>
+            <script>
+                // Menampilkan alert jika tidak ada pelatihan
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Tidak Ada Pelatihan',
+                    text: 'Anda belum mendaftar pelatihan apapun. Silakan daftar pelatihan terlebih dahulu.',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    // Setelah menutup alert, arahkan ke halaman daftar pelatihan
+                    window.location.href = "{{ route('list_pelatihan') }}";
+                });
+            </script>
         @else
             <div class="row justify-content-center">
+
+
                 @foreach ($pelatihan as $item)
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card shadow-sm border-light">

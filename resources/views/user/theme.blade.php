@@ -55,17 +55,16 @@
 
     <!-- Spinner Start -->
     <div id="spinner"
-        class="show position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center bg-white">
-        <img src="{{ asset('images/logo-cerah.png') }}" alt="Loading..." style="width: 6rem; height: 4rem;">
+        class="bg-white show position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <img src="{{ asset('images/x.svg') }}" alt="Loading..." style="width: 16rem; height: 20rem;">
     </div>
     <!-- Spinner End -->
-
 
 
     <div class="container-fluid header position-relative p-0">
         <nav class="navbar navbar-expand-lg fixed-top navbar-light px-lg-5 py-lg-0 px-4 py-3">
             <a href="/home" class="navbar-brand p-0">
-                <img src="{{ asset('images/logo-cerah.png') }}" alt="Logo">
+                <img src="{{ asset('images/x.svg') }}" alt="Logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="fa fa-bars"></span>

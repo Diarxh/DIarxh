@@ -1,5 +1,6 @@
 <x-filament::page>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
         {{-- Card Informasi Utama --}}
         <x-filament::card>
             <div class="flex items-center gap-4">
@@ -21,32 +22,10 @@
                     Total Data
                 </div>
                 <div class="text-3xl font-semibold">
-                    {{ $totalData }} {{-- Menampilkan total data --}}
+                    {{ $totalData }}
                 </div>
             </div>
         </x-filament::card>
-
-        {{-- Card Aktivitas Terbaru
-        <x-filament::card>
-            <div class="space-y-2">
-                <div class="text-sm font-medium text-gray-500">
-                    Aktivitas Terbaru
-                </div>
-                <div class="space-y-4">
-                    @if ($recentActivities->isEmpty())
-                        <div class="text-sm">
-                            Belum ada aktivitas
-                        </div>
-                    @else
-                        @foreach ($recentActivities as $activity)
-                            <div class="text-sm">
-                                {{ $activity->description }} - {{ $activity->created_at->diffForHumans() }}
-                            </div>
-                        @endforeach
-                    @endif
-                </div>
-            </div>
-        </x-filament::card> --}}
 
         {{-- Card Info Perusahaan --}}
         <x-filament::card>
@@ -68,11 +47,11 @@
             </div>
         </x-filament::card>
 
-        {{-- Card Info Training --}}
+        {{-- Card Info Training Terbaru --}}
         <x-filament::card>
             <div class="space-y-2">
                 <div class="text-sm font-medium text-gray-500">
-                    Info Training
+                    Info Training Terbaru
                 </div>
                 <div class="space-y-2">
                     @if ($trainings->isEmpty())
@@ -82,12 +61,58 @@
                     @else
                         @foreach ($trainings as $training)
                             <div class="text-sm">
-                                {{ $training->title }} - {{ $training->date->format('d M Y') }}
+                                <strong>{{ $training->name }}</strong> - {{ $training->start_date->format('d M Y') }}
                             </div>
                         @endforeach
                     @endif
                 </div>
             </div>
         </x-filament::card>
+
     </div>
+
+    {{-- Card Statistik Pelatihan per Bulan --}}
+    <x-filament::card class="col-span-1 lg:col-span-3">
+        <div class="space-y-2">
+            <div class="text-sm font-medium text-gray-500">
+                Statistik Pelatihan per Bulan
+            </div>
+            <div class="flex justify-center">
+                <canvas id="trainingsPerMonthChart" class="w-full max-w-5xl"></canvas>
+            </div>
+        </div>
+    </x-filament::card>
+
+    @push('scripts')
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            const ctx = document.getElementById('trainingsPerMonthChart').getContext('2d');
+            const chartData = {!! json_encode($trainingsPerMonth) !!};
+
+            new Chart(ctx, {
+                type: 'bar', // Jenis chart yang diinginkan
+                data: {
+                    labels: Object.keys(chartData), // Menampilkan bulan pada sumbu x
+                    datasets: [{
+                        label: 'Jumlah Pelatihan per Bulan',
+                        data: Object.values(chartData), // Data dari bulan-bulan
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)', // Warna latar belakang batang chart
+                        borderColor: 'rgba(54, 162, 235, 1)', // Warna border batang chart
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            enabled: true
+                        }
+                    }
+                }
+            });
+        </script>
+    @endpush
 </x-filament::page>

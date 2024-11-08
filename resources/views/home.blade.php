@@ -17,7 +17,7 @@
                             membantu
                             guru dan lulusan baru dalam meningkatkan keterampilan dan pengetahuan mereka.</p>
                         <div class="gap-3 d-flex">
-                            <a href="#" class="btn btn-primary btn-lg rounded-pill" onclick="showChoiceAlert()">
+                            <a href="/register" class="btn btn-primary btn-lg rounded-pill" onclick="showChoiceAlert()">
                                 Get Started <i class="fas fa-arrow-right ms-2"></i>
                             </a>
                             <a href="#features" class="btn btn-outline-primary btn-lg rounded-pill">
@@ -221,7 +221,7 @@
             <h2 class="mb-4 display-5">Siap Untuk Memulai?</h2>
             <p class="mb-4 lead">Bergabunglah dengan ribuan profesional yang telah meningkatkan karirnya bersama TeachHub
             </p>
-            <a href="#" class="btn btn-primary btn-lg rounded-pill" onclick="showChoiceAlert()">
+            <a href="/register" class="btn btn-primary btn-lg rounded-pill" onclick="showChoiceAlert()">
                 Daftar Sekarang <i class="fas fa-arrow-right ms-2"></i>
             </a>
         </div>

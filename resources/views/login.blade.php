@@ -4,7 +4,7 @@
     <meta content="" name="keywords">
     <meta content="" name="description">
     {{-- WEB ICON --}}
-    <link rel="icon" type="image/x-icon" href="{{ asset('images/logo.svg') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/x.svg') }}">
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{ asset('theme/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -38,10 +38,12 @@
                     <div class="row">
                         <div class="col-lg-10 col-xl-7 mx-auto">
                             <div class="logo">
-                                <img src="{{ asset('images/logo-cerah.png') }}" alt="Loading..."
-                                    style="width: 6rem; height: 4rem;" class="content-center">
+                                <a href="/home">
+                                    <img src="{{ asset('images/logo-cerah.png') }}" alt="Loading..."
+                                        style="width: 100%; height: 6rem;" class="content-center">
+                                </a>
                                 <p class="text-muted mb-4">Silahkan Login</p>
-                                @if(session('error'))
+                                @if (session('error'))
                                     <div class="alert alert-danger">
                                         {{ session('error') }}
                                     </div>
@@ -66,11 +68,12 @@
                                 </div>
                                 <button type="submit"
                                     class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Login</button>
-                                    <div class="mt-3 text-center">
-                                        <p>Belum punya akun? <a href="{{ route('register') }}" class="text-primary">Silakan daftar</a></p>
-                                    </div>
+                                <div class="mt-3 text-center">
+                                    <p>Belum punya akun? <a href="{{ route('register') }}" class="text-primary">Silakan
+                                            daftar</a></p>
+                                </div>
                             </form>
-                            @if(session('error'))
+                            @if (session('error'))
                                 <div class="alert alert-danger">
                                     {{ session('error') }}
                                 </div>

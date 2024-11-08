@@ -19,6 +19,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log; // Tambahkan ini
 use Laravolt\Indonesia\Models\District;
+use Laravolt\Indonesia\Models\Province;
+use Laravolt\Indonesia\Models\City;
+
 
 class HomeController extends Controller
 {
@@ -43,6 +46,10 @@ class HomeController extends Controller
     //home
     public function index()
     {
+
+        if (Auth()->user() != null) {
+            return redirect('user/dashboard');
+        }
         $totalPelatihan = Training::count(); // Total semua pelatihan
         $pelatihanSaya = MemberCourse::where('user_id', Auth::id())->count(); // Hitung pelatihan yang diikuti oleh pengguna
         $penggunaAktif = User::count(); // Menghitung semua pengguna
@@ -67,8 +74,9 @@ class HomeController extends Controller
     }
     public function pelatihan_saya()
     {
-        $user_id = auth()->id();
-        $pelatihan = MemberCourse::where('user_id', $user_id)->with('pelatihan')->get();
+        $id = auth()->id();
+        $pelatihan = MemberCourse::select('member_courses.*', 'trainings.*')->join('trainings', 'member_courses.training_id', '=', 'trainings.id')->where('member_courses.user_id', $id)->get();
+
         return view('user.pelatihan_saya', compact('pelatihan'));
     }
     public function contact()
@@ -122,7 +130,10 @@ class HomeController extends Controller
     public function detail_pelatihan(int $id)
     {
         $detail = Training::with('peserta.guru')->findOrFail($id);
-        $peserta = MemberCourse::with('guru')->where('training_id', $id)->get();
+        $peserta = MemberCourse::select('member_courses.*', 'users.name as user_name', 'users.email as email', 'teachers.*')->join('users', 'member_courses.user_id', '=', 'users.id')->leftJoin('teachers', 'users.id', '=', 'teachers.user_id')->where('member_courses.training_id', $id)->get();
+
+
+        // $peserta = MemberCourse::with('guru')->where('training_id', $id)->get();
         // dd($peserta);
         return view('detail_pelatihan', compact('detail', 'peserta'));
     }

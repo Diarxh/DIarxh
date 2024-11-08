@@ -4,7 +4,7 @@
     <meta content="" name="keywords">
     <meta content="" name="description">
     {{-- WEB ICON --}}
-    <link rel="icon" type="image/x-icon" href="{{ asset('images/logo.svg') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon_logo.png') }}">
 
     <!-- Icon Font Stylesheet -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
@@ -31,8 +31,8 @@
 
 <!-- Spinner Start -->
 <div id="spinner"
-    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-    <img src="{{ asset('images/logo-cerah.png') }}" alt="Loading..." style="width: 6rem; height: 4rem;">
+    class="bg-white show position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <img src="{{ asset('images/x.svg') }}" alt="Loading..." style="width: 16rem; height: 20rem;">
 </div>
 <!-- Spinner End -->
 <div class="container-fluid">
@@ -50,8 +50,10 @@
                     <div class="row">
                         <div class="col-lg-10 col-xl-7 mx-auto">
                             <div class="logo">
-                                <img src="{{ asset('images/logo-cerah.png') }}" alt="Loading..."
-                                    style="width: 6rem; height: 4rem;" class="content-center">
+                                <a href="/home">
+                                    <img src="{{ asset('images/logo-cerah.png') }}" alt="Loading..."
+                                        style="width: 100%; height: 8rem;" class="content-center">
+                                </a>
                                 <p class="text-muted mb-4">Silahkan Daftar</p>
                             </div>
                             <form method="POST" action="{{ route('register') }}">
@@ -76,24 +78,36 @@
                                     </div>
                                 @endif
                                 <div class="form-group mb-3">
-                                    <input id="inputName" type="text" name="name" placeholder="Nama Lengkap" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
+                                    <input id="inputName" type="text" name="name" placeholder="Nama Lengkap"
+                                        required="" autofocus=""
+                                        class="form-control rounded-pill border-0 shadow-sm px-4">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <input id="inputEmail" type="email" name="email" placeholder="Email address" required="" class="form-control rounded-pill border-0 shadow-sm px-4">
+                                    <input id="inputEmail" type="email" name="email" placeholder="Email address"
+                                        required="" class="form-control rounded-pill border-0 shadow-sm px-4">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <input id="inputPassword" type="password" name="password" placeholder="Password" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
+                                    <input id="inputPassword" type="password" name="password" placeholder="Password"
+                                        required=""
+                                        class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <input id="inputPasswordConfirmation" type="password" name="password_confirmation" placeholder="Confirm Password" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
+                                    <input id="inputPasswordConfirmation" type="password" name="password_confirmation"
+                                        placeholder="Confirm Password" required=""
+                                        class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
                                 </div>
                                 <div class="custom-control custom-checkbox mb-3">
                                     <input id="customCheck1" type="checkbox" checked class="custom-control-input">
 
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Sign Up</button>
+                                <button type="submit"
+                                    class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Sign
+                                    Up</button>
                                 <div class="mt-3 text-center">
-                                    <p>Sudah punya akun? <a href="{{ route('login') }}" class="text-primary">Silakan login</a></p>
+                                    <p>Sudah punya akun? <a href="{{ route('login') }}" class="text-primary">Silakan
+                                            login</a></p>
+                                    <p>Ingin membuat akun perusahaan? <a href="{{ route('register.company') }}" class="text-primary">Silakan
+                                            daftar</a></p>
                                 </div>
                             </form>
                         </div>
@@ -122,7 +136,7 @@
 <script src="{{ asset('theme/js/main.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         const newPassword = document.getElementById('inputPassword');
         const renewPassword = document.getElementById('inputPasswordConfirmation');
 
@@ -142,6 +156,7 @@
         newPassword.addEventListener('input', validatePassword);
         renewPassword.addEventListener('input', validatePassword);
     });
+
     function togglePasswordVisibility(inputId, iconId) {
         const passwordInput = document.getElementById(inputId);
         const icon = document.getElementById(iconId);
@@ -168,7 +183,6 @@
     document.getElementById('toggleRenewPassword').addEventListener('click', function() {
         togglePasswordVisibility('renewPassword', 'toggleRenewPassword');
     });
-
 </script>
 
 <style>

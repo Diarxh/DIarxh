@@ -18,33 +18,16 @@
         <div class="container py-5 text-center" style="max-width: 700px;">
             <h3 class="display-3 wow fadeInDown mb-4" data-wow-delay="0.1s">Profil Pengguna
                 </h1>
-                {{-- <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-                        <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">list Pelatihan</a></li>
-                        <li class="breadcrumb-item active text-primary"></li>
-                    </ol>     --}}
         </div>
     </div>
     <main id="main" class="main">
 
-        {{--  <div class="pagetitle">
-      <h1>Profile</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Users</li>
-          <li class="breadcrumb-item active">Profile</li>
-        </ol>
-      </nav>
-    </div><!-- End Page Title -->  --}}
-
-        <section class="section profile">
+        <section class="section profile ">
             <div class="row">
                 <div class="col-xl-4">
 
-                    <div class="card">
+                    <div class="card shadow">
                         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-
                             @if ($guru && $guru->photo)
                                 <div style="width: 150px; height: 150px; overflow: hidden; border-radius: 50%;">
                                     <img src="{{ asset('storage/' . $guru->photo) }}" alt="{{ $user->name }}"
@@ -53,6 +36,7 @@
                             @else
                                 <i class="fas fa-solid fa-user fa-5x text-secondary rounded-circle"></i>
                             @endif
+
                             <h2>{{ $user->name }}</h2>
                             <h3>{{ $roles->isNotEmpty() ? $roles->first()->name : 'No Role' }}</h3>
                             <!-- Menampilkan name dari peran pertama -->
@@ -72,7 +56,7 @@
 
                 <div class="col-xl-8">
 
-                    <div class="card">
+                    <div class="card shadow">
                         <div class="card-body pt-3">
                             <!-- Bordered Tabs -->
                             <ul class="nav nav-tabs nav-tabs-bordered">
@@ -114,6 +98,11 @@
                                     @if (session('success'))
                                         <div class="alert alert-success">
                                             {{ session('success') }}
+                                        </div>
+                                    @endif
+                                    @if (!isset($guru))
+                                        <div class="alert alert-warning" role="alert">
+                                            Data guru belum ada. Silakan tambahkan segera.
                                         </div>
                                     @endif
                                     <h5 class="card-title">About</h5>
@@ -178,6 +167,31 @@
                                         <div class="alert alert-warning" role="alert">
                                             Data guru belum ada. Silakan tambahkan segera.
                                         </div>
+                                        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                        <script>
+                                            document.addEventListener("DOMContentLoaded", function() {
+                                                Swal.fire({
+                                                    title: 'Data Guru Kosong',
+                                                    text: 'Silakan lengkapi data guru Anda untuk melanjutkan.',
+                                                    icon: 'warning',
+                                                    confirmButtonText: 'Isi Data Guru',
+                                                    allowOutsideClick: false,
+                                                    allowEscapeKey: false
+                                                }).then((result) => {
+                                                    if (result.isConfirmed) {
+                                                        // Arahkan ke tab Edit Profile
+                                                        window.location.href = "{{ route('profile.show') }}#profile-edit";
+                                                    }
+                                                });
+
+                                                // Jika URL mengandung #profile-edit, aktifkan tab Edit Profile
+                                                if (window.location.hash === "#profile-edit") {
+                                                    // Gunakan Bootstrap Tab untuk mengaktifkan tab sesuai dengan ID
+                                                    let tab = new bootstrap.Tab(document.querySelector('button[data-bs-target="#profile-edit"]'));
+                                                    tab.show();
+                                                }
+                                            });
+                                        </script>
                                     @endif
                                     <!-- Profile Edit Form -->
                                     <form action="{{ route('profile.save') }}" method="POST"
@@ -193,9 +207,15 @@
                                             <div class="col-md-8 col-lg-9">
                                                 <div
                                                     style="width: 150px; height: 150px; overflow: hidden; border-radius: 50%;">
-                                                    <img src="{{ asset('storage/' . $guru->photo) }}"
-                                                        alt="{{ $user->name }}"
-                                                        style="width: 100%; height: 100%; object-fit: cover;">
+                                                    @if (isset($guru) && $guru->photo)
+                                                        <img src="{{ asset('storage/' . $guru->photo) }}"
+                                                            alt="{{ $user->name }}"
+                                                            style="width: 100%; height: 100%; object-fit: cover;">
+                                                    @else
+                                                        <img src="{{ asset('storage/default-image.jpg') }}"
+                                                            alt="Default Image"
+                                                            style="width: 100%; height: 100%; object-fit: cover;">
+                                                    @endif
                                                 </div>
                                                 <div class="pt-2">
                                                     <input type="file" name="photo" class="btn btn-primary btn-sm"
@@ -203,6 +223,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="row mb-3">
                                             <label for="about" class="col-md-4 col-lg-3 col-form-label">About</label>
                                             <div class="col-md-8 col-lg-9">
@@ -259,8 +280,9 @@
                                             <label for="birthDate" class="col-md-4 col-lg-3 col-form-label">Birth
                                                 Date</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <input name="birth_date" type="text" class="form-control"
-                                                    id="birthDate" value="{{ $guru->birth_date ?? '' }}">
+                                                <input name="birth_date" type="date" class="form-control"
+                                                    id="birthDate"
+                                                    value="{{ $guru && \Carbon\Carbon::hasFormat($guru->birth_date, 'Y-m-d') ? \Carbon\Carbon::parse($guru->birth_date)->format('Y-m-d') : '' }}">
                                             </div>
                                         </div>
 
@@ -272,6 +294,7 @@
                                                     id="birthPlace" value="{{ $guru->birth_place ?? '' }}">
                                             </div>
                                         </div>
+
 
                                         <div class="row mb-3">
                                             <label for="'NiceAdmin/address"
@@ -289,7 +312,8 @@
                                                     value="{{ $guru->village ?? '' }}">
                                             </div>
                                         </div>
-                                        {{--  AUTO LIST  --}}
+                                        {{-- AUTO LIST --}}
+
                                         <div class="row mb-3">
                                             <label for="province"
                                                 class="col-md-4 col-lg-3 col-form-label">Province</label>
@@ -324,6 +348,7 @@
                                                 </select>
                                             </div>
                                         </div>
+
 
                                         <div class="row mb-3">
                                             <label for="lastEducation" class="col-md-4 col-lg-3 col-form-label">Last
@@ -470,6 +495,7 @@
     <!-- Template Main JS File -->
     <script src="{{ asset('NiceAdmin/assets/js/main.js') }}"></script>
 
+    {{--  AUTO LIS SCIRPT  --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -477,7 +503,7 @@
                 var provinceId = $(this).val();
                 if (provinceId) {
                     $.ajax({
-                        url: '/getRegencies',
+                        url: '/get-regencies', // Sesuaikan URL dengan rute di web.php
                         type: 'GET',
                         data: {
                             province_id: provinceId
@@ -501,7 +527,7 @@
                 var cityId = $(this).val();
                 if (cityId) {
                     $.ajax({
-                        url: '/getDistricts',
+                        url: '/get-districts', // Sesuaikan URL dengan rute di web.php
                         type: 'GET',
                         data: {
                             regency_id: cityId
@@ -521,7 +547,7 @@
             });
         });
     </script>
-    {{--  konfirmasi password   --}}
+    {{-- konfirmasi password --}}
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const newPassword = document.getElementById('newPassword');

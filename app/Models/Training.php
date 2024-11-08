@@ -35,10 +35,10 @@ class Training extends Model
         return $this->belongsTo(Company::class);
     }
 
-    public function trainingType()
-    {
-        return $this->belongsTo(TrainingType::class);
-    }
+    // public function trainingType()
+    // {
+    //     return $this->belongsTo(TrainingType::class);
+    // }
 
     public function teacher()
     {
@@ -48,5 +48,9 @@ class Training extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function trainingType()
+    {
+        return $this->belongsTo(TrainingType::class, 'training_type_id');
     }
 }

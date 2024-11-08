@@ -84,9 +84,9 @@
                                 @foreach ($peserta as $index => $p)
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
-                                        <td>{{ optional($p->teacher)->name ?? '-' }}</td> <!-- Menggunakan teacher -->
-                                        <td>{{ optional($p->teacher)->email ?? '-' }}</td>
-                                        <td>{{ optional($p->teacher)->school_name ?? '-' }}</td>
+                                        <td>{{ $p->user_name ?? '-' }}</td> <!-- Menggunakan user_name -->
+                                        <td>{{ $p->email ?? '-' }}</td>
+                                        <td>{{ $p->school_name ?? '-' }}</td> <!-- Pastikan kolom ini ada -->
                                     </tr>
                                 @endforeach
                             @endif
@@ -98,19 +98,34 @@
     </div>
     <script>
         function showRegistrationConfirm(trainingId, trainingName) {
+            const userId = '{{ Auth::id() }}';
+
+            // Periksa apakah pengguna sudah login
+            if (!userId) {
+                Swal.fire({
+                    title: 'Gagal!',
+                    text: 'Silakan login terlebih dahulu untuk mendaftar.',
+                    icon: 'error',
+                }).then(() => {
+                    window.location.href = '{{ route('login') }}'; // Redirect ke halaman login
+                });
+                return; // Hentikan eksekusi function jika belum login
+            }
+
+            // Jika pengguna sudah login, lanjutkan dengan dialog pendaftaran
             Swal.fire({
                 title: 'Konfirmasi Pendaftaran Pelatihan',
                 html: `
-                    <div class="text-left">
-                        <p class="mb-3">Nama Pelatihan: ${trainingName}</p>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="agreementCheck">
-                            <label class="form-check-label" for="agreementCheck">
-                                Dengan ini saya menyetujui untuk mendaftar
-                            </label>
-                        </div>
-                    </div>
-                `,
+            <div class="text-left">
+                <p class="mb-3">Nama Pelatihan: ${trainingName}</p>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="agreementCheck">
+                    <label class="form-check-label" for="agreementCheck">
+                        Dengan ini saya menyetujui untuk mendaftar
+                    </label>
+                </div>
+            </div>
+        `,
                 showCancelButton: true,
                 confirmButtonText: 'Daftar',
                 cancelButtonText: 'Batal',
@@ -132,7 +147,7 @@
                             },
                             body: JSON.stringify({
                                 training_id: trainingId,
-                                user_id: '{{ Auth::id() }}'
+                                user_id: userId
                             })
                         })
                         .then(response => response.json())
