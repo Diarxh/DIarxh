@@ -24,7 +24,7 @@
     <link href="{{ asset('theme/lib/animate/animate.min.css') }}" rel="stylesheet">
     <link href="{{ asset('theme/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
     <link href="{{ asset('theme/lib/lightbox/css/lightbox.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" /> --}}
 
 
     <!-- Customized Bootstrap Stylesheet -->
@@ -40,7 +40,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
-
+    <!-- Template Stylesheet -->
+    {{-- <link href="{{ asset('/theme/css/style.css') }}" rel="stylesheet"> --}}
 </head>
 
 <body>
@@ -183,7 +184,7 @@
     </div>
     <!-- Copyright End -->
     <!-- Button trigger modal -->
-    {{--  <a href="#" class="px-4 py-2 text-white btn btn-primary rounded-pill" id="loginLink">Sign Up</a>  --}}
+    {{-- <a href="#" class="px-4 py-2 text-white btn btn-primary rounded-pill" id="loginLink">Sign Up</a>  --}}
 
     <!-- Modal -->
     <div class="modal fade custom-modal" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel"
@@ -236,8 +237,8 @@
 
 
     <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="'{{ asset('theme/lib/wow/wow.min.js') }}"></script>
@@ -407,7 +408,7 @@
 
                 for (let i=0; i < 20; i++) {
                     const dot=document.createElement('div');
-                    dot.className = 'dot';
+                    dot.className='dot';
 
                     dot.style.left=`$ {
                         Math.random() * 100
@@ -424,6 +425,38 @@
                 }
             });
     </style>
+    <script>
+        const container = document.querySelector('.floating-dots');
+        for (let i = 0; i < 20; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'dot';
+            dot.style.left = `${Math.random() * 100}%`;
+            dot.style.top = `${Math.random() * 100}%`;
+            dot.style.animationDelay = `${Math.random() * 15}s`;
+            container.appendChild(dot);
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.querySelector('.floating-dots');
+
+            for (let i = 0; i < 20; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'dot';
+
+                dot.style.left = `$ {
+                        Math.random() * 100
+                    }
+
+                    %`;
+
+                dot.style.animationDelay = `$ {
+                        Math.random() * 15
+                    }
+
+                    s`;
+                container.appendChild(dot);
+            }
+        });
+    </script>
 
 
 
