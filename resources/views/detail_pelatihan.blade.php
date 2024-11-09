@@ -1,6 +1,6 @@
 @extends('user.theme')
 @section('content')
-    <div class="container-fluid bg-breadcrumb py-2">
+    <div class="py-2 container-fluid bg-breadcrumb">
         <ul class="breadcrumb-animation">
             <li></li>
             <li></li>
@@ -14,8 +14,8 @@
             <li></li>
         </ul>
         <div class="container py-5 text-center" style="max-width: 900px;">
-            <h3 class="display-3 wow fadeInDown mb-4" data-wow-delay="0.1s">Detail Pelatihan</h1>
-                <ol class="breadcrumb justify-content-center wow fadeInDown mb-0" data-wow-delay="0.3s">
+            <h3 class="mb-4 display-3 wow fadeInDown" data-wow-delay="0.1s">Detail Pelatihan</h1>
+                <ol class="mb-0 breadcrumb justify-content-center wow fadeInDown" data-wow-delay="0.3s">
                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                     <li class="breadcrumb-item"><a href="#">Pages</a></li>
                     <li class="breadcrumb-item active text-primary">About</li>
@@ -26,7 +26,7 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-4">
-                <div class="card mb-3 wow fadeInLeft" data-wow-delay="0.2s">
+                <div class="mb-3 card wow fadeInLeft" data-wow-delay="0.2s">
                     @if ($detail->photo)
                         <img src="{{ asset('storage/' . $detail->photo) }}" alt="{{ $detail->name }}" class="card-img-top"
                             style="width: 100%; height: auto;">
@@ -43,15 +43,22 @@
                         @else
                             <p class="card-text">Tipe Pelatihan: Tidak tersedia</p>
                         @endif
-                        <button onclick="showRegistrationConfirm({{ $detail->id }}, '{{ $detail->name }}')"
+                        <button
+                            onclick="showRegistrationConfirm(
+                            {{ $detail->id }},
+                            '{{ $detail->name }}',
+                            '{{ $detail->photo }}',
+                            '{{ $detail->training_location }}'
+                        )"
                             class="btn btn-primary">
                             Daftar Pelatihan
                         </button>
+
                     </div>
                 </div>
             </div>
             <div class="col-md-8">
-                <div class="card mb-3 wow fadeInRight" data-wow-delay="0.4s">
+                <div class="mb-3 card wow fadeInRight" data-wow-delay="0.4s">
                     <div class="card-body">
                         <h5 class="card-title">Jadwal Pelatihan</h5>
                         <ul class="list-group list-group-flush">
@@ -66,7 +73,7 @@
                 </div>
                 <div class="participants-section">
                     <h5 class="participants-title">Daftar Peserta</h5>
-                    <table class="table-striped table-bordered table">
+                    <table class="table table-striped table-bordered">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -98,34 +105,19 @@
     </div>
     <script>
         function showRegistrationConfirm(trainingId, trainingName) {
-            const userId = '{{ Auth::id() }}';
-
-            // Periksa apakah pengguna sudah login
-            if (!userId) {
-                Swal.fire({
-                    title: 'Gagal!',
-                    text: 'Silakan login terlebih dahulu untuk mendaftar.',
-                    icon: 'error',
-                }).then(() => {
-                    window.location.href = '{{ route('login') }}'; // Redirect ke halaman login
-                });
-                return; // Hentikan eksekusi function jika belum login
-            }
-
-            // Jika pengguna sudah login, lanjutkan dengan dialog pendaftaran
             Swal.fire({
                 title: 'Konfirmasi Pendaftaran Pelatihan',
                 html: `
-            <div class="text-left">
-                <p class="mb-3">Nama Pelatihan: ${trainingName}</p>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="agreementCheck">
-                    <label class="form-check-label" for="agreementCheck">
-                        Dengan ini saya menyetujui untuk mendaftar
-                    </label>
-                </div>
-            </div>
-        `,
+                    <div class="text-left">
+                        <p class="mb-3">Nama Pelatihan: ${trainingName}</p>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="agreementCheck">
+                            <label class="form-check-label" for="agreementCheck">
+                                Dengan ini saya menyetujui untuk mendaftar
+                            </label>
+                        </div>
+                    </div>
+                `,
                 showCancelButton: true,
                 confirmButtonText: 'Daftar',
                 cancelButtonText: 'Batal',
