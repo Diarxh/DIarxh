@@ -17,8 +17,8 @@
             <h3 class="mb-4 display-3 wow fadeInDown" data-wow-delay="0.1s">Detail Pelatihan</h1>
                 <ol class="mb-0 breadcrumb justify-content-center wow fadeInDown" data-wow-delay="0.3s">
                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                    <li class="breadcrumb-item active text-primary">About</li>
+                    <li class="breadcrumb-item"><a href="#">pelatihan</a></li>
+                    <li class="breadcrumb-item active text-primary">detail_pelatihan</li>
                 </ol>
         </div>
     </div>
@@ -105,6 +105,20 @@
     </div>
     <script>
         function showRegistrationConfirm(trainingId, trainingName) {
+            const userId = '{{ Auth::id() }}';
+
+            // Periksa apakah pengguna sudah login
+            if (!userId) {
+                Swal.fire({
+                    title: 'Gagal!',
+                    text: 'Silakan login terlebih dahulu untuk mendaftar.',
+                    icon: 'error',
+                }).then(() => {
+                    window.location.href = '{{ route('login') }}'; // Redirect ke halaman login
+                });
+                return; // Hentikan eksekusi function jika belum login
+            }
+
             Swal.fire({
                 title: 'Konfirmasi Pendaftaran Pelatihan',
                 html: `

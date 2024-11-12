@@ -13,9 +13,12 @@ class CreateTraining extends CreateRecord
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-        // Menambahkan user_id ke data sebelum menyimpan
-        $data['user_id'] = Auth::id();  // Mengisi user_id dengan ID pengguna yang sedang login
+        $data['user_id'] = Auth::id(); // Mengisi user_id dengan ID pengguna yang sedang login
+        return $data; // Mengembalikan data yang telah dimodifikasi
+    }
 
-        return $data;  // Mengembalikan data yang telah dimodifikasi
+    protected function getRedirectUrl(): string
+    {
+        return TrainingResource::getUrl('index'); // Redirect ke halaman index setelah create
     }
 }

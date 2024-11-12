@@ -221,7 +221,7 @@
             <h2 class="mb-4 display-5">Siap Untuk Memulai?</h2>
             <p class="mb-4 lead">Bergabunglah dengan ribuan profesional yang telah meningkatkan karirnya bersama TeachHub
             </p>
-            <a href="/register" class="btn btn-primary btn-lg rounded-pill" onclick="showChoiceAlert()">
+            <a href="#" class="btn btn-primary btn-lg rounded-pill" onclick="showChoiceAlert()">
                 Daftar Sekarang <i class="fas fa-arrow-right ms-2"></i>
             </a>
         </div>

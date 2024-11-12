@@ -9,7 +9,7 @@
             }
         }, 1);
     };
-    spinner(0);
+    spinner();
 
     // Sticky Navbar
     $(window).scroll(function () {
@@ -74,10 +74,32 @@
                 });
         });
     }
-})(jQuery);
-    document.addEventListener('click', function (event) {
-        const dropdown = document.getElementById('navbarNav');
-        if (!dropdown.contains(event.target) && dropdown.classList.contains('show')) {
-            dropdown.classList.remove('show');
+
+    // // Floating dots animation
+    // document.addEventListener("DOMContentLoaded", function () {
+    //     const container = document.querySelector(".floating-dots");
+    //     for (let i = 0; i < 20; i++) {
+    //         const dot = document.createElement("div");
+    //         dot.className = "dot";
+
+    //         dot.style.left = `${Math.random() * 100}%`;
+    //         dot.style.animationDelay = `${Math.random() * 15}s`;
+
+    //         container.appendChild(dot);
+    //     }
+    // });
+
+    // Close dropdown on click outside
+    document.addEventListener("click", function (event) {
+        const dropdown = document.getElementById("navbarNav");
+        if (
+            !dropdown.contains(event.target) &&
+            dropdown.classList.contains("show")
+        ) {
+            dropdown.classList.remove("show");
         }
     });
+
+    // Initialize AOS (Animate on Scroll)
+    AOS.init();
+})(jQuery);

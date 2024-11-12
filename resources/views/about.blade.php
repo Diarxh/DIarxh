@@ -57,6 +57,24 @@
                                 <h4>Expert Mentors</h4>
                                 <p>Bimbingan profesional</p>
                             </div>
+                            <!-- Fitur Baru 1 -->
+                            <div class="feature-item" data-aos="fade-up" data-aos-delay="300">
+                                <i class="fas fa-clock"></i>
+                                <h4>Flexible Scheduling</h4>
+                                <p>Kelas dapat dijadwalkan ulang untuk kenyamanan Anda.</p>
+                            </div>
+                            <!-- Fitur Baru 2 -->
+                            <div class="feature-item" data-aos="fade-up" data-aos-delay="400">
+                                <i class="fas fa-certificate"></i>
+                                <h4>Certification</h4>
+                                <p>Dapatkan sertifikat setelah menyelesaikan kursus.</p>
+                            </div>
+                            <!-- Fitur Baru 3 -->
+                            <div class="feature-item" data-aos="fade-up" data-aos-delay="500">
+                                <i class="fas fa-comments"></i>
+                                <h4>Community Support</h4>
+                                <p>Bergabunglah dengan komunitas kami untuk berdiskusi dan belajar bersama.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -76,12 +94,119 @@
                         <p>Students Trained</p>
                     </div>
                 </div>
-                <!-- Add more stats cards -->
+                <!-- Stats Card 2 -->
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="stat-card">
+                        <i class="fas fa-book fa-3x mb-3"></i>
+                        <h2 class="counter">50+</h2>
+                        <p>Courses Available</p>
+                    </div>
+                </div>
+                <!-- Stats Card 3 -->
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="stat-card">
+                        <i class="fas fa-chalkboard-teacher fa-3x mb-3"></i>
+                        <h2 class="counter">20+</h2>
+                        <p>Expert Mentors</p>
+                    </div>
+                </div>
+                <!-- Stats Card 4 -->
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="stat-card">
+                        <i class="fas fa-users fa-3x mb-3"></i>
+                        <h2 class="counter">5000+</h2>
+                        <p>Registered Users</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <!-- Stats Section End -->
+    <!-- Info Box Start -->
+    <div class="container-fluid bg-light py-5">
+        <div class="container">
+            <div class="row g-4 text-center">
+                <div class="col-lg-12 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="info-box">
+                        <h2 class="display-5 mb-3">Why Choose TeachHub Academy?</h2>
+                        <p class="lead mb-4">Discover the benefits of choosing TeachHub Academy for your education needs.
+                        </p>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check"></i> Comprehensive Curriculum</li>
+                            <li><i class="fas fa-check"></i> Experienced Instructors</li>
+                            <li><i class="fas fa-check"></i> Flexible Learning Options</li>
+                            <li><i class="fas fa-check"></i> Affordable Pricing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Info Box End -->
 
     <style>
+        /* Gradient Text */
+        .text-gradient {
+            background: linear-gradient(45deg, #007bff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Mengatur warna aksen biru */
+        body {
+            background-color: #f8f9fa;
+            /* Warna latar belakang halaman */
+        }
+
+        h2,
+        .sub-title {
+            color: #007bff;
+            /* Aksen biru pada judul */
+        }
+
+        /* Stats Cards */
+        .stat-card {
+            background: #e9f7fe;
+            /* Latarnya menjadi biru muda */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            background: #d0e9ff;
+            /* Warna lebih gelap saat di-hover */
+        }
+
+        /* Feature Items */
+        .feature-item {
+            background: #e9f7fe;
+            /* Latarnya menjadi biru muda */
+        }
+
+        .feature-item:hover {
+            background: #d0e9ff;
+            /* Lebih gelap saat di-hover */
+        }
+
+        /* Info Box Styles */
+        .info-box {
+            background: white;
+            /* Ubah background jika diperlukan */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        /* Warna ikon */
+        .feature-item i,
+        .stat-card i {
+            color: #007bff;
+            /* Warna ikon biru */
+        }
+
         /* Gradient Text */
         .text-gradient {
             background: linear-gradient(45deg, #007bff, #00ff88);
@@ -160,6 +285,38 @@
 
         .stat-card:hover {
             transform: translateY(-5px);
+        }
+
+        /* Info Box Styles */
+        .info-box {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .info-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .info-box h2 {
+            color: #007bff;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-box ul li {
+            margin-bottom: 10px;
+        }
+
+        .info-box ul li i {
+            margin-right: 10px;
+            color: #007bff;
+            font-size: 1.2rem;
         }
 
         /* Animations */

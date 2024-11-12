@@ -7,9 +7,11 @@ use App\Models\Teacher;
 use App\Models\Training;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserDashboardController extends Controller
 {
+
     public function index()
     {
         $user = Auth::user();
@@ -20,14 +22,29 @@ class UserDashboardController extends Controller
         $penggunaAktif = User::count();
 
         // Ambil pelatihan terbaru yang diikuti oleh pengguna
-        $recentPelatihan = MemberCourse::with('Training')  // Pastikan relasi 'Training' didefinisikan dengan benar di model MemberCourse
+        $recentPelatihan = MemberCourse::with('Training')
             ->where('user_id', Auth::id())
-            ->latest()  // Mengambil yang terbaru
-            ->take(5)  // Mengambil 5 pelatihan terbaru, atau ubah sesuai kebutuhan
-            ->get();  // Mengambil semua pelatihan yang diikuti pengguna
+            ->latest()
+            ->take(5)
+            ->get();
 
-        return view('user.dashboard_user', compact('totalPelatihan', 'pelatihanSaya', 'penggunaAktif', 'recentPelatihan'));
+        // Hitung jumlah pelatihan berdasarkan bulan
+        $monthlyTrainingCounts = MemberCourse::select(DB::raw('COUNT(*) as total, MONTH(created_at) as month, YEAR(created_at) as year'))
+            ->where('user_id', Auth::id())
+            ->groupBy(DB::raw('YEAR(created_at), MONTH(created_at)'))
+            ->orderBy('year', 'asc')
+            ->orderBy('month', 'asc')
+            ->get();
+
+        // Persiapkan data untuk chart
+        $labels = [];
+        $data = [];
+        foreach ($monthlyTrainingCounts as $entry) {
+            // Format bulan dan tahun ke bentuk yang lebih menarik
+            $labels[] = date('F Y', strtotime("{$entry->year}-{$entry->month}-01"));
+            $data[] = $entry->total; // Jumlah pelatihan
+        }
+
+        return view('user.dashboard_user', compact('user', 'guru', 'roles', 'totalPelatihan', 'pelatihanSaya', 'penggunaAktif', 'recentPelatihan', 'labels', 'data'));
     }
-
-
 }
